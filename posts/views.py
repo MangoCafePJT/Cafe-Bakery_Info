@@ -4,13 +4,13 @@ from .models import Post, Review
 from .forms import PostForm, ReviewForm
 
 
-def main(request):
+def index(request):
     posts = Post.objects.all()
     context = {'posts': posts}
-    return render(request, 'posts/main.html', context)
+    return render(request, 'posts/index.html', context)
 
 
-# @login_required
+@login_required
 def create(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -38,7 +38,7 @@ def detail(request, post_pk):
     return render(request, 'posts/detail.html', context)
 
 
-# @login_required
+@login_required
 def delete(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     if request.user == post.user:
@@ -46,7 +46,7 @@ def delete(request, post_pk):
     return redirect('posts:index')
 
 
-# @login_required
+@login_required
 def review_create(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     review_form = ReviewForm(request.POST, request.FILES)
@@ -63,7 +63,7 @@ def review_create(request, post_pk):
     return render(request, 'posts/detail.html', context)
 
 
-# @login_required
+@login_required
 def review_delete(request, post_pk, review_pk):
     review = Review.objects.get(pk=review_pk)
     if request.user == review.user:
@@ -71,12 +71,11 @@ def review_delete(request, post_pk, review_pk):
 
     return redirect('posts:detail', post_pk)
 
-
-# @login_required
+@login_required
 def likes(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     if request.user in post.like_users.all():
         post.like_users.remove(request.user)
     else:
         post.like_users.add(request.user)
-    return redirect('posts:main')
+    return redirect('posts:index')

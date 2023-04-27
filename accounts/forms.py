@@ -98,7 +98,16 @@ class CustomUserChangeForm(UserChangeForm):
             }
         )
     )
+    region = forms.CharField(
+        label = '선호지역',
+        widget = forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': '선호 지역을 입력하세요',
+            }
+        )
+    )
 
     class Meta(UserChangeForm.Meta):
         model = get_user_model()
-        fields = ('email', 'name',)
+        fields = ('email', 'name', 'region',)

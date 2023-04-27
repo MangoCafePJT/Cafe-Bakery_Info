@@ -17,7 +17,9 @@ class Post(models.Model):
     category = models.CharField(max_length=10, choices=CATEGORY_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    image = ProcessedImageField(blank=True, null=True, processors=[ResizeToFill(100, 100)], options={'quality':90})
+    def post_image_path(instance, filename):
+        return f'post/{instance.pk}/{filename}'
+    image = ProcessedImageField(upload_to=post_image_path,blank=True, null=True, processors=[ResizeToFill(100, 100)], options={'quality':90})
 
 
 class Review(models.Model):
@@ -25,7 +27,9 @@ class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     content = models.TextField()
-    image = ProcessedImageField(blank=True, null=True, processors=[ResizeToFill(100, 100)], options={'quality':90})
+    def review_image_path(instance, filename):
+        return f'review/{instance.pk}/{filename}'
+    image = ProcessedImageField(upload_to=review_image_path,blank=True, null=True, processors=[ResizeToFill(100, 100)], options={'quality':90})
     DELICIOUS = 'DL'
     OKAY = 'OK'
     NOT_GOOD = 'NG'

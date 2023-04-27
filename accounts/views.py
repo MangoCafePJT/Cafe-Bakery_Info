@@ -11,14 +11,14 @@ from django.http import JsonResponse
 # Create your views here.
 
 def login(request):
-    if request.user.is_authenticatedL:
-        return redirect('posts:index')
+    if request.user.is_authenticated:
+        return redirect('main')
     
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('posts:index')
+            return redirect('main')
       
     else:
         form = AuthenticationForm()
@@ -36,13 +36,13 @@ def logout(request):
 
 def signup(request):
     if request.user.is_authenticated:
-        return redirect('posts:index')
+        return redirect('main')
 
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('posts:index')
+            return redirect('accounts:login')
     else:
         form = CustomUserCreationForm()
     context = {

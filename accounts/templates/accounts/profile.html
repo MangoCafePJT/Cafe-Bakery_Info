@@ -1,9 +1,99 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div>
+    
+    <div>
+      <h1>{{ person.username }}의 프로필 페이지</h1>
+      <hr>
+      
+      <div>
+      <span id="followings-count">팔로잉 : {{ person.followings.all|length }}</span>
+      <span id="followers-count">팔로워 : {{ person.followers.all|length }}</span>
+      </div>
+    </div>
+
+ 
+    {% if request.user != person %}
+      <div>
+        <form id="follow-form" data-user-id="{{ person.pk }}">
+          {% csrf_token %}
+          {% if request.user in person.followers.all %}
+            <input type="submit" value="언팔">
+          {% else %}
+            <input type="submit" value="팔로우">
+          {% endif %}
+        </form>
+      </div>
+    
+    {% endif %}
+      
+    
+
+    <hr>
+
+    <h3>{{ person.username }} 가 작성한 모든 리뷰</h3>
+    {% for post in person.post_set.all %}
+      <div>{{ post.title }}</div>
+    {% endfor %}
+
+    <hr>
+
+    <h3>{{ person.username }}가 좋아요 한 카페</h3>
+    {% for post in person.like_posts.all %}
+      <div>{{ post.title }}</div>
+    {% endfor %}
+
+    <hr>
+
+    <div>
+      <a href="{% url 'main' %}" class="btn btn-outline-success">뒤로가기</a>
+    </div>
+
+    <div>
+      <a href="{% url 'accounts:update' %}" class="btn btn-outline-primary">회원정보수정</a>
+    </div>
+
+    <div>
+      <form action="{% url 'accounts:delete' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-outline-warning" value="회원탈퇴">
+      </form>  
+    </div>
+
     
 
   </div>
 
 {% endblock content %}
+{% block script %}
+  <script>
+    const form = document.querySelector('#follow-form')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    form.addEventListener('submit', function(event) {
+      event.preventDefault()
+      const userId = event.target.dataset.userId
+  
+      axios({
+        method: 'post',
+        url:`/accounts/${userId}/follow/`,
+        headers: {'X-CSRFToken': csrftoken},
+      })
+        .then((response) => {
+          const isFollowed = response.data.is_followed
+          const followBtn = document.querySelector('#follow-form > input[type=submit]')
+          console.log(followBtn.value)
+          if (isFollowed === true) {
+            followBtn.value = '팔로우 취소'
+          } else {
+            followBtn.value = '팔로우'
+          }
+          const followingsCounterTag = document.querySelector('#followings-count')
+          const followersCounterTag = document.querySelector('#followers-count')
+          const followingsCountData = response.data.followings_count
+          const followersCountData = response.data.followers_count
+          followingsCounterTag.textContent = followingsCountData
+          followersCounterTag.textContent = followersCountData
+        })
+    })
+  </script>
+{% endblock script %}
