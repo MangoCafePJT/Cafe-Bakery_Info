@@ -1,69 +1,160 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block title %}Profile{% endblock title %}
 {% block content %}
-    
-    <div>
-      <h1>{{ person.username }}의 프로필 페이지</h1>
-      <hr>
-      
-      <div>
-        팔로잉 : 
-        <span id="followings-count">{{ person.followings.all|length }}</span>
-        팔로워 : 
-        <span id="followers-count">{{ person.followers.all|length }}</span>
+  <div class="profile--box">
+    <h1>{{ person.username }}님의 프로필 페이지</h1>
+    <div class="profile--card">
+      <div class="profile--image--box">
+        {% if person.image %}
+          <img src="{{ person.image.url }}" alt="" class="profile--img">
+        {% else %}
+          <img src="{% static 'image/profile-none.png' %}" alt="" class="profile--img">
+        {% endif %}
+      </div>
+      <div class="profile--card--txt">
+        <p>이름 : {{ person.last_name }}
+          {% if request.user != person %}
+        <div>
+          <form id="follow-form" data-user-id="{{ person.pk }}">
+            {% csrf_token %}
+            {% if request.user in person.followers.all %}
+              <input class="profile--followbtn" type="submit" value="Unfollow">
+            {% else %}
+              {% if request.user.is_authenticated %}
+                <input class="profile--followbtn" type="submit" value="follow">
+              {% else %}
+                <input class="profile--followbtn" type="submit" value="follow" disabled>
+              {% endif %}
+            {% endif %}
+          </form>
+        </div>
+      {% endif %}
+        </p>
+        <p>이메일 : {{ person.email }}</p>
+        <p>생년월일 : {{ person.birthday }}</p>
+        <p>선호지역 : {{ person.region }}</p>
+        <!-- 팔로워 모달 버튼 -->
+        <div>
+          <button type="button" class="profile--followbtn" data-bs-toggle="modal" data-bs-target="#followersModal">
+            <span id="followers-count">{{ person.followers.all|length }}</span> 팔로워
+          </button>
+
+          <!-- 팔로잉 모달 버튼 -->
+          <button type="button" class="profile--followbtn" data-bs-toggle="modal" data-bs-target="#followingsModal">
+            <span id = 'followings-count'>{{ person.followings.all|length }}</span> 팔로잉 
+          </button>
+        </div>
+      <!-- 팔로워 Modal -->
+          <div class="modal fade" id="followersModal" tabindex="-1" aria-labelledby="followersModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content profile--modal--box">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5"  id="followersModalLabel">팔로워</h1>
+                </div>
+                <div class="modal-body">
+                  {% for follower in person.followers.all %}
+                    <div class="modal--profile--card">
+                      <a class="text-decoration-none link-secondary fw-bold modal--profile--link" href="{% url 'accounts:profile' follower.username %}">
+                        {% if follower.profile_image %}
+                          <div class="profile--image rounded-circle">
+                            <img src="{{ follower.image.url }}" alt="" class="object-fit-fill profile">
+                          </div>
+                        {% else %}
+                          <div class="profile--image rounded-circle">
+                            <img src="{% static 'image/profile-none.png' %}" alt="profile_image_none" class="object-fit-fill profile">
+                          </div>
+                        {% endif %}
+                        <span>{{ follower }}</span></a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="profile--followbtn" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      <!-- 팔로잉 Modal -->
+          <div class="modal fade" id="followingsModal" tabindex="-1" aria-labelledby="followingsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content profile--modal--box">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="followingsModalLabel">팔로잉</h1>
+                </div>
+                <div class="modal-body">
+                  {% for following in person.followings.all %}
+                  <div class="modal--profile--card">
+                    <a class="text-decoration-none link-secondary fw-bold modal--profile--link" href="{% url 'accounts:profile' following.username %}">
+                      {% if following.profile_image %}
+                        <div class="profile--image rounded-circle">
+                          <img src="{{ following.image.url }}" alt="" class="object-fit-fill profile">
+                        </div>
+                      {% else %}
+                        <div class="profile--image rounded-circle">
+                          <img src="{% static 'image/profile-none.png' %}" alt="profile_image_none" class="object-fit-fill profile">
+                        </div>
+                      {% endif %}
+                      <span>{{ following }}</span></a>
+                  </div>
+                  {% endfor %}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="profile--followbtn" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+  
+  <div class="accordion" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+          {{ person.username }} 가 작성한 모든 리뷰
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+        <div class="accordion-body">
+          {% for post in person.post_set.all %}
+            <div>{{ post.title }}</div>
+          {% endfor %}
+        </div>
       </div>
     </div>
-
- 
-    {% if request.user != person %}
-      <div>
-        <form id="follow-form" data-user-id="{{ person.pk }}">
-          {% csrf_token %}
-          {% if request.user in person.followers.all %}
-            <input type="submit" value="팔로우 취소">
-          {% else %}
-            <input type="submit" value="팔로우">
-          {% endif %}
-        </form>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+          {{ person.username }}가 좋아요 한 카페
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+        <div class="accordion-body">
+          {% for post in person.like_posts.all %}
+            <div>{{ post.title }}</div>
+          {% endfor %}
+        </div>
       </div>
-    
-    {% endif %}
-      
-    
-
-    <hr>
-
-    <h3>{{ person.username }} 가 작성한 모든 리뷰</h3>
-    {% for post in person.post_set.all %}
-      <div>{{ post.title }}</div>
-    {% endfor %}
-
-    <hr>
-
-    <h3>{{ person.username }}가 좋아요 한 카페</h3>
-    {% for post in person.like_posts.all %}
-      <div>{{ post.title }}</div>
-    {% endfor %}
-
-    <hr>
+    </div>
+  </div>  
 
     <div>
-      <a href="{% url 'main' %}" class="btn btn-outline-success">뒤로가기</a>
+      <a href="{% url 'main' %}" class="accounts--btn">뒤로가기</a>
     </div>
 
     <div>
-      <a href="{% url 'accounts:update' %}" class="btn btn-outline-primary">회원정보수정</a>
+      <a href="{% url 'accounts:update' %}" class="accounts--btn">회원정보수정</a>
     </div>
 
     <div>
       <form action="{% url 'accounts:delete' %}" method="POST">
         {% csrf_token %}
-        <input type="submit" class="btn btn-outline-warning" value="회원탈퇴">
+        <input type="submit" class="accounts--btn" value="회원탈퇴" onclick="return confirm('탈퇴 시, 더 이상 서비스를 이용하실 수 없습니다.\n정말 탈퇴하시겠습니까?')">
       </form>  
     </div>
-
-    
-
   </div>
 
 {% endblock content %}
@@ -85,9 +176,9 @@
           const followBtn = document.querySelector('#follow-form > input[type=submit]')
           console.log(followBtn.value)
           if (isFollowed === true) {
-            followBtn.value = '팔로우 취소'
+            followBtn.value = 'Unfollow'
           } else {
-            followBtn.value = '팔로우'
+            followBtn.value = 'follow'
           }
           const followingsCounterTag = document.querySelector('#followings-count')
           const followersCounterTag = document.querySelector('#followers-count')

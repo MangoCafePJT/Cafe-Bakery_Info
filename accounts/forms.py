@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm, AuthenticationForm,  PasswordChangeForm
 from django.contrib.auth import get_user_model
 import datetime
 
@@ -8,16 +8,17 @@ years = [x for x in range(1940, datetime.datetime.now().year + 1)]
 
 class CustomUserCreationForm(UserCreationForm):
     username = forms.CharField(
-        label='아이디',
+        label=False,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
                 'placeholder': '아이디를 입력하세요',
+                'style' : 'width: 400px;'
             }
         ),
     )
     email = forms.EmailField(
-        label='이메일',
+        label=False,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -25,8 +26,8 @@ class CustomUserCreationForm(UserCreationForm):
             }
         ),
     )
-    name = forms.CharField(
-        label='이름',
+    last_name = forms.CharField(
+        label=False,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -37,7 +38,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     birthday = forms.DateField(
         initial=datetime.date(2000, 1, 1),
-        label='생년월일',
+        label=False,
         widget=forms.DateInput(
             attrs={
                 'type':'date',
@@ -46,7 +47,7 @@ class CustomUserCreationForm(UserCreationForm):
         ),
     )
     password1 = forms.CharField(
-        label='비밀번호',
+        label=False,
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control',
@@ -55,7 +56,7 @@ class CustomUserCreationForm(UserCreationForm):
         ),
     )
     password2 = forms.CharField(
-        label='비밀번호 확인',
+        label=False,
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control',
@@ -65,7 +66,7 @@ class CustomUserCreationForm(UserCreationForm):
     )
 
     region = forms.CharField(
-        label = '선호지역',
+        label = False,
         widget = forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -76,38 +77,108 @@ class CustomUserCreationForm(UserCreationForm):
     
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = ('username', 'email', 'name', 'password1', 'password2', 'region')
+        fields = ('username', 'email', 'last_name', 'password1', 'password2', 'region', 'birthday')
 
 
 class CustomUserChangeForm(UserChangeForm):
     email = forms.EmailField(
-        label='이메일',
+        label= False,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
                 'placeholder': '이메일을 입력하세요',
+                'style' : 'width: 400px;'
             }
         )
     )
-    name = forms.CharField(
-        label='이름',
+    last_name = forms.CharField(
+        label= False,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': '이름을 입력하세요'
+                'placeholder': '이름을 입력하세요',
+                'style' : 'width: 400px;'
             }
         )
     )
     region = forms.CharField(
-        label = '선호지역',
+        label = False,
         widget = forms.TextInput(
             attrs={
                 'class': 'form-control',
                 'placeholder': '선호 지역을 입력하세요',
+                'style' : 'width: 400px;'
+            }
+        )
+    )
+    birthday = forms.DateField(
+        initial=datetime.date(2000, 1, 1),
+        label=False,
+        widget=forms.DateInput(
+            attrs={
+                'type':'date',
+                'class': 'form-control',
+            }
+        ),
+    )
+    password=None
+
+    class Meta(UserChangeForm.Meta):
+        model = get_user_model()
+        fields = ('email', 'last_name', 'region', 'birthday')
+
+class CustomAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(
+        label=False,
+        widget=forms.TextInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder' : '아이디',
+                'style' : 'width:400px;'
+            }
+        )
+    )
+    password = forms.CharField(
+        label=False,
+        widget=forms.PasswordInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder' : '비밀번호',
+                'style' : 'width:400px;'
             }
         )
     )
 
-    class Meta(UserChangeForm.Meta):
-        model = get_user_model()
-        fields = ('email', 'name', 'region',)
+class CustomPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label=False,
+        widget=forms.PasswordInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder' : '기존 비밀번호',
+                'style' : 'width:400px;'
+            }
+        )
+    )
+    new_password1 = forms.CharField(
+        label=False,
+        widget= forms.PasswordInput(
+        attrs = {
+                'class': 'form-control',
+                'placeholder' : '새 비밀번호',
+                'style' : 'width:400px;'
+            }
+        ),
+        help_text='',
+    )
+    new_password2 = forms.CharField(
+        label=False,
+        widget= forms.PasswordInput(
+        attrs = {
+                'class': 'form-control',
+                'placeholder' : '새 비밀번호(확인)',
+                'style' : 'width:400px;'
+            }
+        ),
+        help_text='',
+    )

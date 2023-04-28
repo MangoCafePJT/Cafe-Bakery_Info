@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Post, Review, PostImage, ReviewImage, Emote_review
-from .forms import PostForm, ReviewForm, PostImageForm, ReviewImageForm, EmoteReviewForm
+from .forms import PostForm, ReviewForm, PostImageForm, ReviewImageForm, EmoteReviewForm, PostSearchForm
 from django.http import JsonResponse
+from django.db.models import Q
 
 def index(request):
     posts = Post.objects.all()
@@ -158,3 +159,45 @@ def review_likes(request, post_pk, review_pk):
     else:
         review.like_users.add(request.user)
     return redirect('posts:detail', post_pk)
+
+
+def search(request):
+    keyword = request.GET.get('keyword','')
+    posts = Post.objects.all()
+    if keyword:
+        posts = posts.filter(
+            Q(title__icontains=keyword)|
+            Q(menu__icontains=keyword))
+    
+    post_images = []
+    for post in posts:
+        images = PostImage.objects.filter(post=post)
+        if images:
+            post_images.append((post, images[0]))
+        else:
+            post_images.append((post,''))
+            
+    context = {
+        'keyword': keyword,
+        'posts': posts,
+        'post_images': post_images,
+    }
+    return render(request, 'posts/search.html', context)
+
+
+# from django.views.generic.edit import FormView
+
+# class SearchFormView(FormView):
+#     form_class = PostSearchForm
+#     template_name = 'posts/search.html'
+
+#     def form_valid(self, form):
+#         searchWord = form.cleaned_data['search_word']
+#         post_list = Post.objects.filter(Q(title__icontains=searchWord) | Q(menu__icontains=searchWord)).distinct()
+
+#         context = {}
+#         context['form'] = form
+#         context['search_term'] = searchWord
+#         context['object_list'] = post_list
+
+#         return render(self.request, self.template_name, context)

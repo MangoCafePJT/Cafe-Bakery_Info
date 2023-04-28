@@ -6,6 +6,9 @@
 
 
 {% block content %}
+  <a href="{% url 'accounts:profile' post.user.username %}"> {{ post.user }} </a>
+
+
   <p>좋아요 수 - <span id="likes-count">{{ post.like_users.all|length }}</span>개</p>
   <div>
     {% if request.user.is_authenticated %}

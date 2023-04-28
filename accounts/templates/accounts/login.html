@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
+{% block title %}Login{% endblock title %}
 
 {% block content %}
-<div class="container">
-  <h1 style="color: #682C0E;">로그인 페이지</h1>
-<div>
-  <form action="{% url 'accounts:login' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p}}
-    <input class="btn" style="background-color:#7d4123c2;" type="submit" value="로그인">
-  </form>
-</div>
-
+<div class="accounts--box">
+  <div class="accounts--join">
+      <h1>로그인 페이지</h1>
+    <div>
+      <form action="{% url 'accounts:login' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <input class="accounts--btn" type="submit" value="로그인">
+        <input type="submit" value="Back" class="accounts--btn" onclick=window.history.back()>
+      </form>
+    </div>
+  </div>
 </div>
 {% endblock content %}
