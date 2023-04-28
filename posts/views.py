@@ -91,11 +91,13 @@ def update(request, post_pk):
     }
     return render(request, 'posts/update.html', context)
 
+
 EMOTIONS = [
     {'label': '😁', 'value': 1},
     {'label': '☹', 'value': 2},
     {'label': '😡', 'value': 3},
 ]
+
 
 @login_required
 def review_create(request, post_pk):
@@ -135,7 +137,6 @@ def review_create(request, post_pk):
     return render(request, 'posts/review_create.html', context)
 
 
-
 @login_required
 def review_delete(request, post_pk, review_pk):
     review = Review.objects.get(pk=review_pk)
@@ -143,6 +144,7 @@ def review_delete(request, post_pk, review_pk):
         review.delete()
 
     return redirect('posts:detail', post_pk)
+
 
 @login_required
 def likes(request, post_pk):
@@ -165,9 +167,15 @@ def review_likes(request, post_pk, review_pk):
     review = Review.objects.get(pk=review_pk)
     if request.user in review.like_users.all():
         review.like_users.remove(request.user)
+        is_liked = False
     else:
         review.like_users.add(request.user)
-    return redirect('posts:detail', post_pk)
+        is_liked = True
+    context = {
+        'is_liked': is_liked,
+        'review_likes_count': review.like_users.count(),
+        }
+    return JsonResponse(context)
 
 
 def search(request):
@@ -210,3 +218,4 @@ def search(request):
 #         context['object_list'] = post_list
 
 #         return render(self.request, self.template_name, context)
+
