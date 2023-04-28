@@ -1,20 +1,34 @@
 from django import forms
-from .models import Post, Review
+from .models import Post, Review, PostImage, ReviewImage, Emote_review
 
 
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'image', 'content', 'category')
+        fields = ('title', 'content', 'category', 'address', 'phone', 'parking', 'time', 'menu',)
         widgets = {
             'category': forms.Select(choices=Post.CATEGORY_CHOICES),
         }
 
+class PostImageForm(forms.ModelForm):
+    class Meta:
+        model = PostImage
+        fields = ('image',)
+        widgets = {'image': forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control'})}
 
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ('title', 'image', 'content', 'emotion')
-        widgets = {
-            'emotion': forms.Select(choices=Review.EMOTIONS_CHOICES),
-        }
+        fields = ('title', 'content',)
+
+class ReviewImageForm(forms.ModelForm):
+    class Meta:
+        model = ReviewImage
+        fields = ('image',)
+        widgets = {'image': forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control'})}
+
+
+class EmoteReviewForm(forms.ModelForm):
+    class Meta:
+        model = Emote_review
+        fields = ('emotion',)

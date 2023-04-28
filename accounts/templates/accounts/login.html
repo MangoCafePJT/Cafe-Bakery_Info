@@ -7,7 +7,7 @@
   <form action="{% url 'accounts:login' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p}}
-    <input type="submit" value="로그인">
+    <input class="btn" style="background-color:#7d4123c2;" type="submit" value="로그인">
   </form>
 </div>
 

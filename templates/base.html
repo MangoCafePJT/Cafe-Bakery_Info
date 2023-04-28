@@ -31,18 +31,30 @@
       </div>
       <div class="nav--accounts">
         {% if request.user.is_authenticated %}
-          <div class="accounts--btns">
+          {% if user.image %}
+          <button class="profile--image rounded-circle" type="button">
+            <img src="{{ user.image.url }}" alt="" class="object-fit-fill profile">
+          </button>
+          {% else %}
+          <a class="profile--image rounded-circle" role="button">
+            <img src="{% static 'image/profile-none.png' %}" alt="" class="object-fit-fill profile">
+          </a>
+          {% endif %}
+          {% comment %} <div class="accounts--btns">
             <a href="{% url 'accounts:profile' user %}">{{ user }}</a>
             <a href="{% url 'accounts:logout' %}">Logout</a>
-          </div>
+          </div> {% endcomment %}
         {% else %}
-          <div class="accounts--btns">
+        <div class="profile--image rounded-circle" type="button">
+          <img src="{% static 'image/profile-none.png' %}" alt="" class="object-fit-fill profile">
+        </div>
+          {% comment %} <div class="accounts--btns">
             <a href="{% url 'accounts:login' %}">Login</a>
             <a href="{% url 'accounts:signup' %}">Join</a>
-          </div>
+          </div> {% endcomment %}
         {% endif %}
-
       </div>
+     
     </nav>
     <section>
       {% block content %}

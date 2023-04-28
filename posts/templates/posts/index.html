@@ -1,9 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% for post in posts %}
-    <a href="{% url 'posts:detail' post.pk %}">{{post.pk}}</a>
-  {% endfor %}
+  <div class="index--page">
+    <div class="sidebar">
+      <h1>메뉴</h1>
+      <ul>
+        <li><a href="{% url 'posts:index' %}"></a>별점순</li>
+        <li><a href=""></a>거리순</li>
+        <li><a href=""></a>점수순</li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+      </ul>
+    </div>
 
-
+    <div class="posts">
+      {% for post in posts %}
+        <a href="{% url 'posts:detail' post.pk %}">{{post.pk}}</a>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock content %}

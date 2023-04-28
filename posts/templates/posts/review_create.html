@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <form id="review-form"  method="post" action="{% url 'posts:review_create' post.pk %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="rating">Rating:</label>
+    <div class="star-rating">
+      <input id="star-5" type="radio" name="rating" value="5" />
+      <label for="star-5" title="5 stars"></label>
+      <input id="star-4" type="radio" name="rating" value="4" />
+      <label for="star-4" title="4 stars"></label>
+      <input id="star-3" type="radio" name="rating" value="3" />
+      <label for="star-3" title="3 stars"></label>
+      <input id="star-2" type="radio" name="rating" value="2" />
+      <label for="star-2" title="2 stars"></label>
+      <input id="star-1" type="radio" name="rating" value="1" />
+      <label for="star-1" title="1 star"></label>
+    </div>
+    {{ review_form.as_p }}
+    {% for emotion in emotions %}
+      <button type="button" onclick="submitForm('{{ emotion.value }}')">{{ emotion.label }}</button>
+    {% endfor %}
+    {{ image_form.as_p }}
+    <input type="submit">
+    <br><br>
+  </form>
+  
+{% endblock content %}
+{% block script %}
+<script>
+  var stars = document.querySelectorAll('.star-rating label');
+  var ratingInput = document.querySelector('input[name="rating"]');
+
+  stars.forEach(function(star, index) {
+    star.addEventListener('click', function() {
+      ratingInput.value = index + 1;
+    });
+  });
+  function submitForm(emotionValue) {
+    var form = document.getElementById('review-form');
+    var emotionInput = document.createElement('input');
+    emotionInput.setAttribute('type', 'hidden');
+    emotionInput.setAttribute('name', 'emotion');
+    emotionInput.setAttribute('value', emotionValue);
+    form.appendChild(emotionInput);
+  }
+
+
+</script>
+{% endblock script %}
