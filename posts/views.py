@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Post, Review
 from .forms import PostForm, ReviewForm
-
+from django.http import JsonResponse
 
 def index(request):
     posts = Post.objects.all()
@@ -76,6 +76,12 @@ def likes(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     if request.user in post.like_users.all():
         post.like_users.remove(request.user)
+        is_liked = False
     else:
         post.like_users.add(request.user)
-    return redirect('posts:index')
+        is_liked = True
+    context = {
+        'is_liked': is_liked,
+        'likes_count': post.like_users.count(),
+        }
+    return JsonResponse(context)
