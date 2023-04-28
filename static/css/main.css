@@ -26,6 +26,10 @@
   font-family: 'TmoneyRoundWindExtraBold';
 }
 
+.form-control {
+  border: 1px solid #682C0E;
+}
+
 body {
   position: relative;
   min-height: 100vh;
@@ -137,6 +141,9 @@ section {
 .search input:focus {
   outline: none;
 }
+.search input::-webkit-search-cancel-button {
+  display: none;
+}
 
 .search-btn {
   display: flex;
@@ -169,19 +176,9 @@ section {
     grid-column: 10 / 11;
   }
 }
-/* 
-.nav--accounts a{
-  text-decoration: none;
-  color: #682C0E;
-  font-size: 20px;
-  font-family: 'TmoneyRoundWindExtraBold';
-} */
 
-.accounts--btns {
-  margin-left: 20px;
-  margin-right: 20px;
-  display: flex;
-  gap:20px
+.dropdown {
+  background-color: rgba(244, 165, 96, 0);
 }
 
 .profile--image {
@@ -190,6 +187,9 @@ section {
   text-align: center;
   line-height: 50px;
   overflow: hidden;
+  padding: 0;
+  border: none;
+  background-color: rgba(244, 165, 96, 0);
 }
 
 .profile {
@@ -274,4 +274,105 @@ footer a {
   grid-column: 5 / 11;
   height: 100%;
   padding: 10px;
+}
+
+/* accounts */
+
+.accounts--box {
+  margin: 15px 50px;
+  height: 550px;
+}
+
+.accounts--join {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.accounts--join h1 {
+  color: #682c0ec2;
+}
+
+.accounts--join a {
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.accounts--btn {
+  border: none;
+  background-color: #682c0ec2;
+  color: white;
+  font-size: 20px;
+  width: 400px;
+  border-radius: 10px;
+  margin: 5px 0;
+  display: block;
+}
+
+.accounts--btn:hover {
+  background-color: #8d3d14c2;
+}
+
+/* profile */
+
+.profile--followbtn {
+  border: none;
+  background-color: #682c0ec2;
+  color: white;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.profile--box {
+  margin: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile--box h1 {
+  text-align: center;
+  color: #682c0ec2;
+}
+
+.profile--image--box {
+  width: 220px;
+  height: 220px;
+  text-align: center;
+  line-height: 220px;
+  overflow: hidden;
+}
+
+.profile--img {
+  width: 220px;
+  height: 220px;
+}
+
+.profile--card {
+  display: flex;
+}
+
+.profile--card--txt {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile--modal--box {
+  border: 2px solid #682c0ec2;
+}
+
+.modal--profile--card {
+  width: 20%;
+}
+
+.modal--profile--link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

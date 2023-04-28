@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+{% block title %}Join{% endblock %}
 {% block content %}
-  <div>
-    <h1>회원가입</h1>
-    <form action="{% url 'accounts:signup' %}" method="POST">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="회원 가입">
-    </form>
+  <div class="accounts--box">
+    <div class="accounts--join">
+      <h1>환영합니다!</h1>
+      <form action="{% url 'accounts:signup' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Join" class="accounts--btn">
+        <a href="{% url 'accounts:login' %}" class="accounts--btn">Login</a>
+      </form>
+    </div>
   </div>
 {% endblock content %}
