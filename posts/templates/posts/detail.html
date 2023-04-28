@@ -27,11 +27,13 @@
   <a href="{% url 'posts:review_create' post.pk %}">리뷰작성</a>
   <a href="{% url 'posts:update' post.pk %}"> 수정 </a>
 
+  <div id="map" style="height: 400px;"></div>
 
 {% endblock content %}
 
 {% block script %}
 {{ block.super }}
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ kakao_script_key }}&libraries=services"></script>
   <script>
     const form = document.querySelector('#likes-form')
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
@@ -58,6 +60,20 @@
         })
 
     })
+    var latitude = {{ latitude }};
+    var longitude = {{ longitude }};   
+    var container = document.getElementById('map');
+    var options = {
+        center: new kakao.maps.LatLng(latitude, longitude),
+        level: 3
+    };
+    var map = new kakao.maps.Map(container, options);
+    var markerPosition = new kakao.maps.LatLng(latitude, longitude);
+    var marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+    marker.setMap(map);
+    
   </script>
 
 
