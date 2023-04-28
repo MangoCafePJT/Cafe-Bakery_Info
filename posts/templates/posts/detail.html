@@ -24,6 +24,26 @@
   <a href="{% url 'posts:review_create' post.pk %}">리뷰작성</a>
   <a href="{% url 'posts:update' post.pk %}"> 수정 </a>
 
+  {% for review in reviews %}
+    <p>리뷰 좋아요 수 - <span id="review-likes-count">{{ review.like_users.all|length }}</span>개</p>
+    {{ review.title }}
+    {{ review.content }}
+    {% if request.user == review.user %}
+      <form action="{% url 'posts:review_delete' post.pk review.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제">
+      </form>
+    {% endif %}
+    <form id="review-like-form" data-review-id="{{ review.pk }}">
+      {% csrf_token %}
+      {% if request.user in review.like_users.all %}
+        <input type="submit" value="좋아요 취소" id="like-{{ review.pk }}">
+      {% else %}
+        <input type="submit" value="좋아요" id="like-{{ review.pk }}">
+      {% endif %}
+    </form>
+  {% endfor %}
+
   <div id="map" style="height: 400px;"></div>
 
 {% endblock content %}
@@ -57,6 +77,36 @@
         })
 
     })
+
+
+    {% comment %} const r_form = document.querySelector('#review-likes-form')
+    const r_csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    r_form.addEventListener('submit', function (event) {
+      event.preventDefault()
+      const reviewId = event.target.dataset.reviewId
+      const postId = {{ post.pk }}
+      axios({
+        method: 'post',
+        url: `/posts/${postId}/reviews/${reviewId}/likes/`,
+        headers: {'X-CSRFToken': r_csrftoken},
+      })
+        .then((response) => {
+          const isLiked = response.data.is_liked
+          const review_likeBtn = document.querySelector('#review-likes-form > input[type=submit]')
+          
+          if (isLiked === true) {
+            review_likeBtn.value = '좋아요 취소'
+          } else {
+            review_likeBtn.value = '좋아요'
+          }
+          const review_likesCountTag = document.querySelector('#review-likes-count')
+          const review_likesCountData = response.data.review_likes_count
+          review_likesCountTag.textContent = review_likesCountData
+        })
+
+    }) {% endcomment %}
+
+    
     var latitude = {{ latitude }};
     var longitude = {{ longitude }};   
     var container = document.getElementById('map');
