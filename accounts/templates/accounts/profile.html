@@ -7,8 +7,10 @@
       <hr>
       
       <div>
-      <span id="followings-count">팔로잉 : {{ person.followings.all|length }}</span>
-      <span id="followers-count">팔로워 : {{ person.followers.all|length }}</span>
+        팔로잉 : 
+        <span id="followings-count">{{ person.followings.all|length }}</span>
+        팔로워 : 
+        <span id="followers-count">{{ person.followers.all|length }}</span>
       </div>
     </div>
 
@@ -18,7 +20,7 @@
         <form id="follow-form" data-user-id="{{ person.pk }}">
           {% csrf_token %}
           {% if request.user in person.followers.all %}
-            <input type="submit" value="언팔">
+            <input type="submit" value="팔로우 취소">
           {% else %}
             <input type="submit" value="팔로우">
           {% endif %}
