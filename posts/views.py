@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Review, PostImage, ReviewImage, Emote_review
 from .forms import PostForm, ReviewForm, PostImageForm, ReviewImageForm, EmoteReviewForm
 from django.http import JsonResponse
+from utils.map import get_latlng_from_address
+import os
 
 def index(request):
     posts = Post.objects.all()
@@ -32,20 +34,26 @@ def create(request):
 
 
 def detail(request, post_pk):
+    kakao_script_key = os.environ.get('kakao_script_key')
     post = Post.objects.get(pk=post_pk)
     reviews = post.review_set.all()
-
+    address = post.address
+    latitude, longitude = get_latlng_from_address(address)
+    post_form = PostForm()
     post_images = []
     images = PostImage.objects.filter(post=post)
     if images:
         post_images.append((post, images))
     else:
         post_images.append((post, ''))
-
     context = {
         'post':post,
         'post_images':post_images,
         'reviews':reviews,
+        'latitude': latitude,
+        'longitude': longitude,
+        'post_form': post_form,
+        'kakao_script_key': kakao_script_key,
     }
     return render(request, 'posts/detail.html',context)
 
