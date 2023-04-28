@@ -10,7 +10,7 @@ class User(AbstractUser):
     def profile_image_path(instance, filename):
         return f'profile/{instance.pk}/{filename}'
     image = ProcessedImageField(upload_to=profile_image_path, blank=True, null=True, processors=[ResizeToFill(100, 100)], options={'quality':90})
-
+    region = models.CharField(null=True, blank=True, max_length=50)
 
 # class KakaoSignInView(View):
 #     def get(self, request):
