@@ -19,6 +19,12 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'LeeSeoyun';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* Base */
 
@@ -271,9 +277,63 @@ footer a {
 }
 
 .posts {
-  grid-column: 5 / 11;
+  grid-column: 5 / 21;
+  width: 100%;
   height: 100%;
   padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 300px;
+  gap: 10px;
+}
+
+.index--card {
+  width: 100%;
+  height: 300px;
+  padding: 10px;
+  text-decoration: none;
+  color: rgb(209, 209, 209);
+}
+
+.index--card:hover {
+  box-shadow: 5px 5px 10px 1px rgba(232, 232, 232, 0.719);
+}
+
+.index--card--box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.index--image--box{
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  line-height: 180px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.index--img {
+  width: 100%;
+  height: 100%;
+}
+
+.index--title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #C24914;
+  margin-bottom: 5px;
+}
+.index--txt {
+  font-size: 14px;
+  font-family: 'LeeSeoyun';
+}
+.index--heart {
+  width: 20px;
+  height: 20px;
+  display: inline;
 }
 
 /* accounts */

@@ -49,6 +49,10 @@
       {% endif %}
     </form>
   {% endfor %}
+
+  <a href="{% url 'posts:delete' post.pk %}">삭제</a>
+  <div id="map" style="height: 400px;"></div>
+
 {% endblock content %}
 
 {% block script %}
