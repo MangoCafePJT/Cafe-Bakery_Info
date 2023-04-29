@@ -167,12 +167,12 @@ def review_likes(request, post_pk, review_pk):
     review = Review.objects.get(pk=review_pk)
     if request.user in review.like_users.all():
         review.like_users.remove(request.user)
-        is_liked = False
+        r_is_liked = False
     else:
         review.like_users.add(request.user)
-        is_liked = True
+        r_is_liked = True
     context = {
-        'is_liked': is_liked,
+        'r_is_liked': r_is_liked,
         'review_likes_count': review.like_users.count(),
         }
     return JsonResponse(context)
