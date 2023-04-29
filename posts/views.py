@@ -10,7 +10,16 @@ import os
 
 def index(request):
     posts = Post.objects.all()
-    context = {'posts': posts}
+    post_images = []
+    for post in posts:
+        images = PostImage.objects.filter(post=post)
+        if images:
+            post_images.append((post, images[0]))
+        else:
+            post_images.append((post,''))
+    context = {
+        'post_images': post_images,
+    }
     return render(request, 'posts/index.html', context)
 
 
@@ -36,7 +45,7 @@ def create(request):
 
 
 def detail(request, post_pk):
-    kakao_script_key = os.environ.get('kakao_script_key')
+    kakao_script_key = os.getenv('kakao_script_key')
     post = Post.objects.get(pk=post_pk)
     reviews = post.review_set.all()
     address = post.address

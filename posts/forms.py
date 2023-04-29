@@ -4,7 +4,7 @@ from .models import Post, Review, PostImage, ReviewImage, Emote_review
 
 class PostForm(forms.ModelForm):
     title = forms.CharField(max_length=50, label='Title*', widget=forms.TextInput(attrs={'required': True}))
-    address = forms.CharField(max_length=200, label='Address*', widget=forms.TextInput(attrs={'required': True, 'placeholder': 'Enter address', 'class': 'form-control'}))
+    address = forms.CharField(max_length=200, label='Address*', widget=forms.TextInput(attrs={'required': True, 'placeholder': '정확한 주소를 입력해주세요.', 'class': 'form-control'}))
     category = forms.ChoiceField(choices=Post.CATEGORY_CHOICES, label='Category*', widget=forms.Select(attrs={'required': True}))
     class Meta:
         model = Post

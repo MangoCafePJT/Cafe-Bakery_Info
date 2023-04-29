@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
   <div class="index--page">
@@ -14,9 +15,87 @@
     </div>
 
     <div class="posts">
-      {% for post in posts %}
-        <a href="{% url 'posts:detail' post.pk %}">{{post.pk}}</a>
+      {% for post,image in post_images %}
+        <a href="{% url 'posts:detail' post.pk %}" class="index--card">
+          <div class="index--card--box">
+            <div class="index--image--box">
+              {% if image %}
+                <img src="{{ image.image.url }}" alt="" class="index--img">
+              {% else %}
+                <img src="{% static 'image/none_img.png' %}" alt=""  class="index--img">
+              {% endif %}
+            </div>
+            <div>
+              <div class="index--title">
+                {{ post.title }}
+              </div>
+              <div class="index--txt">
+                {{ post.address }}
+              </div>
+              <div class="d-flex justify-content-between index--txt">
+                {{ post.menu }}
+                <div>
+                  {% if request.user.is_authenticated %}
+                    <form id="likes-form-{{ post.pk }}" data-post-id="{{ post.pk }}" class="index--heart">
+                      {% csrf_token %}
+                      {% if request.user in post.like_users.all %}
+                          <button class="btn btn-link text-danger p-0" type="submit">
+                            <i class="bi bi-suit-heart-fill"></i>
+                          </button>
+                      {% else %}
+                          <button class="btn btn-link text-danger p-0" type="submit">
+                            <i class="bi bi-suit-heart"></i>
+                          </button>
+                      {% endif %}
+                    </form>
+                  {% else %}
+                    <button class="btn btn-link text-secondary p-0" disabled>
+                      <i class="bi bi-suit-heart"></i>
+                    </button>
+                  {% endif %}
+                  <span id="likes-count">{{ post.like_users.all|length }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
       {% endfor %}
     </div>
   </div>
 {% endblock content %}
+
+{% block script %}
+<script>
+  const forms = document.querySelectorAll('[id^="likes-form-"]');
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+  forms.forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const postId = event.target.dataset.postId;
+      axios({
+        method: 'post',
+        url: `/posts/${postId}/likes/`,
+        headers: {'X-CSRFToken': csrftoken},
+      })
+        .then((response) => {
+          const isLiked = response.data.is_liked;
+          const likesCountSpan = form.nextElementSibling;
+          likesCountSpan.textContent = response.data.likes_count;
+          const heartIcon = form.querySelector('i');
+          if (isLiked) {
+            heartIcon.classList.remove('bi-suit-heart');
+            heartIcon.classList.add('bi-suit-heart-fill');
+          } else {
+            heartIcon.classList.remove('bi-suit-heart-fill');
+            heartIcon.classList.add('bi-suit-heart');
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+  });
+</script>
+
+{% endblock script %}
