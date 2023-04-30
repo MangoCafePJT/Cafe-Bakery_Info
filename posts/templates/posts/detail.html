@@ -74,7 +74,14 @@
       <div class="detail--info--body"><div class="detail--info--body--title">카테고리</div>{{ post.category }}</div>
       <div class="detail--info--body"><div class="detail--info--body--title">주차</div>{{ post.parking }}</div>
       <div class="detail--info--body"><div class="detail--info--body--title">영업시간</div>{{ post.business_time }}</div>
-      <div class="detail--info--body"><div class="detail--info--body--title">메뉴</div>{{ post.menu }}</div>
+      <div class="detail--info--body"><div class="detail--info--body--title">메뉴</div>{{ post.menu|linebreaks }}</div>
+      <div class="detail--info--body">
+        <div class="detail--info--body--title">해시태그</div>
+        {% for tag in post.tags.all %}
+            <span>#{{ tag.name }}</span>
+        {% endfor %}   
+      </div>
+      
     </div>
     <div class="detail--user">
       <div class="detail--info--user"><div class="detail--info--user--title">작성자</div>

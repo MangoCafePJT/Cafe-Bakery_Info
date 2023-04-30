@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from utils.map import get_latlng_from_address
 import os
-
+from taggit.utils import parse_tags
 
 def index(request):
     posts = Post.objects.all()
@@ -30,10 +30,13 @@ def create(request):
     if request.method == 'POST':
         post_form = PostForm(request.POST)
         files = request.FILES.getlist('image')
+        tags = request.POST.get('tags').split(',')
         if post_form.is_valid():
             post = post_form.save(commit=False)
             post.user = request.user
             post.save()
+            for tag in tags:
+                post.tags.add(tag.strip())
             for i in files:
                 PostImage.objects.create(image=i, post=post)
             return redirect('posts:detail', post.pk)
@@ -53,6 +56,7 @@ def detail(request, post_pk):
     post_form = PostForm()
     post_images = []
     images = PostImage.objects.filter(post=post)
+    tags = post.tags.all()
     if images:
         post_images.append((post, images))
     else:
@@ -65,6 +69,7 @@ def detail(request, post_pk):
         'longitude': longitude,
         'post_form': post_form,
         'kakao_script_key': kakao_script_key,
+        'tags': tags,
     }
     return render(request, 'posts/detail.html',context)
 
@@ -87,6 +92,9 @@ def update(request, post_pk):
             post = post_form.save(commit=False)
             post.user = request.user
             post.save()
+            tags = request.POST.get('tags').split(',')
+            for tag in tags:
+                post.tags.add(tag.strip())
             for i in files:
                 PostImage.objects.create(image=i, post=post)
             return redirect('posts:detail', post.pk)
