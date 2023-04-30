@@ -8,6 +8,8 @@ from django.utils import timezone
 from datetime import timedelta,datetime
 from django.conf import settings
 import os
+from taggit.managers import TaggableManager
+from django.urls import reverse
 
 class Post(models.Model):
     CAFE = 'cafe'
@@ -16,6 +18,26 @@ class Post(models.Model):
         (CAFE, 'Cafe'),
         (BAKERY, 'Bakery'),
     ]
+    SEOUL = '서울'
+    INCHEON = '인천'
+    BUSAN = '부산'
+    ULSAN = '울산'
+    DAEGU = '대구'
+    GWANGJU = '광주'
+    DAEJEON = '대전'
+    JEJU = '제주도'
+    GYEONGGI = '경기도'
+    GANGWON = '강원도'
+    CHUNGBUK = '충청북도'
+    CHUNGNAM = '충청남도'
+    JEONBUK = '전라북도'
+    JEONNAM = '전라남도'
+    GYEONGBUK = '경상북도'
+    GYEONGNAM = '경상남도'    
+    CITY_CHOICES = [
+        (SEOUL, '서울'), (INCHEON, '인천'), (BUSAN, '부산'), (ULSAN, '울산'), (DAEGU, '대구'), (GWANGJU, '광주'), (DAEJEON, '대전'), (JEJU, '제주도'), (GYEONGGI, '경기도'), (GANGWON, '강원도'), (CHUNGBUK, '충청북도'), (CHUNGNAM, '충청남도'), (JEONBUK, '전라북도'), (JEONNAM, '전라남도'), (GYEONGBUK, '경상북도'),(GYEONGNAM, '경상남도'),
+    ]
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_posts')
     title = models.CharField(max_length=50)
@@ -30,6 +52,9 @@ class Post(models.Model):
     menu = models.TextField()
     insta = models.URLField(blank=True, null=True)
     home = models.URLField(blank=True, null=True)
+    city = models.CharField(max_length=10, choices=CITY_CHOICES)
+    tags = TaggableManager(blank=True)
+
 
     @property
     def created_string(self):
@@ -47,6 +72,12 @@ class Post(models.Model):
         else:
             return self.strftime('%Y-%m-%d')
         
+    # def get_absolute_url(self):
+    #     return reverse("posts:detail", kwargs={"pk": self.pk})
+    
+    # def __str__(self):
+    #     return self.title
+    
     def delete(self, *args, **kargs):
         images = self.postimage_set.all()
         for image in images:
@@ -77,6 +108,7 @@ class PostImage(models.Model):
             if not os.listdir(dir_path):
                 os.rmdir(dir_path)
         super(PostImage, self).delete(*args, **kargs)
+
 
 class Review(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
