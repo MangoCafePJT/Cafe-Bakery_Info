@@ -1,58 +1,116 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block style %}
-{% endblock style %}
-
-
 {% block content %}
-  <a href="{% url 'accounts:profile' post.user.username %}"> {{ post.user }} </a>
-  {% for image in post.postimage_set.all %}
-    <img src="{{ image.image.url }}" alt="{{ post.title }}">
-  {% endfor %}
-  <div id="map" style="width:400px; height:400px;"></div>
+<div class="detail--box">
+  {% comment %} Post detail {% endcomment %}
+  <div id="carouselExampleControls" class="detail--header carousel slide" data-bs-ride="carousel">
+    <div class="detail--image--box carousel-inner">
+      <div class="carousel-item active">
+      {% for image in post.postimage_set.all %}
+        <img src="{{ image.image.url }}" alt="{{ post.title }}" class="detail--image">
+      {% endfor %}
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="detail--info">
+    {% comment %} Map {% endcomment %}
+    <div class="detail--map">
+      <p class="map--title">{{ post.title }} location <i class="bi bi-signpost-2-fill"></i></p>
+      <div class="detail--address">{{ post.address }}</div>
+      <div class="map" id="map"></div>
+    </div>
+    <div>
+      <div class="d-flex justify-content-between align-items-end">
+        <div>
+          <p class="detail--info--title">{{ post.title }}
+            <i class="bi bi-info-circle"></i>
+            <span>
+              {% if post.insta %}
+                <a href="{{ post.insta }}"><i class="bi bi-instagram"></i></a>
+              {% endif %}
+              {% if post.home %}
+                <a href="{{ post.home }}"><i class="bi bi-house-heart"></i></a>
+              {% endif %}
+            </span>
+          </p>
+        </div>
+        <div class="pb-2 d-flex">
+          {% comment %} Post like {% endcomment %}
+            {% if request.user.is_authenticated %}
+              <a href="{% url 'posts:review_create' post.pk %}" class="detail--btn"><i class="bi bi-pencil-square"></i><p>리뷰쓰기</p></a>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+            <form id="likes-form" data-post-id="{{ post.pk }}" class="index--heart">
+              {% csrf_token %}
+              {% if request.user in post.like_users.all %}
+                  <button class="btn btn-link text-danger p-0" type="submit">
+                    <i class="bi bi-suit-heart-fill"></i>
+                  </button>
+              {% else %}
+                  <button class="btn btn-link text-danger p-0" type="submit">
+                    <i class="bi bi-suit-heart"></i>
+                  </button>
+              {% endif %}
+            </form>
+            {% else %}
+              <button class="btn btn-link text-secondary p-0" disabled>
+                <i class="bi bi-suit-heart"></i>
+              </button>
+            {% endif %}
+            <span id="likes-count">{{ post.like_users.all|length }}</span>
+        </div>
+      </div>
+      <div class="detail--info--body"><div class="detail--info--body--title">주소</div>{{ post.address }}</div>
+      <div class="detail--info--body"><div class="detail--info--body--title">전화번호</div>{{ post.phone}}</div>
+      <div class="detail--info--body"><div class="detail--info--body--title">카테고리</div>{{ post.category }}</div>
+      <div class="detail--info--body"><div class="detail--info--body--title">주차</div>{{ post.parking }}</div>
+      <div class="detail--info--body"><div class="detail--info--body--title">영업시간</div>{{ post.business_time }}</div>
+      <div class="detail--info--body"><div class="detail--info--body--title">메뉴</div>{{ post.menu }}</div>
+    </div>
+    <div class="detail--user">
+      <div class="detail--info--user"><div class="detail--info--user--title">작성자</div>
+      <a href="{% url 'accounts:profile' post.user.username %}">{{ post.user.username }}</a></div>
+      <div class="detail--info--user"><div class="detail--info--user--title">작성일자</div>{{ post.created_at|date:"Y.m.d" }}</div>
+      <div class="detail--info--user"><div class="detail--info--user--title">수정일자</div>{{ post.updated_at|date:"Y.m.d" }}</div>
+      {% if post.user == request.user%}
+        <a href="{% url 'posts:update' post.pk %}" class="post--btn"> 수정 </a>
+        <a href="{% url 'posts:delete' post.pk %}" class="post--btn" onclick="return confirm('삭제하시겠습니까?')"> 삭제 </a>
+      {% endif %}
+    </div>
+  </div>
 
-  <p>좋아요 수 - <span id="likes-count">{{ post.like_users.all|length }}</span>개</p>
-  <div>
-    {% if request.user.is_authenticated %}
-      <form id="likes-form" data-post-id="{{ post.pk }}">
+  
+    {% for review in reviews %}
+      <p>리뷰 좋아요 수 - <span id="review-likes-count">{{ review.like_users.all|length }}</span>개</p>
+      {{ review.title }}
+      {{ review.content }}
+      {% if request.user == review.user %}
+        <form action="{% url 'posts:review_delete' post.pk review.pk %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" value="삭제">
+        </form>
+      {% endif %}
+      <form id="review-like-form" data-review-id="{{ review.pk }}">
         {% csrf_token %}
-        {% if request.user in post.like_users.all %}
-          <input type="submit" value="좋아요 취소">
+        {% if request.user in review.like_users.all %}
+          <input type="submit" value="좋아요 취소" id="like-{{ review.pk }}">
         {% else %}
-          <input type="submit" value="좋아요">
+          <input type="submit" value="좋아요" id="like-{{ review.pk }}">
         {% endif %}
       </form>
-    {% else %}
-      <input type="submit" value="좋아요" disabled>
-    {% endif %}
-  </div>
-  <a href="{% url 'posts:review_create' post.pk %}">리뷰작성</a>
-  <a href="{% url 'posts:update' post.pk %}"> 수정 </a>
+    {% endfor %}
 
-  {% for review in reviews %}
-    <p>리뷰 좋아요 수 - <span id="review-likes-count">{{ review.like_users.all|length }}</span>개</p>
-    {{ review.title }}
-    {{ review.content }}
-    {% if request.user == review.user %}
-      <form action="{% url 'posts:review_delete' post.pk review.pk %}" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="삭제">
-      </form>
-    {% endif %}
-    <form id="review-like-form" data-review-id="{{ review.pk }}">
-      {% csrf_token %}
-      {% if request.user in review.like_users.all %}
-        <input type="submit" value="좋아요 취소" id="like-{{ review.pk }}">
-      {% else %}
-        <input type="submit" value="좋아요" id="like-{{ review.pk }}">
-      {% endif %}
-    </form>
-  {% endfor %}
-
-  <a href="{% url 'posts:delete' post.pk %}">삭제</a>
-  <div id="map" style="height: 400px;"></div>
-
+    <a href="{% url 'posts:delete' post.pk %}">삭제</a>
+</div>
 {% endblock content %}
 
 {% block script %}
@@ -73,6 +131,7 @@
     });
     marker.setMap(map);
     
+    {% comment %} Post like {% endcomment %}
     const form = document.querySelector('#likes-form')
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
     form.addEventListener('submit', function (event) {
@@ -85,12 +144,14 @@
       })
         .then((response) => {
           const isLiked = response.data.is_liked
-          const likeBtn = document.querySelector('#likes-form > input[type=submit]')
+          const likeBtn = document.querySelector('#likes-form > button i')
           
           if (isLiked === true) {
-            likeBtn.value = '좋아요 취소'
+            likeBtn.classList.remove('bi-suit-heart');
+            likeBtn.classList.add('bi-suit-heart-fill');
           } else {
-            likeBtn.value = '좋아요'
+            likeBtn.classList.remove('bi-suit-heart-fill');
+            likeBtn.classList.add('bi-suit-heart');
           }
           const likesCountTag = document.querySelector('#likes-count')
           const likesCountData = response.data.likes_count
@@ -98,6 +159,7 @@
         })
     })
 
+    {% comment %} Review like {% endcomment %}
     const r_form = document.querySelector('#review-like-form')
     const r_csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
     r_form.addEventListener('submit', function (event) {

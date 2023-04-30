@@ -24,10 +24,12 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     address = models.CharField(max_length=200)
     phoneNumberRegex = RegexValidator(regex=r'^0(2|[1-9][0-9])-?\d{3,4}-?\d{4}$')
-    phone = models.CharField(blank=True, null=True, validators=[phoneNumberRegex], max_length=13, unique=True)
-    parking = models.CharField(blank=True, null=True, max_length=50)
-    time = models.TextField(blank=True, null=True)
-    menu = models.TextField(blank=True, null=True)
+    phone = models.CharField(validators=[phoneNumberRegex], max_length=13)
+    parking = models.CharField(blank=True, null=True, max_length=50, default='가게 문의')
+    business_time = models.TextField(blank=True, null=True, default='가게 문의')
+    menu = models.TextField()
+    insta = models.URLField(blank=True, null=True)
+    home = models.URLField(blank=True, null=True)
 
     @property
     def created_string(self):
@@ -44,7 +46,19 @@ class Post(models.Model):
             return str(time.days) + '일 전'
         else:
             return self.strftime('%Y-%m-%d')
+        
+    def delete(self, *args, **kargs):
+        images = self.postimage_set.all()
+        for image in images:
+            image.delete()
+        super(Post, self).delete(*args, **kargs)
 
+    def save(self, *args, **kwargs):
+        if self.id:
+            old_post = self.postimage_set.all()
+            for image in old_post:
+                image.delete()
+        super(Post, self).save(*args, **kwargs)
 
 class PostImage(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -54,23 +68,15 @@ class PostImage(models.Model):
     image = ProcessedImageField(
         upload_to=post_image_path,
         blank=True, 
-        null=True, 
-        processors=[ResizeToFill(100, 100)], 
-        options={'quality':90})
+        null=True,)
     
     def delete(self, *args, **kargs):
         if self.image:
             os.remove(os.path.join(settings.MEDIA_ROOT, self.image.name))
+            dir_path = os.path.dirname(os.path.join(settings.MEDIA_ROOT, self.image.name))
+            if not os.listdir(dir_path):
+                os.rmdir(dir_path)
         super(PostImage, self).delete(*args, **kargs)
-
-    def save(self, *args, **kwargs):
-        if self.id:
-            old_post = PostImage.objects.get(id=self.id)
-            if self.image != old_post.image:
-                if old_post.image:
-                    os.remove(os.path.join(settings.MEDIA_ROOT, old_post.image.name))
-        super(PostImage, self).save(*args, **kwargs)
-
 
 class Review(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

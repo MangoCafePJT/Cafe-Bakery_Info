@@ -8,8 +8,7 @@ class PostForm(forms.ModelForm):
     category = forms.ChoiceField(choices=Post.CATEGORY_CHOICES, label='Category*', widget=forms.Select(attrs={'required': True}))
     class Meta:
         model = Post
-        fields = ('title', 'category', 'address', 'phone', 'parking', 'time', 'menu',)
-
+        fields = ('title', 'category', 'address', 'phone', 'parking', 'business_time', 'menu', 'insta', 'home')
 class PostImageForm(forms.ModelForm):
     class Meta:
         model = PostImage
