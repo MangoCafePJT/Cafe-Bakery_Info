@@ -112,10 +112,15 @@ def follow(request, user_pk):
         else:
             you.followers.add(me)
             is_followed = True
+        
+        print(you.followers.all())
         context = {
             'is_followed': is_followed,
             'followings_count': you.followings.count(),
             'followers_count': you.followers.count(),
+            # 'follower_list': you.followers.all(),
+            # 'following_list': you.followings.all(),
         }
+        
         return JsonResponse(context)
     return redirect('accounts:profile', you.username)
