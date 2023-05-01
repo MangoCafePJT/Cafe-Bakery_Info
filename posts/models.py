@@ -48,7 +48,7 @@ class Post(models.Model):
     phoneNumberRegex = RegexValidator(regex=r'^0[1-9]\d{0,2}-\d{3,4}-\d{4}$')
     phone = models.CharField(validators=[phoneNumberRegex], max_length=14)
     parking = models.CharField(blank=True, null=True, max_length=50, default='가게 문의')
-    business_time = models.TextField(blank=True, null=True, default='가게 문의')
+    business_time = models.TimeField(blank=True, null=True, default='가게 문의')
     menu = models.TextField()
     insta = models.URLField(blank=True, null=True)
     home = models.URLField(blank=True, null=True)
@@ -78,12 +78,12 @@ class Post(models.Model):
             image.delete()
         super(Post, self).delete(*args, **kargs)
 
-    def save(self, *args, **kwargs):
-        if self.id:
-            old_post = self.postimage_set.all()
-            for image in old_post:
-                image.delete()
-        super(Post, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if self.id:
+    #         old_post = self.postimage_set.all()
+    #         for image in old_post:
+    #             image.delete()
+    #     super(Post, self).save(*args, **kwargs)
 
 class PostImage(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
