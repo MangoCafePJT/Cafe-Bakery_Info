@@ -12,15 +12,15 @@
     {% csrf_token %}
     <label for="rating">Rating:</label>
     <div class="star-rating">
-      <input id="star-1" name="rating" type="radio" value="1" />
+      <input id="star-1" name="rating" type="radio" value="1"/>
       <label class="star-label" for="star-1" title="1 star">☆</label>
-      <input id="star-2" name="rating" type="radio" value="2" />
+      <input id="star-2" name="rating" type="radio" value="2"/>
       <label class="star-label" for="star-2" title="2 stars">☆</label>
-      <input id="star-3" name="rating" type="radio" value="3" />
+      <input id="star-3" name="rating" type="radio" value="3"/>
       <label class="star-label" for="star-3" title="3 stars">☆</label>
-      <input id="star-4" name="rating" type="radio" value="4" />
+      <input id="star-4" name="rating" type="radio" value="4"/>
       <label class="star-label" for="star-4" title="4 stars">☆</label>
-      <input id="star-5" name="rating" type="radio" value="5" />
+      <input id="star-5" name="rating" type="radio" value="5"/>
       <label class="star-label" for="star-5" title="5 stars">☆</label>
     </div>
     {{ review_form.as_p }}
@@ -37,6 +37,9 @@
 <script>
   const stars = document.querySelectorAll('.star-rating label');
   const ratingInput = document.querySelector('input[name="rating"]');
+
+  ratingInput.value = 5;
+  stars.forEach(star => star.textContent = '★');
   
   stars.forEach((star, index) => {
     star.addEventListener('click', () => {

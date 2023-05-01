@@ -95,27 +95,44 @@
     </div>
   </div>
 
-  
-    {% for review in reviews %}
-      <p>리뷰 좋아요 수 - <span id="review-likes-count">{{ review.like_users.all|length }}</span>개</p>
-      {{ review.title }}
-      {{ review.content }}
-      {% if request.user == review.user %}
-        <form action="{% url 'posts:review_delete' post.pk review.pk %}" method="POST">
-          {% csrf_token %}
-          <input type="submit" value="삭제">
-        </form>
-      {% endif %}
-      <form id="review-like-form" data-review-id="{{ review.pk }}">
-        {% csrf_token %}
-        {% if request.user in review.like_users.all %}
-          <input type="submit" value="좋아요 취소" id="like-{{ review.pk }}">
-        {% else %}
-          <input type="submit" value="좋아요" id="like-{{ review.pk }}">
+    <select id="rating-filter">
+      <option value="">All ratings</option>
+      <option value="5">5 stars</option>
+      <option value="4">4 stars</option>
+      <option value="3">3 stars</option>
+      <option value="2">2 stars</option>
+      <option value="1">1 star</option>
+    </select>
+    <select id="emotion-select" onchange="filterReviewsByEmotion()">
+      {% for emotion in emotions %}
+        <option value="{{ emotion.value }}">{{ emotion.label }}</option>
+      {% endfor %}
+    </select>
+    
+    <div id="review-list" class="review-list-container">   
+      {% for review in reviews %}
+      <div class="review" data-emotion="{{ review.emotion_value }}">
+        <p class="review-rating">{{ review.rating }}</p>
+        <p>리뷰 좋아요 수 - <span id="review-likes-count">{{ review.like_users.all|length }}</span>개</p>
+        {{ review.title }}
+        {{ review.content }}
+        {% if request.user == review.user %}
+          <form action="{% url 'posts:review_delete' post.pk review.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="삭제">
+          </form>
         {% endif %}
-      </form>
-    {% endfor %}
-
+        <form id="review-like-form" data-review-id="{{ review.pk }}">
+          {% csrf_token %}
+          {% if request.user in review.like_users.all %}
+            <input type="submit" value="좋아요 취소" id="like-{{ review.pk }}">
+          {% else %}
+            <input type="submit" value="좋아요" id="like-{{ review.pk }}">
+          {% endif %}
+        </form>
+      </div>
+      {% endfor %}
+    </div>
     <a href="{% url 'posts:delete' post.pk %}">삭제</a>
 </div>
 {% endblock content %}
@@ -192,6 +209,25 @@
           review_likesCountTag.textContent = review_likesCountData
         })
     })
+
+    const ratingFilter = document.getElementById('rating-filter');
+    const reviewList = document.getElementById('review-list');
+    const reviewItems = reviewList.querySelectorAll('.review-item');
+
+    ratingFilter.addEventListener('change', function() {
+      const selectedRating = ratingFilter.value;
+      reviewItems.forEach(function(reviewItem) {
+        const reviewRating = reviewItem.getAttribute('data-rating');
+        if (selectedRating === '' || selectedRating === reviewRating) {
+          reviewItem.style.display = 'block';
+        } else {
+          reviewItem.style.display = 'none';
+        }
+      });
+    }); 
+
+
+    
   </script>
 
 {% endblock script %}

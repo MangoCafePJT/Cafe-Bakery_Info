@@ -110,7 +110,7 @@ class Review(models.Model):
     emote_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='emote_reviews', through='Emote_review')
     title = models.CharField(max_length=50)
     content = models.TextField()
-    rating = models.IntegerField(default=0, validators=[MinValueValidator(1), MaxValueValidator(5)])
+    rating = models.IntegerField(default=5, validators=[MinValueValidator(1), MaxValueValidator(5)])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews')
