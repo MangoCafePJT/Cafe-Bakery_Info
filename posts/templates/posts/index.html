@@ -20,20 +20,20 @@
           <div class="index--card--box">
             <div class="index--image--box">
               {% if image %}
-                <img src="{{ image.image.url }}" alt="" class="index--img">
+                <img src="{{ image.image.url }}" alt="" class="index--img object-fit-fill">
               {% else %}
-                <img src="{% static 'image/none_img.png' %}" alt=""  class="index--img">
+                <img src="{% static 'image/none_img.png' %}" alt=""  class="index--img object-fit-fill">
               {% endif %}
             </div>
             <div>
               <div class="index--title">
                 {{ post.title }}
               </div>
-              <div class="index--txt">
+              <div class="index--txt p-1">
                 {{ post.address }}
               </div>
-              <div class="d-flex justify-content-between index--txt">
-                {{ post.menu }}
+              <div class="d-flex justify-content-between index--txt p-1">
+                <p class="index--txt">{{ post.menu }}</p>
                 <div>
                   {% if request.user.is_authenticated %}
                     <form id="likes-form-{{ post.pk }}" data-post-id="{{ post.pk }}" class="index--heart">
