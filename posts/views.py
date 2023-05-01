@@ -49,7 +49,7 @@ def create(request):
 def detail(request, post_pk):
     kakao_script_key = os.getenv('kakao_script_key')
     post = Post.objects.get(pk=post_pk)
-    reviews = post.review_set.all()
+    reviews = post.reviews.all()
     address = post.address
     latitude, longitude = get_latlng_from_address(address)
     post_form = PostForm()
