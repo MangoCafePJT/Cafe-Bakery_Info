@@ -5,34 +5,22 @@
 {% endblock page_title %}
 
 {% block content %}
-  {% if keyword %}
-    {{ keyword }}
-    {% for post, image in post_images %}
-      {% if image.imgage %}
-        <img src="{{ image.image.url }}" alt="">
-      {% endif %}
-
-        {{ post.title }}
-        
-    {% endfor %}
-    {% for post in posts %}
-      {{ post.title }}
-    {% endfor %}
+  {% if posts %}
+  {% for post, image in post_images %}
+      <div class="post">
+          <h2>{{ post.title }}</h2>
+          {% if image %}
+              <img src="{{ image.image.url }}" alt="{{ post.title }}">
+          {% endif %}
+          <p>{{ post.menu }}</p>
+          <p>{{ post.address }}</p>
+          <p>{{ post.city }}</p>
+          <a href="{% url 'posts:detail' post.pk %}">View Details</a>
+      </div>
+  {% endfor %}
   {% else %}
-    <p>{{ keyword }} 없음</p>
+  <p>No results found.</p>
   {% endif %}
-  {% comment %} <form action="." method="post"> {% csrf_token %}
-    {{ form.as_table }}
-    <input type="submit" value="Submit" class="btn btn-primary btn-sm">
-  </form>
-{% if object_list %}
-    {% for post in object_list %}
-        <h2><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h2>
-        {{ post.modify_date|date:"N d, Y" }}
-    {% endfor %}
-{% elif search_term %}<!-- 검색란이 공란인지 확인-->
-    <b><i>Search Word({{ search_term }}) Not Found</i></b>
-{% endif %} {% endcomment %}
 
 {% endblock content %}
 
