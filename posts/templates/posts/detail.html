@@ -106,10 +106,10 @@
       <option value="1">1 star</option>
     </select>
     <h4 class="mt-3" style="color:#682c0ec2;">리뷰({{ reviews|length }})</h4>
-    <div class="review--detail">
+    <div class="review--detail" id="review-list">
       {% for review in reviews %}
         {% comment %} review user {% endcomment %}
-        <div class="review--user">
+        <div class="review--user" data-rating="{{ review.rating }}">
           {% if review.user.image %}
             <div class="profile--image rounded-circle">
               <img src="{{ review.user.image.url }}" alt="" class="object-fit-fill profile">
@@ -119,11 +119,12 @@
               <img src="{% static 'image/profile-none.png' %}" alt="profile_image_none" class="object-fit-fill profile">
             </div>
           {% endif %}
+          <p class="review-rating">{{ review.rating }}</p>
           <p>{{ review.user }}</p>
           <p>{{ review.created_string}}</p>
         </div>
         {% comment %} review  {% endcomment %}
-        <div class="review--content">
+        <div class="review--content" data-rating="{{ review.rating }}">
           <div class="d-flex justify-content-between">
             <p>{{ review.title }}</p>
             <div>
@@ -158,7 +159,7 @@
           <p>{{ review.content }}</p>
         </div>
         {% comment %} image {% endcomment %}
-        <div class='d-flex gap-1 mt-1'>
+        <div class='d-flex gap-1 mt-1 review_q_img' data-rating="{{ review.rating }}">
           {% for image in review.reviewimage_set.all %}
             <img src="{{ image.image.url }}" alt="{{ review.title }}" class="review--img">
           {% endfor %}
@@ -172,37 +173,6 @@
     </div>
   </div>
 </div>
-
-    {% comment %} <select id="emotion-select" onchange="filterReviewsByEmotion()">
-      {% for emotion in emotions %}
-        <option value="{{ emotion.value }}">{{ emotion.label }}</option>
-      {% endfor %}
-    </select> {% endcomment %}
-    
-    {% comment %} <div id="review-list" class="review-list-container">   
-      {% for review in reviews %}
-      <div class="review" data-rating="{{ review.rating }}">
-        <p class="review-rating">{{ review.rating }}</p>
-        <p>리뷰 좋아요 수 - <span id="review-likes-count">{{ review.like_users.all|length }}</span>개</p>
-        {{ review.title }}
-        {{ review.content }}
-        {% if request.user == review.user %}
-          <form action="{% url 'posts:review_delete' post.pk review.pk %}" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="삭제">
-          </form>
-        {% endif %}
-        <form id="review-like-form" data-review-id="{{ review.pk }}">
-          {% csrf_token %}
-          {% if request.user in review.like_users.all %}
-            <input type="submit" value="좋아요 취소" id="like-{{ review.pk }}">
-          {% else %}
-            <input type="submit" value="좋아요" id="like-{{ review.pk }}">
-          {% endif %}
-        </form>
-      </div>
-      {% endfor %}
-    </div> {% endcomment %}
 {% endblock content %}
 
 {% block script %}
@@ -286,8 +256,8 @@
 
     const ratingFilter = document.getElementById('rating-filter');
     const reviewList = document.getElementById('review-list');
-    const reviewItems = reviewList.querySelectorAll('.review-item');
-
+    const reviewItems = reviewList.querySelectorAll('.review--user, .review--content, .review_q_img');
+    
     ratingFilter.addEventListener('change', function() {
       const selectedRating = ratingFilter.value;
       reviewItems.forEach(function(reviewItem) {
@@ -298,12 +268,8 @@
           reviewItem.style.display = 'none';
         }
       });
-    }); 
+    });
 
-
-    
-
-          
   </script>
 
 {% endblock script %}
