@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Post, Review, PostImage, ReviewImage, Emote_review
-from .forms import PostForm, ReviewForm, PostImageForm, ReviewImageForm, EmoteReviewForm
+from .models import Post, Review, PostImage, ReviewImage
+from .forms import PostForm, ReviewForm, PostImageForm, ReviewImageForm
 from django.http import JsonResponse
 from django.db.models import Q
 from utils.map import get_latlng_from_address
@@ -139,7 +139,7 @@ EMOTIONS = [
 def review_create(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     review_form = ReviewForm()
-    emote_review_form = EmoteReviewForm()
+    # emote_review_form = EmoteReviewForm()
     image_form = ReviewImageForm()
     rating = request.POST.get('rating')
     if rating is None:
@@ -152,9 +152,9 @@ def review_create(request, post_pk):
     if request.method == 'POST':
         review_form = ReviewForm(request.POST)
         files = request.FILES.getlist('image')
-        emote_review_form = EmoteReviewForm(request.POST)
+        # emote_review_form = EmoteReviewForm(request.POST)
 
-        if review_form.is_valid() and emote_review_form.is_valid():
+        if review_form.is_valid():
             review = review_form.save(commit=False)
             review.post = post
             review.user = request.user
@@ -162,11 +162,11 @@ def review_create(request, post_pk):
             review.rating = rating
             review.save()
 
-            emote_review = emote_review_form.save(commit=False)
-            emote_review.emotion = request.POST.get('emotion')
-            emote_review.review = review
-            emote_review.user = request.user
-            emote_review.save()
+            # emote_review = emote_review_form.save(commit=False)
+            # emote_review.emotion = request.POST.get('emotion')
+            # emote_review.review = review
+            # emote_review.user = request.user
+            # emote_review.save()
             
             for i in files:
                 ReviewImage.objects.create(image=i, review=review)
@@ -176,7 +176,6 @@ def review_create(request, post_pk):
         'post': post,
         'review_form': review_form,
         'image_form': image_form,
-        'emote_review_form': emote_review_form,
         'emotions': EMOTIONS,
     }
     return render(request, 'posts/review_create.html', context)

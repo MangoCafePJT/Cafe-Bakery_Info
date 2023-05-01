@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Review, PostImage, ReviewImage, Emote_review
+from .models import Post, Review, PostImage, ReviewImage
 from taggit.forms import TagField, TagWidget
 from taggit.managers import TaggableManager
 
@@ -92,10 +92,10 @@ class PostForm(forms.ModelForm):
             }
         )
     )
-    business_time = forms.TimeField(
+    business_time = forms.CharField(
         label='Business Time', 
         required = False,
-        widget=forms.TimeInput(
+        widget=forms.TextInput(
             attrs={  
                 
                 'class': 'form-control',
@@ -151,7 +151,6 @@ class ReviewForm(forms.ModelForm):
                 'style' : 'width: 400px;'
             }
         )
-        
     )
     content = forms.CharField(
         max_length=200, 
@@ -176,7 +175,7 @@ class ReviewImageForm(forms.ModelForm):
         widgets = {'image': forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control', 'style' : 'width: 400px;'})}
 
 
-class EmoteReviewForm(forms.ModelForm):
-    class Meta:
-        model = Emote_review
-        fields = ('emotion',)
+# class EmoteReviewForm(forms.ModelForm):
+#     class Meta:
+#         model = Emote_review
+#         fields = ('emotion',)

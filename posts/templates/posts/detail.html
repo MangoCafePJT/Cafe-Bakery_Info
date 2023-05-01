@@ -97,78 +97,6 @@
     </div>
   </div>
   <div class="review--box">
-    <h4 class="mt-3" style="color:#682c0ec2;">리뷰({{ reviews|length }})</h4>
-    {% for review in reviews %}
-    <div class="review--detail">
-      {% comment %} review user {% endcomment %}
-      <div class="review--user">
-        {% if review.user.image %}
-          <div class="profile--image rounded-circle">
-            <img src="{{ review.user.image.url }}" alt="" class="object-fit-fill profile">
-          </div>
-        {% else %}
-          <div class="profile--image rounded-circle">
-            <img src="{% static 'image/profile-none.png' %}" alt="profile_image_none" class="object-fit-fill profile">
-          </div>
-        {% endif %}
-        <p>{{ review.user }}</p>
-        <p>{{ review.created_string}}</p>
-      </div>
-      {% comment %} review  {% endcomment %}
-      <div class="review--content">
-        <div class="d-flex justify-content-between">
-          <p>{{ review.title }}</p>
-          <div>
-            {% if request.user.is_authenticated %}
-              <form id="review-like-form-{{ review.pk }}" data-post-id="{{ post.pk }}" data-review-id="{{ review.pk }}" class="index--heart">
-                {% csrf_token %}
-                {% if request.user in review.like_users.all %}
-                    <button class="btn btn-link text-danger p-0" type="submit">
-                      <i class="bi bi-suit-heart-fill" id="review-heart"></i>
-                    </button>
-                {% else %}
-                    <button class="btn btn-link text-danger p-0" type="submit">
-                      <i class="bi bi-suit-heart" id="review-heart"></i>
-                    </button>
-                {% endif %}
-              </form>
-            {% else %}
-              <button class="btn btn-link text-secondary p-0" disabled>
-                <i class="bi bi-suit-heart" id="review-heart"></i>
-              </button>
-            {% endif %}
-            <span id="review-likes-count">{{ review.like_users.all|length }}</span>
-                {% if review.emote_review.emotion == '1' %}
-                    <div class="review--imoge1"></div>
-                {% elif emote_review.emotion == '2' %}
-                    <div class="review--imoge2"></div>
-                {% else %}
-                    <div class="review--imoge3"></div>
-                {% endif %}
-          </div>
-        </div>
-        <p>{{ review.content }}</p>
-      </div>
-      {% comment %} image {% endcomment %}
-      <div class='d-flex gap-1 mt-1'>
-        {% for image in review.reviewimage_set.all %}
-          <img src="{{ image.image.url }}" alt="{{ review.title }}" class="review--img">
-        {% endfor %}
-      </div>
-    </div>
-
-    <div class="detail--user">
-      <div class="detail--info--user"><div class="detail--info--user--title">작성자</div>
-      <a href="{% url 'accounts:profile' post.user.username %}">{{ post.user.username }}</a></div>
-      <div class="detail--info--user"><div class="detail--info--user--title">작성일자</div>{{ post.created_at|date:"Y.m.d" }}</div>
-      <div class="detail--info--user"><div class="detail--info--user--title">수정일자</div>{{ post.updated_at|date:"Y.m.d" }}</div>
-      {% if post.user == request.user%}
-        <a href="{% url 'posts:update' post.pk %}" class="post--btn"> 수정 </a>
-        <a href="{% url 'posts:delete' post.pk %}" class="post--btn" onclick="return confirm('삭제하시겠습니까?')"> 삭제 </a>
-      {% endif %}
-    </div>
-  </div>
-
     <select id="rating-filter">
       <option value="">All ratings</option>
       <option value="5">5 stars</option>
@@ -177,15 +105,83 @@
       <option value="2">2 stars</option>
       <option value="1">1 star</option>
     </select>
-    <select id="emotion-select" onchange="filterReviewsByEmotion()">
+    <h4 class="mt-3" style="color:#682c0ec2;">리뷰({{ reviews|length }})</h4>
+    <div class="review--detail">
+      {% for review in reviews %}
+        {% comment %} review user {% endcomment %}
+        <div class="review--user">
+          {% if review.user.image %}
+            <div class="profile--image rounded-circle">
+              <img src="{{ review.user.image.url }}" alt="" class="object-fit-fill profile">
+            </div>
+          {% else %}
+            <div class="profile--image rounded-circle">
+              <img src="{% static 'image/profile-none.png' %}" alt="profile_image_none" class="object-fit-fill profile">
+            </div>
+          {% endif %}
+          <p>{{ review.user }}</p>
+          <p>{{ review.created_string}}</p>
+        </div>
+        {% comment %} review  {% endcomment %}
+        <div class="review--content">
+          <div class="d-flex justify-content-between">
+            <p>{{ review.title }}</p>
+            <div>
+              {% if request.user.is_authenticated %}
+                <form id="review-like-form-{{ review.pk }}" data-post-id="{{ post.pk }}" data-review-id="{{ review.pk }}" class="index--heart">
+                  {% csrf_token %}
+                  {% if request.user in review.like_users.all %}
+                      <button class="btn btn-link text-danger p-0" type="submit">
+                        <i class="bi bi-suit-heart-fill" id="review-heart"></i>
+                      </button>
+                  {% else %}
+                      <button class="btn btn-link text-danger p-0" type="submit">
+                        <i class="bi bi-suit-heart" id="review-heart"></i>
+                      </button>
+                  {% endif %}
+                </form>
+              {% else %}
+                <button class="btn btn-link text-secondary p-0" disabled>
+                  <i class="bi bi-suit-heart" id="review-heart"></i>
+                </button>
+              {% endif %}
+              <span id="review-likes-count">{{ review.like_users.all|length }}</span>
+                  {% if review.emote_review.emotion == '1' %}
+                      <div class="review--imoge1"></div>
+                  {% elif emote_review.emotion == '2' %}
+                      <div class="review--imoge2"></div>
+                  {% else %}
+                      <div class="review--imoge3"></div>
+                  {% endif %}
+            </div>
+          </div>
+          <p>{{ review.content }}</p>
+        </div>
+        {% comment %} image {% endcomment %}
+        <div class='d-flex gap-1 mt-1'>
+          {% for image in review.reviewimage_set.all %}
+            <img src="{{ image.image.url }}" alt="{{ review.title }}" class="review--img">
+          {% endfor %}
+        </div>
+      {% empty %}
+        <div class="d-flex flex-column align-items-center justify-content-center">
+          <img src="{% static 'image/empty.png' %}" alt="" style="height: 200px; width: 200px;">
+          <h4>리뷰가 없습니다.</h4>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+    {% comment %} <select id="emotion-select" onchange="filterReviewsByEmotion()">
       {% for emotion in emotions %}
         <option value="{{ emotion.value }}">{{ emotion.label }}</option>
       {% endfor %}
-    </select>
+    </select> {% endcomment %}
     
-    <div id="review-list" class="review-list-container">   
+    {% comment %} <div id="review-list" class="review-list-container">   
       {% for review in reviews %}
-      <div class="review" data-emotion="{{ review.emotion_value }}">
+      <div class="review" data-rating="{{ review.rating }}">
         <p class="review-rating">{{ review.rating }}</p>
         <p>리뷰 좋아요 수 - <span id="review-likes-count">{{ review.like_users.all|length }}</span>개</p>
         {{ review.title }}
@@ -206,18 +202,7 @@
         </form>
       </div>
       {% endfor %}
-    </div>
-    <a href="{% url 'posts:delete' post.pk %}">삭제</a>
-
-    {% empty %}
-      <div class="d-flex flex-column align-items-center justify-content-center">
-        <img src="{% static 'image/empty.png' %}" alt="" style="height: 200px; width: 200px;">
-        <h4>리뷰가 없습니다.</h4>
-      </div>
-    {% endfor %}
-  </div>
-
-</div>
+    </div> {% endcomment %}
 {% endblock content %}
 
 {% block script %}
@@ -279,7 +264,25 @@
           url: `/posts/${postId}/reviews/${reviewId}/likes/`,
           headers: {'X-CSRFToken': r_csrftoken},
         })
-    })
+        .then((response) => {
+          const risLiked = response.data.r_is_liked;
+          const reviewlikesCountSpan = form.nextElementSibling;
+          reviewlikesCountSpan.textContent = response.data.review_likes_count;
+          const heartIcon = form.querySelector('#review-heart');
+          if (risLiked) {
+            heartIcon.classList.remove('bi-suit-heart');
+            heartIcon.classList.add('bi-suit-heart-fill');
+          } else {
+            heartIcon.classList.remove('bi-suit-heart-fill');
+            heartIcon.classList.add('bi-suit-heart');
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      });
+    });
+
 
     const ratingFilter = document.getElementById('rating-filter');
     const reviewList = document.getElementById('review-list');
@@ -300,24 +303,7 @@
 
     
 
-          .then((response) => {
-            const risLiked = response.data.r_is_liked;
-            const reviewlikesCountSpan = form.nextElementSibling;
-            reviewlikesCountSpan.textContent = response.data.review_likes_count;
-            const heartIcon = form.querySelector('#review-heart');
-            if (risLiked) {
-              heartIcon.classList.remove('bi-suit-heart');
-              heartIcon.classList.add('bi-suit-heart-fill');
-            } else {
-              heartIcon.classList.remove('bi-suit-heart-fill');
-              heartIcon.classList.add('bi-suit-heart');
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      });
-    });
+          
   </script>
 
 {% endblock script %}

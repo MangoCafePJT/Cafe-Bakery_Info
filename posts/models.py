@@ -48,7 +48,7 @@ class Post(models.Model):
     phoneNumberRegex = RegexValidator(regex=r'^0[1-9]\d{0,2}-\d{3,4}-\d{4}$')
     phone = models.CharField(validators=[phoneNumberRegex], max_length=14)
     parking = models.CharField(blank=True, null=True, max_length=50, default='가게 문의')
-    business_time = models.TimeField(blank=True, null=True, default='가게 문의')
+    business_time = models.CharField(max_length=50,blank=True, null=True, default='가게 문의')
     menu = models.TextField()
     insta = models.URLField(blank=True, null=True)
     home = models.URLField(blank=True, null=True)
@@ -107,7 +107,7 @@ class PostImage(models.Model):
 class Review(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='reviews')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    emote_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='emote_reviews', through='Emote_review')
+    emotion = models.IntegerField(default=1)
     title = models.CharField(max_length=50)
     content = models.TextField()
     rating = models.IntegerField(default=5, validators=[MinValueValidator(1), MaxValueValidator(5)])
@@ -147,7 +147,7 @@ class ReviewImage(models.Model):
         blank=True, 
         null=True, 
         processors=[ResizeToFill(100, 100)], 
-        options={'quality':90})
+        options={'quality':100})
     
     def delete(self, *args, **kargs):
         if self.image:
@@ -161,9 +161,3 @@ class ReviewImage(models.Model):
                 if old_post.image:
                     os.remove(os.path.join(settings.MEDIA_ROOT, old_post.image.name))
         super(ReviewImage, self).save(*args, **kwargs)
-
-
-class Emote_review(models.Model):
-    review = models.ForeignKey(Review, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    emotion = models.CharField(max_length=10)
