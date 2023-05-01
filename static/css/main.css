@@ -538,6 +538,14 @@ footer a {
   font-family: 'LeeSeoyun';
 }
 
+.detail--info--body p{
+  font-size: 20px;
+  margin-bottom: 2px;
+  color: rgb(170, 170, 170);
+  font-family: 'LeeSeoyun';
+  display: inline-block;
+}
+
 .detail--info--body--title {
   font-size: 20px;
   margin-bottom: 2px;
@@ -590,10 +598,9 @@ footer a {
 }
 
 .post--btn {
-  background-color: #682c0ec2;
-  color: white;
+  color: #682c0ec2;
   font-size: 13px;
-  width: 100px;
+  width: 30px;
   border-radius: 10px;
   margin: 5px 0;
   display: inline-block;
@@ -602,5 +609,22 @@ footer a {
 }
 
 .post--btn:hover {
-  background-color: #8d3d14c2;
+  color: #8d3d14c2;
+}
+
+.detail--hash{
+  width: 100%;
+  color: rgb(170, 170, 170);
+  font-family: 'LeeSeoyun';
+  font-size: 30px;
+}
+
+.hashtag {
+  font-family: 'LeeSeoyun';
+  border-radius: 20px;
+  background-color: #c24814b0;
+  color: white;
+  padding: 8px;
+  font-size: 15px;
+  word-break: keep-all;
 }

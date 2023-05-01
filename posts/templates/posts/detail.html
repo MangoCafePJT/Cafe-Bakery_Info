@@ -69,29 +69,32 @@
             <span id="likes-count">{{ post.like_users.all|length }}</span>
         </div>
       </div>
-      <div class="detail--info--body"><div class="detail--info--body--title">주소</div>{{ post.address }}</div>
-      <div class="detail--info--body"><div class="detail--info--body--title">전화번호</div>{{ post.phone}}</div>
-      <div class="detail--info--body"><div class="detail--info--body--title">카테고리</div>{{ post.category }}</div>
-      <div class="detail--info--body"><div class="detail--info--body--title">주차</div>{{ post.parking }}</div>
-      <div class="detail--info--body"><div class="detail--info--body--title">영업시간</div>{{ post.business_time }}</div>
-      <div class="detail--info--body"><div class="detail--info--body--title">메뉴</div>{{ post.menu|linebreaks }}</div>
-      <div class="detail--info--body">
-        <div class="detail--info--body--title">해시태그</div>
-        {% for tag in post.tags.all %}
-            <span>#{{ tag.name }}</span>
-        {% endfor %}   
-      </div>
-      
+        <div class="detail--info--body"><div class="detail--info--body--title">주소</div>{{ post.address }}</div>
+        <div class="detail--info--body"><div class="detail--info--body--title">전화번호</div>{{ post.phone}}</div>
+        <div class="detail--info--body"><div class="detail--info--body--title">카테고리</div>{{ post.category }}</div>
+        <div class="detail--info--body"><div class="detail--info--body--title">주차</div>{{ post.parking }}</div>
+        <div class="detail--info--body"><div class="detail--info--body--title">영업시간</div>{{ post.business_time }}</div>
+        <div>
+          <div class="detail--info--body--title">메뉴</div>
+          <div class="detail--info--body">{{ post.menu|linebreaks }}</div>
+        </div>
     </div>
     <div class="detail--user">
       <div class="detail--info--user"><div class="detail--info--user--title">작성자</div>
       <a href="{% url 'accounts:profile' post.user.username %}">{{ post.user.username }}</a></div>
       <div class="detail--info--user"><div class="detail--info--user--title">작성일자</div>{{ post.created_at|date:"Y.m.d" }}</div>
       <div class="detail--info--user"><div class="detail--info--user--title">수정일자</div>{{ post.updated_at|date:"Y.m.d" }}</div>
-      {% if post.user == request.user%}
-        <a href="{% url 'posts:update' post.pk %}" class="post--btn"> 수정 </a>
-        <a href="{% url 'posts:delete' post.pk %}" class="post--btn" onclick="return confirm('삭제하시겠습니까?')"> 삭제 </a>
-      {% endif %}
+      <div class="detail--hash">해시태그
+        {% if post.user == request.user%}
+          <a href="{% url 'posts:update' post.pk %}" class="post--btn"> 수정 </a>
+          <a href="{% url 'posts:delete' post.pk %}" class="post--btn" onclick="return confirm('삭제하시겠습니까?')"> 삭제 </a>
+        {% endif %}
+      </div>
+      <div>
+        {% for tag in post.tags.all %}
+            <span class="hashtag">#{{ tag.name }}</span>
+        {% endfor %} 
+      </div>  
     </div>
   </div>
 
