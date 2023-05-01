@@ -8,6 +8,22 @@
 </style>
 {% endblock style %}
 {% block content %}
+
+  <form id="review-form"  method="post" action="{% url 'posts:review_create' post.pk %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="rating">Rating:</label>
+    <div class="star-rating">
+      <input id="star-1" name="rating" type="radio" value="1"/>
+      <label class="star-label" for="star-1" title="1 star">☆</label>
+      <input id="star-2" name="rating" type="radio" value="2"/>
+      <label class="star-label" for="star-2" title="2 stars">☆</label>
+      <input id="star-3" name="rating" type="radio" value="3"/>
+      <label class="star-label" for="star-3" title="3 stars">☆</label>
+      <input id="star-4" name="rating" type="radio" value="4"/>
+      <label class="star-label" for="star-4" title="4 stars">☆</label>
+      <input id="star-5" name="rating" type="radio" value="5"/>
+      <label class="star-label" for="star-5" title="5 stars">☆</label>
+
   <div class="posts--box">
     <div class="posts--create">
       <h1>솔직한 리뷰를 남겨주세요!</h1>
@@ -34,6 +50,7 @@
         <input class="posts--reviewBtn" type="submit">
         <br><br>
       </form>
+
     </div>
   </div>
 {% endblock content %}
@@ -41,6 +58,9 @@
 <script>
   const stars = document.querySelectorAll('.star-rating label');
   const ratingInput = document.querySelector('input[name="rating"]');
+
+  ratingInput.value = 5;
+  stars.forEach(star => star.textContent = '★');
   
   stars.forEach((star, index) => {
     star.addEventListener('click', () => {

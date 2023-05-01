@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from utils.map import get_latlng_from_address
 import os
+from django.db.models import Count
 
 def index(request):
     posts = Post.objects.all()
@@ -49,7 +50,12 @@ def create(request):
 def detail(request, post_pk):
     kakao_script_key = os.getenv('kakao_script_key')
     post = Post.objects.get(pk=post_pk)
-    reviews = post.reviews.all()
+    # reviews = post.reviews.all()
+    rating_filter = request.GET.get('rating-filter', '')
+    if rating_filter:
+        reviews = post.reviews.filter(rating=int(rating_filter))
+    else:
+        reviews = post.reviews.all()
     address = post.address
     latitude, longitude = get_latlng_from_address(address)
     post_form = PostForm()
@@ -61,9 +67,9 @@ def detail(request, post_pk):
     else:
         post_images.append((post, ''))
     context = {
-        'post':post,
-        'post_images':post_images,
-        'reviews':reviews,
+        'post': post,
+        'post_images': post_images,
+        'reviews': reviews,
         'latitude': latitude,
         'longitude': longitude,
         'post_form': post_form,
@@ -72,6 +78,20 @@ def detail(request, post_pk):
     }
     return render(request, 'posts/detail.html',context)
 
+
+from django.template.loader import render_to_string
+
+def reviews_filter(request, post_pk):
+    rating = request.GET.get('rating')
+    if rating:
+        reviews = Review.objects.filter(post_id=post_pk, rating=rating)
+    else:
+        reviews = Review.objects.filter(post_id=post_pk)
+    context = {
+        'reviews': reviews,
+    }
+    review_list = render_to_string('posts/detail.html', context)
+    return JsonResponse(review_list, safe=False)
 
 @login_required
 def delete(request, post_pk):
@@ -121,6 +141,14 @@ def review_create(request, post_pk):
     review_form = ReviewForm()
     emote_review_form = EmoteReviewForm()
     image_form = ReviewImageForm()
+    rating = request.POST.get('rating')
+    if rating is None:
+        rating = 5
+    else:
+        try:
+            rating = int(rating)
+        except ValueError:
+            rating = 5
     if request.method == 'POST':
         review_form = ReviewForm(request.POST)
         files = request.FILES.getlist('image')
@@ -130,7 +158,8 @@ def review_create(request, post_pk):
             review = review_form.save(commit=False)
             review.post = post
             review.user = request.user
-            review.rating = int(request.POST.get('rating', 0))
+            # review.rating = int(request.POST.get('rating', 0))
+            review.rating = rating
             review.save()
 
             emote_review = emote_review_form.save(commit=False)
