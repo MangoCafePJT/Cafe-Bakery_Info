@@ -37,7 +37,3 @@ class EmoteReviewForm(forms.ModelForm):
     class Meta:
         model = Emote_review
         fields = ('emotion',)
-
-
-class PostSearchForm(forms.Form):
-    search_word = forms.CharField(label='Search Word')
