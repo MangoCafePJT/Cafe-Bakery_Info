@@ -11,7 +11,8 @@ class PostForm(forms.ModelForm):
             attrs={
                 'required': True,
                 'placeholder': '제목을 입력해주세요.',
-                'class': 'form-control' 
+                'class': 'form-control',
+                'style' : 'width: 600px;'
             }
         )
         
@@ -23,7 +24,8 @@ class PostForm(forms.ModelForm):
             attrs={
                 'required': True, 
                 'placeholder': '정확한 주소를 입력해주세요.', 
-                'class': 'form-control'
+                'class': 'form-control',
+                'style' : 'width: 600px;'
             }
         )
     )
@@ -33,7 +35,8 @@ class PostForm(forms.ModelForm):
         widget=forms.Select(
             attrs={
                 'required': True,
-                'class': 'form-select'
+                'class': 'form-select',
+                'style' : 'width: 600px;'
             }
         )
     )
@@ -45,6 +48,7 @@ class PostForm(forms.ModelForm):
                 'required': True,
                 'placeholder': '메뉴를 입력해주세요.', 
                 'class': 'form-control',
+                'style' : 'width: 600px;'
             }
         )
     )
@@ -54,7 +58,8 @@ class PostForm(forms.ModelForm):
         widget=forms.Select(
             attrs={
                 'required': True,
-                'class': 'form-select'
+                'class': 'form-select',
+                'style' : 'width: 600px;'
             }
         )
     )
@@ -63,16 +68,15 @@ class PostForm(forms.ModelForm):
         help_text='태그를 입력해주세요.',
         
     )
-    
-
     phone = forms.CharField(
         max_length=14, 
         required = False,
         label='Phone', 
         widget=forms.TextInput(
             attrs={
-                'placeholder': '전화번호를 입력해주세요.', 
-                'class': 'form-control'
+                'placeholder': '-을 포함해주세요.',
+                'class': 'form-control',
+                'style' : 'width: 600px;'
                 
             }
         )
@@ -83,17 +87,19 @@ class PostForm(forms.ModelForm):
         label='Parking', 
         widget=forms.TextInput(
             attrs={  
-                
-                'class': 'form-control'
+                'class': 'form-control',
+                'style' : 'width: 600px;',
             }
         )
     )
-    business_time = forms.CharField(
+    business_time = forms.TimeField(
         label='Business Time', 
         required = False,
-        widget=forms.TextInput(
+        widget=forms.TimeInput(
             attrs={  
-                'class': 'form-control'
+                
+                'class': 'form-control',
+                'style' : 'width: 600px;'
             }
         )
     )
@@ -103,7 +109,8 @@ class PostForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 'placeholder': 'Instagram 주소를 입력해주세요.', 
-                'class': 'form-control'
+                'class': 'form-control',
+                'style' : 'width: 600px;'
             }
         )
     )
@@ -112,7 +119,8 @@ class PostForm(forms.ModelForm):
         required = False,
         widget=forms.TextInput(
             attrs={  
-                'class': 'form-control'
+                'class': 'form-control',
+                'style' : 'width: 600px;'
             }
         )
     )
@@ -120,26 +128,52 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('title', 'category', 'city', 'address', 'phone', 'parking', 'business_time', 'menu', 'insta', 'home', 'tags')
         widgets = {
-            'tags': TagWidget(attrs={'class': 'form-control'}),
+            'tags': TagWidget(attrs={'class': 'form-control', 'style' : 'width: 600px;'}),
         }
 
         
 class PostImageForm(forms.ModelForm):
+    
     class Meta:
         model = PostImage
         fields = ('image',)
-        widgets = {'image': forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control'})}
+        widgets = {'image': forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control', 'style' : 'width: 600px;'})}
 
 class ReviewForm(forms.ModelForm):
+    title = forms.CharField(
+        max_length=50, 
+        label='Title', 
+        widget=forms.TextInput(
+            attrs={
+                'required': True,
+                'placeholder': '제목을 입력해주세요.',
+                'class': 'form-control',
+                'style' : 'width: 400px;'
+            }
+        )
+        
+    )
+    content = forms.CharField(
+        max_length=200, 
+        label='Content', 
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'placeholder': '내용을 입력해주세요.',
+                'style' : 'width: 400px;'
+            }
+        )
+    )
     class Meta:
         model = Review
         fields = ('title', 'content',)
+        
 
 class ReviewImageForm(forms.ModelForm):
     class Meta:
         model = ReviewImage
         fields = ('image',)
-        widgets = {'image': forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control'})}
+        widgets = {'image': forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control', 'style' : 'width: 400px;'})}
 
 
 class EmoteReviewForm(forms.ModelForm):
