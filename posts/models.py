@@ -53,7 +53,7 @@ class Post(models.Model):
     insta = models.URLField(blank=True, null=True)
     home = models.URLField(blank=True, null=True)
     city = models.CharField(max_length=10, choices=CITY_CHOICES)
-    tags = TaggableManager(blank=True)
+    tags = TaggableManager()
     rating = models.DecimalField(default=0, max_digits=5, decimal_places=1)
 
     @property

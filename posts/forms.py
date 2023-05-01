@@ -64,10 +64,9 @@ class PostForm(forms.ModelForm):
         )
     )
     tags = TaggableManager(
-        blank=True,
         help_text='태그를 입력해주세요.',
-        
     )
+    
     phone = forms.CharField(
         max_length=14, 
         required = False,
@@ -82,22 +81,20 @@ class PostForm(forms.ModelForm):
         )
     )             
     parking = forms.CharField(
-        max_length=50, 
-        required = False,
         label='Parking', 
         widget=forms.TextInput(
-            attrs={  
+            attrs={
+                'value': '가게문의',
                 'class': 'form-control',
                 'style' : 'width: 600px;',
             }
         )
     )
     business_time = forms.CharField(
-        label='Business Time', 
-        required = False,
+        label='Business Time',
         widget=forms.TextInput(
             attrs={  
-                
+                'value': '가게문의',
                 'class': 'form-control',
                 'style' : 'width: 600px;'
             }
