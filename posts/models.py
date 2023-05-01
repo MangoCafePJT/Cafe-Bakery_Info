@@ -54,7 +54,7 @@ class Post(models.Model):
     home = models.URLField(blank=True, null=True)
     city = models.CharField(max_length=10, choices=CITY_CHOICES)
     tags = TaggableManager(blank=True)
-
+    rating = models.DecimalField(default=0, max_digits=5, decimal_places=1)
 
     @property
     def created_string(self):
@@ -71,12 +71,6 @@ class Post(models.Model):
             return str(time.days) + '일 전'
         else:
             return self.strftime('%Y-%m-%d')
-        
-    # def get_absolute_url(self):
-    #     return reverse("posts:detail", kwargs={"pk": self.pk})
-    
-    # def __str__(self):
-    #     return self.title
     
     def delete(self, *args, **kargs):
         images = self.postimage_set.all()
@@ -111,7 +105,7 @@ class PostImage(models.Model):
 
 
 class Review(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='reviews')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     emote_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='emote_reviews', through='Emote_review')
     title = models.CharField(max_length=50)
@@ -136,6 +130,11 @@ class Review(models.Model):
             return str(time.days) + '일 전'
         else:
             return self.strftime('%Y-%m-%d')
+    
+    def save(self, *args, **kwargs):
+        self.post.rating = (self.post.rating*self.post.reviews.count() + self.rating) / (self.post.reviews.count() + 1)
+        self.post.save()
+        super(Review, self).save(*args, **kwargs)
         
 
 class ReviewImage(models.Model):
