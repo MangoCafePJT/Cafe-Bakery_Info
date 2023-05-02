@@ -248,32 +248,102 @@ footer a {
 /* Main */
 
 .main--content {
-  height: 500px;
+  padding: 10px;
   margin: 0 50px;
   display: grid;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1230px) {
   .main--content {
     grid-template-columns: 100%;
-    grid-template-rows: 50% 50%;
+    grid-auto-rows: 1fr;
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1230px) {
   .main--content {
     grid-template-columns: 50% 50%;
   }
 }
 
 .content--box {
-  padding: 10px 10px;
+  width: 550px;
+  height: 600px;
+  position: relative;
+  margin: auto;
 }
 
-.content--test {
-  background-color: #FC8621;
-  border: 1px solid #682C0E;
-  height: 100%;
+.main--carousel--box {
+  display: flex;
+  width: 550px;
+  height: 500px;
+  overflow-x: hidden;
+  align-items: center;
+  margin: 0 0;
+}
+
+.main--btn--right {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  background-image: url("/static/image/mango_icon.png");
+  background-position: -935px -179px;
+  width: 28px;
+  height: 45px;
+  position: absolute;
+  right: 10px;
+  top: 200px;
+  z-index: 999;
+}
+
+.main--btn--left {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  background-image: url("/static/image/mango_icon.png");
+  background-position: -935px -230px;
+  width: 28px;
+  height: 45px;
+  position: absolute;
+  left: 10px;
+  top: 200px;
+  z-index: 999;
+}
+
+.main--img {
+  width: 550px;
+  height: 500px;
+}
+
+.main--card {
+  width: 550px;
+  height: 500px;
+  text-decoration: none;
+}
+
+.main--carousel {
+  display: flex;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.2s;
+}
+
+.card--item {
+  width: 550px;
+  height: 500px;
+  position: relative;
+}
+
+.main--category {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  overflow-x: hidden;
+  width: 550px;
+}
+
+.main--info--box {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 450px;
 }
 
 /* Index */
@@ -290,7 +360,7 @@ footer a {
   border-right: 1px solid rgb(210, 210, 210);
   height: 100%;
   padding: 10px;
-}
+} 
 .sidebar li {
   list-style: none;
 }

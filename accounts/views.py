@@ -112,8 +112,6 @@ def follow(request, user_pk):
         else:
             you.followers.add(me)
             is_followed = True
-        
-        
         context = {
             'is_followed': is_followed,
             'followings_count': you.followings.count(),

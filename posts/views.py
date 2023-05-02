@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from utils.map import get_latlng_from_address
 import os
+from django.db.models import Count
 from django.core.paginator import Paginator
 
 
@@ -279,6 +280,7 @@ def review_likes(request, post_pk, review_pk):
 
 def search(request):
     query = request.GET.get('q')
+
     if query:
         posts = Post.objects.filter(
             Q(title__icontains=query) | Q(menu__icontains=query) | Q(address__icontains=query)
@@ -292,10 +294,15 @@ def search(request):
             else:
                 post_images.append((post,''))
 
+        page = request.GET.get('page', '1')
+        per_page = 8
+        paginator = Paginator(post_images, per_page)
+        page_obj = paginator.get_page(page)
+
         context = {
             'query': query,
             'posts': posts,
-            'post_images': post_images,
+            'post_images': page_obj,
         }
     else:
         context = {}
