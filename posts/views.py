@@ -176,7 +176,7 @@ def review_create(request, post_pk):
         'post': post,
         'review_form': review_form,
         'image_form': image_form,
-        'emotions': EMOTIONS,
+        # 'emotions': EMOTIONS,
     }
     return render(request, 'posts/review_create.html', context)
 
