@@ -58,10 +58,10 @@ class Post(models.Model):
     tags = TaggableManager()
     rating = models.DecimalField(default=0, max_digits=5, decimal_places=1)
 
-    slug = models.SlugField(unique=True, allow_unicode=True)
+    slug = models.SlugField(allow_unicode=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.tags, allow_unicode=True)
+        self.slug = slugify(self.slug, allow_unicode=True)
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
