@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
+
 {% block title %}Login{% endblock title %}
 
 {% block content %}
+{% load socialaccount %}
+
+<a href="{% provider_login_url 'kakao' method='oauth2' %}">
+카카오톡 회원가입
+</a>
 <div class="accounts--box">
   <div class="accounts--join">
       <h1>로그인 페이지</h1>
