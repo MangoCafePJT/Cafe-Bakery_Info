@@ -91,7 +91,8 @@
         </div>
         <div>
           {% for tag in post.tags.all %}
-              <p class="hashtag">#{{ tag.name }}</p>
+              <a href="{% url 'posts:tagged_posts' tag.pk %}" class="hashtag text-decoration-none">#{{ tag.name }}</a>
+              {% comment %} <p class="hashtag">#{{ tag.name }}</p> {% endcomment %}
           {% endfor %} 
         </div>  
       </div>

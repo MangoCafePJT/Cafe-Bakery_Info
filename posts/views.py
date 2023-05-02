@@ -8,6 +8,8 @@ from utils.map import get_latlng_from_address
 import os
 from django.core.paginator import Paginator
 
+
+
 def index(request):
     posts = Post.objects.all()
     post_images = []
@@ -223,3 +225,24 @@ def search(request):
         context = {}
 
     return render(request, 'posts/search.html', context)
+
+from taggit.models import Tag
+
+def tagged_posts(request, tag_pk):
+    tag = Tag.objects.get(pk=tag_pk)
+    posts = Post.objects.filter(tags=tag)
+
+    post_images = []
+    for post in posts:
+        images = PostImage.objects.filter(post=post)
+        if images:
+            post_images.append((post, images[0]))
+        else:
+            post_images.append((post,''))
+
+    context = {
+        'tag': tag, 
+        'posts': posts,
+        'post_images': post_images,
+        }
+    return render(request, 'posts/tagged_posts.html', context)

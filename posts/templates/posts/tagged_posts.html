@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div>
+    {% if tag %}
+      <h2>태그 검색 결과: {{ tag }}</h2>
+      <hr>
+    {% endif %}
+  </div>
+  {% comment %} <div>
+    <ul>
+      {% for post in posts %}
+        <li>
+          <a href="{% url 'posts:detail' post.pk %}">{{ post.title }}</a>
+          <p>{{ post.menu }}</p>
+          <ul>
+            {% for tag in post.tags.all %}
+              <li><a href="{% url 'posts:tagged_posts' tag.pk %}">{{ tag }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% empty %}
+        <li>검색 결과가 없습니다.</li>
+      {% endfor %}
+    </ul>
+  </div> {% endcomment %}
+
+  {% if posts %}
+  {% for post, image in post_images %}
+      <div class="post">
+          <h3><a href="{% url 'posts:detail' post.pk %}" class="text-decoration-none">{{ post.title }}</a></h3>
+          {% if image %}
+              <img src="{{ image.image.url }}" alt="{{ post.title }}">
+          {% endif %}
+          <p>{{ post.menu }}</p>
+          <p>{{ post.city }} {{ post.address }}</p>
+          {% comment %} <p>{{ post.tags.all }}</p> {% endcomment %}
+          <br>
+      </div>
+  {% endfor %}
+  {% else %}
+  <p>태그 검색 결과가 없습니다.</p>
+  {% endif %}
+
+
+
+{% endblock %}

@@ -13,4 +13,5 @@ urlpatterns = [
     path('<int:post_pk>/reviews/<int:review_pk>/delete/', views.review_delete, name='review_delete'),
     path('<int:post_pk>/reviews/<int:review_pk>/likes/', views.review_likes, name='review_likes'),
     path('search/', views.search, name='search'),
+    path('tags/<int:tag_pk>/', views.tagged_posts, name='tagged_posts'),
 ]
