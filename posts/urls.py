@@ -4,6 +4,9 @@ from . import views
 app_name = 'posts'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('city/', views.city, name='city'),
+    path('filtering/<str:sort>/', views.filtering, name='filtering'),
+    path('city/filtering/<str:sort>/', views.city_filtering, name='city_filtering'),
     path('create/', views.create, name='create'),
     path('<int:post_pk>/', views.detail, name='detail'),
     path('<int:post_pk>/likes/', views.likes, name='likes'),

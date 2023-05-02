@@ -30,6 +30,7 @@
 
 * {
   font-family: 'TmoneyRoundWindExtraBold';
+  box-sizing: border-box;
 }
 
 .form-control {
@@ -79,6 +80,24 @@ footer {
 section {
   padding-bottom: 110px;
   width: 100%;
+}
+
+ul {
+  padding-left: 0 !important;
+}
+.sidebar h2 {
+  color: #753422
+}
+
+
+ul a {
+  text-decoration: none;
+  color: #825448;
+  /* color: #61321ac2; */
+}
+
+ul li {
+  margin-bottom: 10px;
 }
 
 /* Nav */
@@ -262,7 +281,6 @@ footer a {
 .index--page {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
-  height: 600px;
   padding: 10px;
   margin: 0 50px;
 }
@@ -283,15 +301,58 @@ footer a {
   height: 100%;
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 300px;
-  gap: 10px; 
+  grid-template-rows: auto auto auto auto;
+}
+
+.posts h2 {
+  color: #B05B3B;
+}
+
+.posts--carousel--box {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  overflow-x: hidden;
+  align-items: center;
+}
+
+.posts--category {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  height: 340px;
+  align-items: center;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.carousel {
+  display: flex;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.2s;
+}
+
+.carousel--btn--right {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  background-image: url("/static/image/mango_icon.png");
+  background-position: -935px -179px;
+  width: 28px;
+  height: 45px;
+}
+
+.carousel--btn--left {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  background-image: url("/static/image/mango_icon.png");
+  background-position: -935px -230px;
+  width: 28px;
+  height: 45px;
 }
 
 .index--card {
-  width: 100%;
+  width: 260px;
   height: 300px;
-  padding: 10px;
   text-decoration: none;
   color: rgb(209, 209, 209);
 }
@@ -301,32 +362,44 @@ footer a {
 }
 
 .index--card--box {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 300px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
 }
 
 .index--image--box{
-  width: 250px;
+  width: 100%;
   height: 60%;
   text-align: center;
-  line-height: 180px;
-  overflow: hidden;
   margin-bottom: 5px;
 }
 
 .index--img {
-  width: 250px;
+  width: 100%;
   height: 100%;
+  object-fit: contain;
+}
+
+.index--info--box {
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .index--title {
   font-size: 22px;
   font-weight: 600;
-  color: #C24914;
+  color: #682C0E;
   margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 30px;
 }
+
 .index--txt {
   font-size: 14px;
   font-family: 'LeeSeoyun';
@@ -343,9 +416,10 @@ footer a {
 }
 
 .index--heart {
-  width: 20px;
+  width: 22px;
   height: 20px;
   display: inline;
+  margin-left: 5px;
 }
 
 /* accounts */
@@ -386,6 +460,12 @@ footer a {
 
 .accounts--btn:hover {
   background-color: #8d3d14c2;
+}
+
+
+.kakaologo--img {
+  width: 400px;
+  height: auto;
 }
 
 /* profile */
@@ -449,266 +529,6 @@ footer a {
   align-items: center;
 }
 
-/* detail */
-.detail--box {
-  margin: 10px 50px;
-  display: grid;
-  grid-template-rows: auto auto;
-}
-
-.detail--header {
-  display: block;
-}
-
-.detail--image--box {
-  width: 100%;
-  height: 250px;
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 10px;
-  position: relative;
-}
-
-.detail--image {
-  width: 350px;
-  height: 250px;
-}
-
-.detail--map {
-  position: relative;
-  height: 330px;
-  width: 300px;
-}
-
-.detail--map::after {
-  content: "";
-  z-index: 9;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 50%;
-  height: 300px;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
-}
-
-.detail--address {
-  position: absolute;
-  right: 0;
-  bottom: 5px;
-  font-size: 12px;
-  color: #fff;
-  width: 35%;
-  font-style: oblique;
-  z-index: 10;
-  word-break: keep-all;
-}
-
-.map {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width:300px; 
-  height:300px;
-  z-index: 1;
-}
-
-.detail--map:hover::after {
-  display: none;
-}
-  
-.detail--map:hover .detail--address {
-  display: none;
-}
-
-.map--title {
-  font-size: 20px;
-  color: #682c0ec2;
-  margin-bottom: 0;
-}
-
-.detail--info {
-  display: grid;
-  grid-template-columns: 300px auto 300px;
-  gap: 20px;
-  margin-top: 10px;
-}
-
-.detail--info--title {
-  font-size: 30px;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  color: rgb(30, 30, 30);
-}
-
-.detail--info--title a {
-  color: #F9E0AE;
-  font-size: 20px;
-}
-
-.detail--info--body {
-  font-size: 20px;
-  margin-bottom: 2px;
-  color: rgb(170, 170, 170);
-  font-family: 'LeeSeoyun';
-  display: flex;
-  align-items: start;
-}
-
-.detail--info--body p{
-  font-size: 20px;
-  margin-bottom: 2px;
-  color: rgb(170, 170, 170);
-  font-family: 'LeeSeoyun';
-  display: inline-block;
-}
-
-.detail--info--body--title {
-  font-size: 20px;
-  margin-bottom: 2px;
-  color: rgb(170, 170, 170);
-  width: 80px;
-  display: inline-block;
-  font-family: 'LeeSeoyun';
-}
-
-.detail--user {
-  margin-top: 20px;
-  border-left: 1px rgba(236, 236, 236, 0.732) solid;
-  padding-left: 20px;
-}
-
-.detail--info--user {
-  font-size: 15px;
-  margin-bottom: 2px;
-  color: rgb(170, 170, 170);
-  font-family: 'LeeSeoyun';
-}
-
-.detail--info--user a{
-  font-size: 15px;
-  margin-bottom: 2px;
-  color: rgb(170, 170, 170);
-  font-family: 'LeeSeoyun';
-  text-decoration: none;
-}
-
-.detail--info--user--title {
-  font-size: 15px;
-  margin-bottom: 2px;
-  color: rgb(170, 170, 170);
-  width: 80px;
-  display: inline-block;
-  font-family: 'LeeSeoyun';
-}
-
-.detail--btn {
-  margin-right: 10px;
-  color: gray;
-  text-align: center;
-  text-decoration: none;
-}
-
-.detail--btn p {
-  font-size: 10px;
-  margin-bottom: 0;
-}
-
-.post--btn {
-  color: #682c0ec2;
-  font-size: 13px;
-  width: 30px;
-  border-radius: 10px;
-  margin: 5px 0;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-}
-
-.post--btn:hover {
-  color: #8d3d14c2;
-}
-
-.detail--hash{
-  width: 100%;
-  color: rgb(170, 170, 170);
-  font-family: 'LeeSeoyun';
-  font-size: 30px;
-  margin-bottom: 10px;
-}
-
-.hashtag {
-  font-family: 'LeeSeoyun';
-  border-radius: 20px;
-  background-color: #c24814b0;
-  color: white;
-  padding: 8px;
-  font-size: 15px;
-  word-break: keep-all;
-  display: inline-block;
-  margin-bottom: 2px;
-}
-
-.review--box {
-  border-top: 1px solid gainsboro;
-}
-
-.review--detail {
-  display: grid;
-  grid-template-columns: 300px auto 300px;
-  border-bottom: 1px solid rgba(243, 243, 243, 0.7);
-}
-
-.review--user {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-right: 1px solid rgba(243, 243, 243, 0.7);
-  gap: 5px;
-}
-
-.review--user p {
-  color: rgb(131, 131, 131);
-  font-size: 18px;
-  font-family: 'LeeSeoyun';
-  margin-bottom: 0;
-}
-
-.review--content {
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-}
-
-.review--content p{
-  color: rgb(84, 84, 84);
-}
-
-.review--img {
-  width: 100px;
-  height: 100px;
-}
-
-.review--imoge1{
-  background-image: url("/static/image/mango_icon.png");
-  background-position: -714px -866px;
-  width: 44px;
-  height: 44px;
-}
-.review--imoge2{
-  background-image: url("/static/image/mango_icon.png");
-  background-position: -564px -866px;
-  width: 44px;
-  height: 44px;
-}
-.review--imoge3{
-  background-image: url("/static/image/mango_icon.png");
-  background-position: -514px -866px;;
-  width: 44px;
-  height: 44px;
-}
-
 /* posts */
 
 .posts--box {
@@ -747,4 +567,19 @@ footer a {
   margin: 5px 0;
   display: block;
   text-align: center;
+}
+
+/* search */
+.search--title {
+  width: 90%;
+  margin: 10px auto;
+  color: #682c0ec2;
+  padding-left: 10px;
+}
+
+.search--content {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  width: 90%;
+  margin: 10px auto;
 }

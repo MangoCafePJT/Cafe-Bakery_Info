@@ -1,0 +1,315 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{request.user.region}}
+{% endblock title %}
+
+{% block content %}
+  <div class="index--page">
+    <div class="sidebar">
+      <h2>선호지역 List</h2>
+      <ul>
+        <li><a href="{% url 'posts:city' %}"><i class="bi bi-list"></i> 최신순</a></li>
+        <li><a href="{% url 'posts:city_filtering' '별점순' %}"><i class="bi bi-star"></i> 별점순</a></li>
+        <li><a href="{% url 'posts:city_filtering' '리뷰순' %}"><i class="bi bi-chat-dots"></i> 리뷰순</a></li>
+        <li><a href="{% url 'posts:city_filtering' '좋아요순' %}"><i class="bi bi-chat-heart"></i> 좋아요순</a></li>
+        <li><a href="{% url 'posts:index' %}"><i class="bi bi-map"></i> 전체지역 보기</a></li>
+      </ul>
+    </div>
+
+    <div class="posts">
+      <h2>Cafe</h2>
+      <div class="posts--carousel--box">
+        <button id="prevbtn" class="carousel--btn--left"></button>
+        <div class="posts--category">
+          <div class="carousel" id="cafe-carousel">
+            {% for post,image in post_images %}
+              {% if post.city == request.user.region %}
+                {% if post.category == 'cafe' %}
+                <a href="{% url 'posts:detail' post.pk %}" class="index--card">
+                  <div class="index--card--box">
+                    <div class="index--image--box">
+                      {% if image %}
+                        <img src="{{ image.image.url }}" alt="" class="index--img object-fit-fill">
+                      {% else %}
+                        <img src="{% static 'image/none_img.png' %}" alt=""  class="index--img object-fit-fill">
+                      {% endif %}
+                    </div>
+                    <div class="index--info--box ">
+                      <div class="index--title">
+                        {{ post.title }}
+                      </div>
+                      <div class="index--txt p-1">
+                        {{ post.address }}
+                      </div>
+                      <div class="d-flex justify-content-between index--txt p-1">
+                        <p class="index--txt">{{ post.menu }}</p>
+                        <div class='d-flex gap-1'>
+                          {% if request.user.is_authenticated %}
+                            <form id="likes-form-{{ post.pk }}" data-post-id="{{ post.pk }}" class="index--heart">
+                              {% csrf_token %}
+                              {% if request.user in post.like_users.all %}
+                                  <button class="btn btn-link text-danger p-0" type="submit">
+                                    <i class="bi bi-suit-heart-fill"></i>
+                                  </button>
+                              {% else %}
+                                  <button class="btn btn-link text-danger p-0" type="submit">
+                                    <i class="bi bi-suit-heart"></i>
+                                  </button>
+                              {% endif %}
+                            </form>
+                          {% else %}
+                            <button class="btn btn-link text-secondary p-0" disabled>
+                              <i class="bi bi-suit-heart"></i>
+                            </button>
+                          {% endif %}
+                          <span id="likes-count">{{ post.like_users.all|length }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <button id="nextbtn" class="carousel--btn--right"></button>
+      </div>
+      <h2>Bakery</h2>
+      <div class="posts--carousel--box">
+        <button id="prevbtnb" class="carousel--btn--left"></button>
+        <div class="posts--category">
+          <div class="carousel" id="bakery-carousel">
+            {% for post,image in post_images %}
+              {% if post.city == request.user.region %}
+                {% if post.category == 'bakery' %}
+                <a href="{% url 'posts:detail' post.pk %}" class="index--card">
+                  <div class="index--card--box">
+                    <div class="index--image--box">
+                      {% if image %}
+                        <img src="{{ image.image.url }}" alt="" class="index--img object-fit-fill">
+                      {% else %}
+                        <img src="{% static 'image/none_img.png' %}" alt=""  class="index--img object-fit-fill">
+                      {% endif %}
+                    </div>
+                    <div class="index--info--box ">
+                      <div class="index--title">
+                        {{ post.title }}
+                      </div>
+                      <div class="index--txt p-1">
+                        {{ post.address }}
+                      </div>
+                      <div class="d-flex justify-content-between index--txt p-1">
+                        <p class="index--txt">{{ post.menu }}</p>
+                        <div class='d-flex gap-1'>
+                          {% if request.user.is_authenticated %}
+                            <form id="likes-form-{{ post.pk }}" data-post-id="{{ post.pk }}" class="index--heart">
+                              {% csrf_token %}
+                              {% if request.user in post.like_users.all %}
+                                  <button class="btn btn-link text-danger p-0" type="submit">
+                                    <i class="bi bi-suit-heart-fill"></i>
+                                  </button>
+                              {% else %}
+                                  <button class="btn btn-link text-danger p-0" type="submit">
+                                    <i class="bi bi-suit-heart"></i>
+                                  </button>
+                              {% endif %}
+                            </form>
+                          {% else %}
+                            <button class="btn btn-link text-secondary p-0" disabled>
+                              <i class="bi bi-suit-heart"></i>
+                            </button>
+                          {% endif %}
+                          <span id="likes-count">{{ post.like_users.all|length }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <button id="nextbtnb" class="carousel--btn--right"></button>
+      </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+<script>
+  const forms = document.querySelectorAll('[id^="likes-form-"]');
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+  forms.forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const postId = event.target.dataset.postId;
+      axios({
+        method: 'post',
+        url: `/posts/${postId}/likes/`,
+        headers: {'X-CSRFToken': csrftoken},
+      })
+        .then((response) => {
+          const isLiked = response.data.is_liked;
+          const likesCountSpan = form.nextElementSibling;
+          likesCountSpan.textContent = response.data.likes_count;
+          const heartIcon = form.querySelector('i');
+          if (isLiked) {
+            heartIcon.classList.remove('bi-suit-heart');
+            heartIcon.classList.add('bi-suit-heart-fill');
+          } else {
+            heartIcon.classList.remove('bi-suit-heart-fill');
+            heartIcon.classList.add('bi-suit-heart');
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+  });
+
+  class cafeCarousel {
+    constructor() {
+      this.index = 0;
+      this.$carousel = document.querySelector("#cafe-carousel");
+      this.$prevButton = document.querySelector("#prevbtn");
+      this.$nextButton = document.querySelector("#nextbtn");
+  
+      this.$prevButton.addEventListener("click", () => {
+        this.prev();
+      });
+  
+      this.$nextButton.addEventListener("click", () => {
+        this.next();
+      });
+  
+      if (this.index === 0) {
+        this.$prevButton.hidden = true;
+      }
+      
+      if (this.$carousel.childElementCount <= 3) {
+        this.$nextButton.hidden = true;
+      }
+
+      if (this.index === 0 && this.$carousel.childElementCount > 3) {
+        this.$nextButton.hidden = false;
+      }
+    }
+  
+    prev() {
+      if (this.index <= 0) return;
+      this.index -= 2;
+  
+      this.$carousel.style.transform = `translate3d(-${
+        250 * this.index
+      }px, 0, 0)`;
+  
+      if (this.index <= 0) {
+        this.$prevButton.hidden = true;
+      } else {
+        this.$prevButton.hidden = false;
+      }
+      if (this.index >= this.$carousel.childElementCount - 2) {
+        this.$nextButton.hidden = true;
+      } else {
+        this.$nextButton.hidden = false;
+      }
+    }
+  
+    next() {
+      if (this.index >= this.$carousel.childElementCount - 2) return;
+      this.index += 2;
+  
+      this.$carousel.style.transform = `translate3d(-${
+        250 * this.index
+      }px, 0, 0)`;
+      if (this.index <= 0) {
+        this.$prevButton.hidden = true;
+      } else {
+        this.$prevButton.hidden = false;
+      }
+      if (this.index >= this.$carousel.childElementCount - 2) {
+        this.$nextButton.hidden = true;
+      } else {
+        this.$nextButton.hidden = false;
+      }
+    }
+  }
+  
+  const cafecarousel = new cafeCarousel();
+
+class bakeryCarousel {
+  constructor() {
+    this.index = 0;
+    this.$bakerycarousel = document.querySelector("#bakery-carousel");
+    this.$prevButtonb = document.querySelector("#prevbtnb");
+    this.$nextButtonb = document.querySelector("#nextbtnb");
+
+    this.$prevButtonb.addEventListener("click", () => {
+      this.prevb();
+    });
+
+    this.$nextButtonb.addEventListener("click", () => {
+      this.nextb();
+    });
+
+  
+    if (this.index === 0) {
+      this.$prevButtonb.hidden = true;
+    }
+    
+    if (this.$bakerycarousel.childElementCount <= 3) {
+      this.$nextButtonb.hidden = true;
+    }
+
+    if (this.index === 0 && this.$bakerycarousel.childElementCount > 3) {
+      this.$nextButtonb.hidden = false;
+    }
+  }
+
+  prevb() {
+    if (this.index <= 0) return;
+    this.index -= 2;
+
+    this.$bakerycarousel.style.transform = `translate3d(-${
+      250 * this.index
+    }px, 0, 0)`;
+
+    if (this.index <= 0) {
+      this.$prevButtonb.hidden = true;
+    } else {
+      this.$prevButtonb.hidden = false;
+    }
+    if (this.index >= this.$bakerycarousel.childElementCount - 2) {
+      this.$nextButtonb.hidden = true;
+    } else {
+      this.$nextButtonb.hidden = false;
+    }
+  }
+
+  nextb() {
+    if (this.index >= this.$bakerycarousel.childElementCount - 2) return;
+    this.index += 2;
+
+    this.$bakerycarousel.style.transform = `translate3d(-${
+      250 * this.index
+    }px, 0, 0)`;
+    if (this.index <= 0) {
+      this.$prevButtonb.hidden = true;
+    } else {
+      this.$prevButtonb.hidden = false;
+    }
+    if (this.index >= this.$bakerycarousel.childElementCount - 2) {
+      this.$nextButtonb.hidden = true;
+    } else {
+      this.$nextButtonb.hidden = false;
+    }
+  }
+}
+
+const bakerycarousel = new bakeryCarousel();
+</script>
+
+{% endblock script %}

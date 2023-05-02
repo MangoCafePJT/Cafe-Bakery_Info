@@ -11,7 +11,7 @@ from django.core.paginator import Paginator
 
 
 def index(request):
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-pk')
     post_images = []
     for post in posts:
         images = PostImage.objects.filter(post=post)
@@ -24,6 +24,82 @@ def index(request):
     }
     return render(request, 'posts/index.html', context)
 
+
+def city(request):
+    posts = Post.objects.order_by('-pk')
+    post_images = []
+    for post in posts:
+        images = PostImage.objects.filter(post=post)
+        if images:
+            post_images.append((post, images[0]))
+        else:
+            post_images.append((post,''))
+    context = {
+        'post_images': post_images,
+    }
+    return render(request, 'posts/index_city.html', context)
+
+def filtering(request, sort):
+    posts = Post.objects.all()
+    if sort == '별점순':
+        posts = Post.objects.order_by('-rating')
+        post_images = []
+        for post in posts:
+            images = PostImage.objects.filter(post=post)
+            if images:
+                post_images.append((post, images[0]))
+            else:
+                post_images.append((post,''))
+    elif sort == '리뷰순':
+        posts = Post.objects.annotate(num_reviews=Count('reviews')).order_by('-num_reviews')
+        post_images = []
+        for post in posts:
+            images = PostImage.objects.filter(post=post)
+            if images:
+                post_images.append((post, images[0]))
+            else:
+                post_images.append((post,''))
+    elif sort == '좋아요순':
+        posts = Post.objects.annotate(num_likes=Count('like_users')).order_by('-num_likes')
+        post_images = []
+        for post in posts:
+            images = PostImage.objects.filter(post=post)
+            if images:
+                post_images.append((post, images[0]))
+            else:
+                post_images.append((post,''))
+    return render(request, 'posts/index.html', {'post_images': post_images})
+
+def city_filtering(request, sort):
+    posts = Post.objects.all()
+    if sort == '별점순':
+        posts = Post.objects.order_by('-rating')
+        post_images = []
+        for post in posts:
+            images = PostImage.objects.filter(post=post)
+            if images:
+                post_images.append((post, images[0]))
+            else:
+                post_images.append((post,''))
+    elif sort == '리뷰순':
+        posts = Post.objects.annotate(num_reviews=Count('reviews')).order_by('-num_reviews')
+        post_images = []
+        for post in posts:
+            images = PostImage.objects.filter(post=post)
+            if images:
+                post_images.append((post, images[0]))
+            else:
+                post_images.append((post,''))
+    elif sort == '좋아요순':
+        posts = Post.objects.annotate(num_likes=Count('like_users')).order_by('-num_likes')
+        post_images = []
+        for post in posts:
+            images = PostImage.objects.filter(post=post)
+            if images:
+                post_images.append((post, images[0]))
+            else:
+                post_images.append((post,''))
+    return render(request, 'posts/index_city.html', {'post_images': post_images})
 
 @login_required
 def create(request):
