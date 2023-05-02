@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+{{post.title}}
+{% endblock title %}
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
+{% endblock head %}
 
 {% block content %}
 <div class="detail--box">

@@ -1,27 +1,65 @@
 {% extends 'base.html' %}
-
-{% block page_title %}
-  Search 
-{% endblock page_title %}
+{% load static %}
+{% block title %}
+  Search List
+{% endblock title %}
 
 {% block content %}
-  {% if posts %}
-  {% for post, image in post_images %}
-      <div class="post">
-          <h2>{{ post.title }}</h2>
+  <div class="search--title">
+    <h2>{{ query }} 검색결과</h2>
+  </div>
+  <div class="search--content">
+    {% for post, image in post_images %}
+    <a href="{% url 'posts:detail' post.pk %}" class="index--card">
+      <div class="index--card--box">
+        <div class="index--image--box">
           {% if image %}
-              <img src="{{ image.image.url }}" alt="{{ post.title }}">
+            <img src="{{ image.image.url }}" alt="" class="index--img object-fit-fill">
+          {% else %}
+            <img src="{% static 'image/none_img.png' %}" alt=""  class="index--img object-fit-fill">
           {% endif %}
-          <p>{{ post.menu }}</p>
-          <p>{{ post.address }}</p>
-          <p>{{ post.city }}</p>
-          <a href="{% url 'posts:detail' post.pk %}">View Details</a>
+        </div>
+        <div class="index--info--box ">
+          <div class="index--title">
+            {{ post.title }}
+          </div>
+          <div class="index--txt p-1">
+            {{ post.address }}
+          </div>
+          <div class="d-flex justify-content-between index--txt p-1">
+            <p class="index--txt">{{ post.menu }}</p>
+            <div class='d-flex gap-1'>
+              {% if request.user.is_authenticated %}
+                <form id="likes-form-{{ post.pk }}" data-post-id="{{ post.pk }}" class="index--heart">
+                  {% csrf_token %}
+                  {% if request.user in post.like_users.all %}
+                      <button class="btn btn-link text-danger p-0" type="submit">
+                        <i class="bi bi-suit-heart-fill"></i>
+                      </button>
+                  {% else %}
+                      <button class="btn btn-link text-danger p-0" type="submit">
+                        <i class="bi bi-suit-heart"></i>
+                      </button>
+                  {% endif %}
+                </form>
+              {% else %}
+                <button class="btn btn-link text-secondary p-0" disabled>
+                  <i class="bi bi-suit-heart"></i>
+                </button>
+              {% endif %}
+              <span id="likes-count">{{ post.like_users.all|length }}</span>
+            </div>
+          </div>
+        </div>
       </div>
-  {% endfor %}
-  {% else %}
-  <p>No results found.</p>
-  {% endif %}
-
+    </a>
+    {% empty %}
+      <div class="d-flex flex-column align-items-center justify-content-center" style="height: 500px">
+        <img src="{% static 'image/empty.png' %}" alt="" style="height: 200px; width: 200px;">
+        <h4>검색결과가 없습니다.</h4>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock content %}
 
 

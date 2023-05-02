@@ -113,14 +113,20 @@ def follow(request, user_pk):
             you.followers.add(me)
             is_followed = True
         
-        print(you.followers.all())
+        
         context = {
             'is_followed': is_followed,
             'followings_count': you.followings.count(),
             'followers_count': you.followers.count(),
-            # 'follower_list': you.followers.all(),
-            # 'following_list': you.followings.all(),
+            'followings': [{'username': f.username, 'pk': f.pk} for f in you.followings.all()],
+            'followers': [{'username': f.username,'pk': f.pk} for f in you.followers.all()]
         }
         
         return JsonResponse(context)
     return redirect('accounts:profile', you.username)
+
+def follower(request, user_pk):
+    User = get_user_model()
+    user = User.objects.get(pk=user_pk)
+    followers = [{'username': f.username, 'pk': f.pk} for f in user.followers.all()]
+    return JsonResponse({'followers': followers})

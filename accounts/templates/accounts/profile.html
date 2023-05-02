@@ -158,6 +158,32 @@
 {% endblock content %}
 {% block script %}
   <script>
+    const followersModalBtn = document.querySelector('#followersModal');
+    
+    // Add event listeners to the modal buttons
+    followersModalBtn.addEventListener('shown.bs.modal', function (event) {
+      const userId = document.querySelector('#follow-form').dataset.userId;
+      axios.get(`/accounts/${userId}/follower/`)
+        .then((response) => {
+          const followers = response.data.followers;
+          const followersList = document.querySelector('#followers-list');
+          followersList.innerHTML = '';
+          followers.forEach(follower => {
+            const followerTag = document.createElement('div');
+            const followerImage = document.createElement('img');
+            followerImage.src = follower.profile_image || "{% static 'image/profile-none.png' %}";
+            followerImage.alt = `${follower.username}'s profile image`;
+            followerTag.appendChild(followerImage);
+            const followerName = document.createElement('p');
+            followerName.textContent = follower.username;
+            followerTag.appendChild(followerName);
+            followersList.appendChild(followerTag);
+          });
+        });
+    })
+    
+    
+    {% comment %} 팔로우, 팔로워 버튼 비동기 {% endcomment %}
     const form = document.querySelector('#follow-form')
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
     form.addEventListener('submit', function(event) {
@@ -184,8 +210,36 @@
           const followersCountData = response.data.followers_count
           followingsCounterTag.textContent = followingsCountData
           followersCounterTag.textContent = followersCountData
-          const followerTag = document.querySelector('#follower')
-          console.log(response.data)
+          
+        // 팔로워 목록 출력하기
+        followers.forEach(follower => {
+          const followerTag = document.createElement('div')
+          followerTag.className = 'modal--profile--card'
+          const followerLink = document.createElement('a')
+          followerLink.className = "text-decoration-none link-secondary fw-bold modal--profile--link"
+          followerLink.href = "#"
+          const followerImageDiv = document.createElement('div');
+          followerImageDiv.className = "profile--image rounded-circle"
+          if (follower.profile_image) {
+            const followerImage = document.createElement('img')
+            followerImage.className = "object-fit-fill profile"
+            followerImage.src = follower.image.url
+            followerImage.alt = `${follower.username}'s profile image`
+            followerImageDiv.appendChild(followerImage)
+          } else {
+            const followerImage = document.createElement('img')
+            followerImage.className = "object-fit-fill profile"
+            followerImage.src = "{% static 'image/profile-none.png' %}"
+            followerImage.alt = "profile_image_none";
+            followerImageDiv.appendChild(followerImage)
+          }
+          followerLink.appendChild(followerImageDiv)
+          const followerName = document.createElement('span')
+          followerName.textContent = follower.username
+          followerLink.appendChild(followerName)
+          followerTag.appendChild(followerLink)
+          followersList.appendChild(followerTag)
+        })
         })
     })
   </script>
