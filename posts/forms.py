@@ -170,9 +170,3 @@ class ReviewImageForm(forms.ModelForm):
         model = ReviewImage
         fields = ('image',)
         widgets = {'image': forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control', 'style' : 'width: 400px;'})}
-
-
-# class EmoteReviewForm(forms.ModelForm):
-#     class Meta:
-#         model = Emote_review
-#         fields = ('emotion',)
