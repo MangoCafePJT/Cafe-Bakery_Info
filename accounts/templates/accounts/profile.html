@@ -177,13 +177,30 @@
           followersList.innerHTML = '';
           followers.forEach(follower => {
             const followerTag = document.createElement('div');
-            const followerImage = document.createElement('img');
-            followerImage.src = follower.profile_image || "{% static 'image/profile-none.png' %}";
-            followerImage.alt = `${follower.username}'s profile image`;
-            followerTag.appendChild(followerImage);
-            const followerName = document.createElement('p');
+            followerTag.className = "modal--profile--card";
+            const followerLink = document.createElement('a');
+            followerLink.className = "text-decoration-none link-secondary fw-bold modal--profile--link";
+            followerLink.href = `/accounts/profile/${follower.username}`
+            const followerImageDiv = document.createElement('div');
+            followerImageDiv.className = "profile--image rounded-circle";
+            if (follower.profile_image) {
+              const followerImage = document.createElement('img');
+              followerImage.className = "object-fit-fill profile";
+              followerImage.src = follower.image.url;
+              followerImage.alt = `${follower.username}'s profile image`;
+              followerImageDiv.appendChild(followerImage);
+            } else {
+              const followerImage = document.createElement('img');
+              followerImage.className = "object-fit-fill profile";
+              followerImage.src = "{% static 'image/profile-none.png' %}";
+              followerImage.alt = "profile_image_none";
+              followerImageDiv.appendChild(followerImage);
+            }
+            followerLink.appendChild(followerImageDiv);
+            const followerName = document.createElement('span');
             followerName.textContent = follower.username;
-            followerTag.appendChild(followerName);
+            followerLink.appendChild(followerName);
+            followerTag.appendChild(followerLink);
             followersList.appendChild(followerTag);
           });
         });
