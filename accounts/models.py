@@ -30,4 +30,4 @@ class User(AbstractUser):
     def profile_image_path(instance, filename):
         return f'profile/{instance.pk}/{filename}'
     image = ProcessedImageField(upload_to=profile_image_path, blank=True, null=True, processors=[ResizeToFill(100, 100)], options={'quality':90})
-    region = models.CharField(max_length=10, choices=REGION_CHOICES)
+    region = models.CharField(max_length=10, choices=REGION_CHOICES, default=SEOUL)

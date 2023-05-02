@@ -4,7 +4,16 @@
 <style>
   .star-rating input[name="rating"] {
     display: none;
-  }  
+  }
+
+  .emoji-rating label.selected {
+    transform: scale(1.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .emoji-rating input[name="emotion"] {
+    display: none;
+  }
 </style>
 {% endblock style %}
 {% block content %}
@@ -28,9 +37,15 @@
           <label class="star-label" for="star-5" title="5 stars">☆</label>
         </div>
         {{ review_form.as_p }}
-        {% comment %} {% for emotion in emotions %}
-          <button type="button" onclick="submitForm('{{ emotion.value }}')">{{ emotion.label }}</button>
-        {% endfor %} {% endcomment %}
+        <label for="emotion">Emotion:</label>
+        <div class="emoji-rating">
+          <input id="emoji-1" name="emotion" type="radio" value="1" />
+          <label class="emoji-label" for="emoji-1" title="sad">😞</label>
+          <input id="emoji-2" name="emotion" type="radio" value="2" />
+          <label class="emoji-label" for="emoji-2" title="neutral">😐</label>
+          <input id="emoji-3" name="emotion" type="radio" value="3" />
+          <label class="emoji-label" for="emoji-3" title="happy">😁</label>
+        </div>
         {{ image_form.as_p }}
         <input class="posts--reviewBtn" type="submit">
         <br><br>
@@ -59,16 +74,15 @@
       }
     });
   });
-  
-{% comment %}   
-  function submitForm(emotionValue) {
-    const form = document.getElementById('review-form');
-    const emotionInput = document.createElement('input');
-    emotionInput.setAttribute('type', 'hidden');
-    emotionInput.setAttribute('name', 'emotion');
-    emotionInput.setAttribute('value', emotionValue);
-    form.appendChild(emotionInput);
-  } {% endcomment %}
-  
+
+  const emojis = document.querySelectorAll('.emoji-rating label');
+  const emotionInput = document.querySelector('input[name="emotion"]');
+
+  emojis.forEach(emoji => emoji.addEventListener('click', () => {
+    emotionInput.value = emoji.getAttribute('for').split('-')[1];
+    emojis.forEach(e => e.classList.remove('selected'));
+    emoji.classList.add('selected');
+  }));
+
 </script>
 {% endblock script %}

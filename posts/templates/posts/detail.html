@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block content %}
 <div class="detail--box">
   <div>
@@ -105,11 +106,22 @@
       <option value="2">2 stars</option>
       <option value="1">1 star</option>
     </select>
+    {% comment %} <select id="emotion-filter">
+      <option value="">All emotions</option>
+      <option value="3">😁</option>
+      <option value="2">😐</option>
+      <option value="1">😞</option>
+    </select> {% endcomment %}
+    <div id="emotion-filter">
+      <button id="emotion-btn" class="emotion-btn" value="1">😞</button>
+      <button id="emotion-btn" class="emotion-btn" value="2">😐</button>
+      <button id="emotion-btn" class="emotion-btn" value="3">😁</button>
+    </div>
     <h4 class="mt-3" style="color:#682c0ec2;">리뷰({{ reviews|length }})</h4>
     <div class="review--detail" id="review-list">
-      {% for review in reviews %}
+      {% for review in page_obj %}
         {% comment %} review user {% endcomment %}
-        <div class="review--user" data-rating="{{ review.rating }}">
+        <div class="review--user" data-rating="{{ review.rating }}" data-emotion="{{ review.emotion }}">
           {% if review.user.image %}
             <div class="profile--image rounded-circle">
               <img src="{{ review.user.image.url }}" alt="" class="object-fit-fill profile">
@@ -124,7 +136,7 @@
           <p>{{ review.created_string}}</p>
         </div>
         {% comment %} review  {% endcomment %}
-        <div class="review--content" data-rating="{{ review.rating }}">
+        <div class="review--content" data-rating="{{ review.rating }}" data-emotion="{{ review.emotion }}">
           <div class="d-flex justify-content-between">
             <p>{{ review.title }}</p>
             <div>
@@ -147,9 +159,9 @@
                 </button>
               {% endif %}
               <span id="review-likes-count">{{ review.like_users.all|length }}</span>
-                  {% if review.emote_review.emotion == '1' %}
+                  {% if review.emotion == 3 %}
                       <div class="review--imoge1"></div>
-                  {% elif emote_review.emotion == '2' %}
+                  {% elif review.emotion == 2 %}
                       <div class="review--imoge2"></div>
                   {% else %}
                       <div class="review--imoge3"></div>
@@ -159,7 +171,7 @@
           <p>{{ review.content }}</p>
         </div>
         {% comment %} image {% endcomment %}
-        <div class='d-flex gap-1 mt-1 review_q_img' data-rating="{{ review.rating }}">
+        <div class='d-flex gap-1 mt-1 review_q_img' data-rating="{{ review.rating }}" data-emotion="{{ review.emotion }}">
           {% for image in review.reviewimage_set.all %}
             <img src="{{ image.image.url }}" alt="{{ review.title }}" class="review--img">
           {% endfor %}
@@ -170,6 +182,22 @@
           <h4>리뷰가 없습니다.</h4>
         </div>
       {% endfor %}
+    </div>
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; prev</a>
+        {% endif %}
+        <span class="current-page">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next &rsaquo;</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
     </div>
   </div>
 </div>
@@ -269,6 +297,44 @@
         }
       });
     });
+
+    {% comment %} emotion select일때 js {% endcomment %}
+    {% comment %} const emotionFilter = document.getElementById('emotion-filter');
+    const e_reviewList = document.getElementById('review-list');
+    const e_reviewItems = reviewList.querySelectorAll('.review--user, .review--content, .review_q_img');
+
+    emotionFilter.addEventListener('change', function() {
+      const selectedEmotion = emotionFilter.value;
+      e_reviewItems.forEach(function(e_reviewItem) {
+        const reviewEmotion = e_reviewItem.getAttribute('data-emotion');
+        if (selectedEmotion === '' || selectedEmotion === reviewEmotion) {
+          e_reviewItem.style.display = 'block';
+        } else {
+          e_reviewItem.style.display = 'none';
+        }
+      });
+    }); {% endcomment %}
+
+    const emotionButtons = document.querySelectorAll('#emotion-filter button');
+    emotionButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const emotionFilter = button.value;
+        const reviewList = document.querySelector('#review-list');
+        const reviews = reviewList.children;
+
+        for (let i = 0; i < reviews.length; i++) {
+          const review = reviews[i];
+          const reviewEmotion = review.getAttribute('data-emotion');
+          if (emotionFilter === '' || reviewEmotion === emotionFilter) {
+            review.style.display = 'block';
+          } else {
+            review.style.display = 'none';
+          }
+        }
+      });
+    });
+
+
 
   </script>
 
