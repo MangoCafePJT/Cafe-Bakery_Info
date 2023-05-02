@@ -118,7 +118,12 @@ class PostImage(models.Model):
 class Review(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='reviews')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    emotion = models.IntegerField(default=1)
+    EMOTIONS = (
+        (1, '별로에요'),
+        (2, '괜찮아요'),
+        (3, '맛있어요'),
+    )
+    emotion = models.IntegerField(choices=EMOTIONS, default=3)
     title = models.CharField(max_length=50)
     content = models.TextField()
     rating = models.IntegerField(default=5, validators=[MinValueValidator(1), MaxValueValidator(5)])

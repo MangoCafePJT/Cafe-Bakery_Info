@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from utils.map import get_latlng_from_address
 import os
-from django.db.models import Count
+from django.core.paginator import Paginator
 
 
 
@@ -128,12 +128,20 @@ def create(request):
 def detail(request, post_pk):
     kakao_script_key = os.getenv('kakao_script_key')
     post = Post.objects.get(pk=post_pk)
-    # reviews = post.reviews.all()
     rating_filter = request.GET.get('rating-filter', '')
+    emotion_filter = request.GET.get('emotion-filter', '')
+
+    reviews = post.reviews.all().order_by('-created_at')
+
     if rating_filter:
-        reviews = post.reviews.filter(rating=int(rating_filter))
-    else:
-        reviews = post.reviews.all()
+        reviews = reviews.filter(rating=int(rating_filter))
+    if emotion_filter:
+        reviews = reviews.filter(emotion=int(emotion_filter))
+
+    paginator = Paginator(reviews, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     address = post.address
     latitude, longitude = get_latlng_from_address(address)
     post_form = PostForm()
@@ -153,23 +161,10 @@ def detail(request, post_pk):
         'post_form': post_form,
         'kakao_script_key': kakao_script_key,
         'tags': tags,
+        'page_obj': page_obj,
     }
     return render(request, 'posts/detail.html',context)
 
-
-from django.template.loader import render_to_string
-
-def reviews_filter(request, post_pk):
-    rating = request.GET.get('rating')
-    if rating:
-        reviews = Review.objects.filter(post_id=post_pk, rating=rating)
-    else:
-        reviews = Review.objects.filter(post_id=post_pk)
-    context = {
-        'reviews': reviews,
-    }
-    review_list = render_to_string('posts/detail.html', context)
-    return JsonResponse(review_list, safe=False)
 
 @login_required
 def delete(request, post_pk):
@@ -206,18 +201,10 @@ def update(request, post_pk):
     return render(request, 'posts/update.html', context)
 
 
-EMOTIONS = [
-    {'label': '😁', 'value': 1},
-    {'label': '☹', 'value': 2},
-    {'label': '😡', 'value': 3},
-]
-
-
 @login_required
 def review_create(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     review_form = ReviewForm()
-    # emote_review_form = EmoteReviewForm()
     image_form = ReviewImageForm()
     rating = request.POST.get('rating')
     if rating is None:
@@ -230,22 +217,13 @@ def review_create(request, post_pk):
     if request.method == 'POST':
         review_form = ReviewForm(request.POST)
         files = request.FILES.getlist('image')
-        # emote_review_form = EmoteReviewForm(request.POST)
-
         if review_form.is_valid():
             review = review_form.save(commit=False)
             review.post = post
             review.user = request.user
-            # review.rating = int(request.POST.get('rating', 0))
             review.rating = rating
+            review.emotion = request.POST.get('emotion', 3)
             review.save()
-
-            # emote_review = emote_review_form.save(commit=False)
-            # emote_review.emotion = request.POST.get('emotion')
-            # emote_review.review = review
-            # emote_review.user = request.user
-            # emote_review.save()
-            
             for i in files:
                 ReviewImage.objects.create(image=i, review=review)
             return redirect('posts:detail', post.pk)
@@ -254,7 +232,6 @@ def review_create(request, post_pk):
         'post': post,
         'review_form': review_form,
         'image_form': image_form,
-        'emotions': EMOTIONS,
     }
     return render(request, 'posts/review_create.html', context)
 
