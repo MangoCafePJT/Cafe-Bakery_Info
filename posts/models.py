@@ -10,6 +10,8 @@ from django.conf import settings
 import os
 from taggit.managers import TaggableManager
 from django.urls import reverse
+from django.utils.text import slugify
+
 
 class Post(models.Model):
     CAFE = 'cafe'
@@ -55,6 +57,15 @@ class Post(models.Model):
     city = models.CharField(max_length=10, choices=CITY_CHOICES)
     tags = TaggableManager()
     rating = models.DecimalField(default=0, max_digits=5, decimal_places=1)
+
+    slug = models.SlugField(unique=True, allow_unicode=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title, allow_unicode=True)
+        super(Post, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
 
     @property
     def created_string(self):
