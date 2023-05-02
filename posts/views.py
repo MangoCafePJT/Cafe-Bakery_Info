@@ -7,6 +7,7 @@ from django.db.models import Q
 from utils.map import get_latlng_from_address
 import os
 from django.core.paginator import Paginator
+from django.db.models import Count
 
 
 
@@ -130,9 +131,9 @@ def detail(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     rating_filter = request.GET.get('rating-filter', '')
     emotion_filter = request.GET.get('emotion-filter', '')
-
+    # rating_filter = request.GET.getlist('rating-filter', '')
+    # emotion_filter = request.GET.getlist('emotion-filter', '')
     reviews = post.reviews.all().order_by('-created_at')
-
     if rating_filter:
         reviews = reviews.filter(rating=int(rating_filter))
     if emotion_filter:
