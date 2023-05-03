@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Chat Room Home
+{% endblock title %}
+{% block content %}
+
+    입장할 채팅방 이름을 입력하세요.!
+    <br>
+    <input id="room-name-input" type="text" size="50"><br>
+    <input id="room-name-submit" type="button" value="Enter">
+{% endblock content %}
+
+{% block script %}
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ kakao_script_key }}&libraries=services"></script>
+  <script>
+    document.querySelector('#room-name-input').focus();
+    document.querySelector('#room-name-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#room-name-submit').click();
+        }
+    };
+
+    document.querySelector('#room-name-submit').onclick = function(e) {
+        var roomName = document.querySelector('#room-name-input').value;
+        window.location.pathname = '/chat/' + roomName + '/';
+    };
+  </script>
+{% endblock script %}
