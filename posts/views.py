@@ -151,9 +151,9 @@ def detail(request, post_pk):
         
     reviews = post.reviews.filter(filter_args).order_by('-created_at')
 
-    paginator = Paginator(reviews, 5)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    # paginator = Paginator(reviews, 5)
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
 
     address = post.address
     latitude, longitude = get_latlng_from_address(address)
@@ -174,7 +174,7 @@ def detail(request, post_pk):
         'post_form': post_form,
         'kakao_script_key': kakao_script_key,
         'tags': tags,
-        'page_obj': page_obj,
+        # 'page_obj': page_obj,
     }
     return render(request, 'posts/detail.html',context)
 
