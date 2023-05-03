@@ -130,15 +130,26 @@ def create(request):
 def detail(request, post_pk):
     kakao_script_key = os.getenv('kakao_script_key')
     post = Post.objects.get(pk=post_pk)
-    rating_filter = request.GET.get('rating-filter', '')
-    emotion_filter = request.GET.get('emotion-filter', '')
-    # rating_filter = request.GET.getlist('rating-filter', '')
-    # emotion_filter = request.GET.getlist('emotion-filter', '')
-    reviews = post.reviews.all().order_by('-created_at')
+
+    rating_filter = request.GET.getlist('rating-filter')
+    emotion_filter = request.GET.getlist('emotion-filter')
+    filter_args = Q()
+    # rating 값이 존재하면 필터 추가
     if rating_filter:
-        reviews = reviews.filter(rating=int(rating_filter))
+        rating_filter_q = Q()
+        for rating in rating_filter:
+            if rating:
+                rating_filter_q |= Q(rating=int(rating))
+        filter_args &= rating_filter_q 
+    # emotion 값이 존재하면 필터 추가
     if emotion_filter:
-        reviews = reviews.filter(emotion=int(emotion_filter))
+        emotion_filter_q = Q()
+        for emotion in emotion_filter:
+            if emotion:
+                emotion_filter_q |= Q(emotion=int(emotion))
+        filter_args &= emotion_filter_q
+        
+    reviews = post.reviews.filter(filter_args).order_by('-created_at')
 
     paginator = Paginator(reviews, 5)
     page_number = request.GET.get('page')

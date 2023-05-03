@@ -109,25 +109,6 @@
     </div>
   </div>
   <div class="review--box">
-    {% comment %} <select id="rating-filter">
-      <option value="">All ratings</option>
-      <option value="5">5 stars</option>
-      <option value="4">4 stars</option>
-      <option value="3">3 stars</option>
-      <option value="2">2 stars</option>
-      <option value="1">1 star</option>
-    </select> {% endcomment %}
-    {% comment %} <select id="emotion-filter">
-      <option value="">All emotions</option>
-      <option value="3">😁</option>
-      <option value="2">😐</option>
-      <option value="1">😞</option>
-    </select> {% endcomment %}
-    {% comment %} <div id="emotion-filter">
-      <button id="emotion-btn" class="emotion-btn" value="1">😞</button>
-      <button id="emotion-btn" class="emotion-btn" value="2">😐</button>
-      <button id="emotion-btn" class="emotion-btn" value="3">😁</button>
-    </div> {% endcomment %}
     <a href="{% url 'posts:detail' post.pk %}">초기화</a>
     <div id="rating-filter">
       <button class="rating-btn" data-value="">All ratings</button>
@@ -210,7 +191,7 @@
       {% endfor %}
     </div>
     <div class="pagination">
-      <span class="step-links">
+      {% comment %} <span class="step-links">
         {% if page_obj.has_previous %}
           <a href="?page=1">&laquo; first</a>
           <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; prev</a>
@@ -223,7 +204,36 @@
           <a href="?page={{ page_obj.next_page_number }}">next &rsaquo;</a>
           <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
-      </span>
+      </span> {% endcomment %}
+      {% comment %} {% if page_obj.has_other_pages %}
+        <ul class="pagination">
+          <li class="page-item{% if not page_obj.has_previous %} disabled{% endif %}">
+            <a class="page-link" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}" aria-label="Previous">
+              <span aria-hidden="true">«</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+
+          {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+              <li class="page-item active">
+                <a class="page-link" href="#">{{ i }}</a>
+              </li>
+            {% else %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+
+          <li class="page-item{% if not page_obj.has_next %} disabled{% endif %}">
+            <a class="page-link" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% endif %}" aria-label="Next">
+              <span aria-hidden="true">»</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      {% endif %} {% endcomment %}
     </div>
   </div>
 </div>
@@ -307,79 +317,6 @@
       });
     });
 
-    {% comment %} select 일때 rating filter js {% endcomment %}
-    {% comment %} const ratingFilter = document.getElementById('rating-filter');
-    const reviewList = document.getElementById('review-list');
-    const reviewItems = reviewList.querySelectorAll('.review--user, .review--content, .review_q_img');
-    
-    ratingFilter.addEventListener('change', function() {
-      const selectedRating = ratingFilter.value;
-      reviewItems.forEach(function(reviewItem) {
-        const reviewRating = reviewItem.getAttribute('data-rating');
-        if (selectedRating === '' || selectedRating === reviewRating) {
-          reviewItem.style.display = 'block';
-        } else {
-          reviewItem.style.display = 'none';
-        }
-      });
-    }); {% endcomment %}
-
-    {% comment %} emotion select일때 js {% endcomment %}
-    {% comment %} const emotionFilter = document.getElementById('emotion-filter');
-    const e_reviewList = document.getElementById('review-list');
-    const e_reviewItems = reviewList.querySelectorAll('.review--user, .review--content, .review_q_img');
-
-    emotionFilter.addEventListener('change', function() {
-      const selectedEmotion = emotionFilter.value;
-      e_reviewItems.forEach(function(e_reviewItem) {
-        const reviewEmotion = e_reviewItem.getAttribute('data-emotion');
-        if (selectedEmotion === '' || selectedEmotion === reviewEmotion) {
-          e_reviewItem.style.display = 'block';
-        } else {
-          e_reviewItem.style.display = 'none';
-        }
-      });
-    }); {% endcomment %}
-
-    {% comment %} const emotionButtons = document.querySelectorAll('#emotion-filter button');
-    emotionButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const emotionFilter = button.value;
-        const reviewList = document.querySelector('#review-list');
-        const reviews = reviewList.children;
-
-        for (let i = 0; i < reviews.length; i++) {
-          const review = reviews[i];
-          const reviewEmotion = review.getAttribute('data-emotion');
-          if (emotionFilter === '' || reviewEmotion === emotionFilter) {
-            review.style.display = 'block';
-          } else {
-            review.style.display = 'none';
-          }
-        }
-      });
-    }); {% endcomment %}
-
-    {% comment %} 각 1개 선택시 잘 동작함 {% endcomment %}
-    {% comment %} const ratingBtns = document.querySelectorAll('.rating-btn');
-    ratingBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ratingFilter = btn.dataset.value;
-        const url = new URL(window.location.href);
-        url.searchParams.set('rating-filter', ratingFilter);
-        window.location.href = url.toString();
-      });
-    });
-
-    const emotionBtns = document.querySelectorAll('.emotion-btn');
-    emotionBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const emotionFilter = btn.dataset.value;
-        const url = new URL(window.location.href);
-        url.searchParams.set('emotion-filter', emotionFilter);
-        window.location.href = url.toString();
-      });
-    }); {% endcomment %}
 
     const ratingBtns = document.querySelectorAll('.rating-btn');
     if (ratingBtns.length) {
@@ -389,9 +326,15 @@
           const url = new URL(window.location.href);
           let params = new URLSearchParams(url.search.slice(1));
           const ratingFilters = params.getAll('rating-filter');
-          if (ratingFilters.includes(ratingFilter)) {
-            params.delete('rating-filter', ratingFilter);
-          } else {
+          params.delete('rating-filter');
+          if (Array.isArray(ratingFilters) && ratingFilters.length) {
+            for (let i = 0; i < ratingFilters.length; i++) {
+              if (ratingFilters[i] !== ratingFilter) {
+                params.append('rating-filter', ratingFilters[i]);
+              }
+            }
+          }
+          if (!ratingFilters.includes(ratingFilter)) {
             params.append('rating-filter', ratingFilter);
           }
           url.search = params.toString();
@@ -399,6 +342,7 @@
         });
       });
     }
+
     const emotionBtns = document.querySelectorAll('.emotion-btn');
     if (emotionBtns.length) {
       emotionBtns.forEach(btn => {
@@ -407,9 +351,15 @@
           const url = new URL(window.location.href);
           let params = new URLSearchParams(url.search.slice(1));
           const emotionFilters = params.getAll('emotion-filter');
-          if (emotionFilters.includes(emotionFilter)) {
-            params.delete('emotion-filter', emotionFilter);
-          } else {
+          params.delete('emotion-filter');
+          if (Array.isArray(emotionFilters) && emotionFilters.length) {
+            for (let i = 0; i < emotionFilters.length; i++) {
+              if (emotionFilters[i] !== emotionFilter) {
+                params.append('emotion-filter', emotionFilters[i]);
+              }
+            }
+          }
+          if (!emotionFilters.includes(emotionFilter)) {
             params.append('emotion-filter', emotionFilter);
           }
           url.search = params.toString();
@@ -417,6 +367,21 @@
         });
       });
     }
+    
+    const allRatingsBtn = document.querySelector('#rating-filter > button[data-value=""]');
+    allRatingsBtn.addEventListener('click', () => {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('rating-filter');
+      window.location.href = url.toString();
+    });
+
+    const allEmotionsBtn = document.querySelector('#emotion-filter > button[data-value=""]');
+    allEmotionsBtn.addEventListener('click', () => {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('emotion-filter');
+      window.location.href = url.toString();
+    });
+
 
 </script>
 {% endblock script %}
