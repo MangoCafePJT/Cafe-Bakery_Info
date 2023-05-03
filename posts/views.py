@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Post, Review, PostImage, ReviewImage
-from .forms import PostForm, ReviewForm, PostImageForm, ReviewImageForm
+from .forms import PostForm, ReviewForm, PostImageForm, ReviewImageForm, DeleteImageForm
 from django.http import JsonResponse
 from django.db.models import Q
 from utils.map import get_latlng_from_address
@@ -11,7 +11,7 @@ from django.core.paginator import Paginator
 from django.db.models import Count
 
 
-
+@login_required
 def index(request):
     posts = Post.objects.order_by('-pk')
     post_images = []
@@ -26,7 +26,7 @@ def index(request):
     }
     return render(request, 'posts/index.html', context)
 
-
+@login_required
 def city(request):
     posts = Post.objects.order_by('-pk')
     post_images = []
@@ -41,6 +41,7 @@ def city(request):
     }
     return render(request, 'posts/index_city.html', context)
 
+@login_required
 def filtering(request, sort):
     posts = Post.objects.all()
     if sort == '별점순':
@@ -72,6 +73,7 @@ def filtering(request, sort):
                 post_images.append((post,''))
     return render(request, 'posts/index.html', {'post_images': post_images})
 
+@login_required
 def city_filtering(request, sort):
     posts = Post.objects.all()
     if sort == '별점순':
@@ -182,6 +184,7 @@ def update(request, post_pk):
     if request.method == 'POST':
         post_form = PostForm(request.POST, instance=post)
         files = request.FILES.getlist('image')
+        delete_ids = request.POST.getlist('delete_images')
         if post_form.is_valid():
             post = post_form.save(commit=False)
             post.user = request.user
@@ -189,16 +192,24 @@ def update(request, post_pk):
             tags = request.POST.get('tags').split(',')
             for tag in tags:
                 post.tags.add(tag.strip())
+            for delete_id in delete_ids:
+                post.postimage_set.filter(pk=delete_id).delete()
             for i in files:
                 PostImage.objects.create(image=i, post=post)
             return redirect('posts:detail', post.pk)
     else:
         post_form = PostForm(instance=post)
+    images = post.postimage_set.all()
+    if post.postimage_set.exists():
+        image_form = PostImageForm(instance=post.postimage_set.first())
+    else:
         image_form = PostImageForm()
+    delete_form = DeleteImageForm(post=post)
     context = {
         'post': post,
         'post_form': post_form,
         'image_form': image_form,
+        'delete_form': delete_form,
     }
     return render(request, 'posts/update.html', context)
 

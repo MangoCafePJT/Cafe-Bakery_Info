@@ -54,6 +54,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'accounts:profile' user %}">{{ user }}</a></li>
               <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+              <li><a class="dropdown-item" href="{% url 'posts:city' %}"> {{ request.user.region }} 지역 List </a></li>
             </ul>
           </div>
           {% endif %}

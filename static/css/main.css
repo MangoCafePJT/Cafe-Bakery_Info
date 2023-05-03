@@ -12,12 +12,14 @@
   display: grid;
   align-content: center;
   justify-content: center;
+  margin-top: 20px;
 }
 
 @media screen and (max-width: 1230px) {
   .main--content {
     grid-template-columns: 100%;
     grid-auto-rows: 1fr;
+    row-gap: 20px;
   }
 }
 
@@ -112,6 +114,7 @@
 .card--item {
   width: 550px;
   height: 500px;
+  margin-bottom: 10px;
   position: relative;
 }
 

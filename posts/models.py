@@ -88,13 +88,6 @@ class Post(models.Model):
         for image in images:
             image.delete()
         super(Post, self).delete(*args, **kargs)
-        
-    # def save(self, *args, **kwargs):
-    #     if self.id:
-    #         old_post = self.postimage_set.all()
-    #         for image in old_post:
-    #             image.delete()
-    #     super(Post, self).save(*args, **kwargs)
 
 class PostImage(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

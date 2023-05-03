@@ -3,6 +3,9 @@
 {% block title %}
 Review
 {% endblock title %}
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
+{% endblock head %}
 {% block style %}
 <style>
   .star-rating input[name="rating"] {
@@ -10,8 +13,9 @@ Review
   }
 
   .emoji-rating label.selected {
-    transform: scale(1.2);
+    transform: scale(1.1);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
   }
   
   .emoji-rating input[name="emotion"] {
@@ -26,32 +30,34 @@ Review
       <h1>솔직한 리뷰를 남겨주세요!</h1>
       <form id="review-form"  method="post" action="{% url 'posts:review_create' post.pk %}" enctype="multipart/form-data">
         {% csrf_token %}
-        <label for="rating">Rating:</label>
+        <label for="rating">별점:</label>
         <div class="star-rating">
           <input id="star-1" name="rating" type="radio" value="1" />
-          <label class="star-label" for="star-1" title="1 star">☆</label>
+          <label class="star-label rating--orange" for="star-1" title="1 star"></label>
           <input id="star-2" name="rating" type="radio" value="2" />
-          <label class="star-label" for="star-2" title="2 stars">☆</label>
+          <label class="star-label rating--orange" for="star-2" title="2 stars"></label>
           <input id="star-3" name="rating" type="radio" value="3" />
-          <label class="star-label" for="star-3" title="3 stars">☆</label>
+          <label class="star-label rating--orange" for="star-3" title="3 stars"></label>
           <input id="star-4" name="rating" type="radio" value="4" />
-          <label class="star-label" for="star-4" title="4 stars">☆</label>
+          <label class="star-label rating--orange" for="star-4" title="4 stars"></label>
           <input id="star-5" name="rating" type="radio" value="5" />
-          <label class="star-label" for="star-5" title="5 stars">☆</label>
+          <label class="star-label rating--orange" for="star-5" title="5 stars"></label>
         </div>
         {{ review_form.as_p }}
-        <label for="emotion">Emotion:</label>
+        <label for="emotion">만족도:</label>
         <div class="emoji-rating">
-          <input id="emoji-1" name="emotion" type="radio" value="1" />
-          <label class="emoji-label" for="emoji-1" title="sad">😞</label>
-          <input id="emoji-2" name="emotion" type="radio" value="2" />
-          <label class="emoji-label" for="emoji-2" title="neutral">😐</label>
           <input id="emoji-3" name="emotion" type="radio" value="3" />
-          <label class="emoji-label" for="emoji-3" title="happy">😁</label>
+          <label class="emoji-label review--imoge1" for="emoji-3" title="맛있어요"></label>
+          <input id="emoji-2" name="emotion" type="radio" value="2" />
+          <label class="emoji-label review--imoge2" for="emoji-2" title="괜찮아요"></label>
+          <input id="emoji-1" name="emotion" type="radio" value="1" />
+          <label class="emoji-label review--imoge3" for="emoji-1" title="별로예요"></label>
+
+          
         </div>
         {{ image_form.as_p }}
-        <input class="posts--reviewBtn" type="submit">
-        <br><br>
+        <input class="posts--reviewBtn" type="submit" value="리뷰등록">
+        <input type="submit" value="뒤로가기" class="posts--reviewBtn" onclick=window.history.back()>
       </form>
 
     </div>
@@ -63,16 +69,18 @@ Review
   const ratingInput = document.querySelector('input[name="rating"]');
 
   ratingInput.value = 5;
-  stars.forEach(star => star.textContent = '★');
+  stars.forEach(star => star.classList.add('rating--orange'));
   
   stars.forEach((star, index) => {
     star.addEventListener('click', () => {
       ratingInput.value = index + 1;
       for (let i = 0; i < stars.length; i++) {
         if (i <= index) {
-          stars[i].textContent = '★';
+          stars[i].classList.remove('rating--gray');
+          stars[i].classList.add('rating--orange');
         } else {
-          stars[i].textContent = '☆';
+          stars[i].classList.remove('rating--orange');
+          stars[i].classList.add('rating--gray');
         }
       }
     });

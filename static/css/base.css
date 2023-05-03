@@ -556,3 +556,12 @@ footer a {
   width: 90%;
   margin: 10px auto;
 }
+
+#id_delete_images {
+  list-style: none;
+  width: 600px;
+}
+
+#id_delete_images li {
+  display: inline-block;
+}
