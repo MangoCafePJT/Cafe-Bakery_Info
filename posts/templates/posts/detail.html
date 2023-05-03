@@ -8,7 +8,10 @@
 {% endblock head %}
 {% block style %}
 <style>
-
+  .hide {
+    display: none;
+  }
+  
 </style>
 {% endblock style %}
 
@@ -109,25 +112,6 @@
     </div>
   </div>
   <div class="review--box">
-    {% comment %} <select id="rating-filter">
-      <option value="">All ratings</option>
-      <option value="5">5 stars</option>
-      <option value="4">4 stars</option>
-      <option value="3">3 stars</option>
-      <option value="2">2 stars</option>
-      <option value="1">1 star</option>
-    </select> {% endcomment %}
-    {% comment %} <select id="emotion-filter">
-      <option value="">All emotions</option>
-      <option value="3">😁</option>
-      <option value="2">😐</option>
-      <option value="1">😞</option>
-    </select> {% endcomment %}
-    {% comment %} <div id="emotion-filter">
-      <button id="emotion-btn" class="emotion-btn" value="1">😞</button>
-      <button id="emotion-btn" class="emotion-btn" value="2">😐</button>
-      <button id="emotion-btn" class="emotion-btn" value="3">😁</button>
-    </div> {% endcomment %}
     <a href="{% url 'posts:detail' post.pk %}">초기화</a>
     <div id="rating-filter">
       <button class="rating-btn" data-value="">All ratings</button>
@@ -145,7 +129,7 @@
     </div>    
     <h4 class="mt-3" style="color:#682c0ec2;">리뷰({{ reviews|length }})</h4>
     <div class="review--detail" id="review-list">
-      {% for review in page_obj %}
+      {% for review in reviews %}
         {% comment %} review user {% endcomment %}
         <div class="review--user" data-rating="{{ review.rating }}" data-emotion="{{ review.emotion }}">
           {% if review.user.image %}
@@ -209,22 +193,10 @@
         </div>
       {% endfor %}
     </div>
-    <div class="pagination">
-      <span class="step-links">
-        {% if page_obj.has_previous %}
-          <a href="?page=1">&laquo; first</a>
-          <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; prev</a>
-        {% endif %}
-        <span class="current-page">
-          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}">next &rsaquo;</a>
-          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-      </span>
-    </div>
+    <div id="load-more-btn" class="d-flex justify-content-center mt-3">
+      <button id="btn-more" class="btn btn-outline-secondary btn-sm">더보기</button>
+      <button id="btn-less" class="btn btn-outline-secondary btn-sm hide">간략히</button>
+    </div>    
   </div>
 </div>
 {% endblock content %}
@@ -307,80 +279,6 @@
       });
     });
 
-    {% comment %} select 일때 rating filter js {% endcomment %}
-    {% comment %} const ratingFilter = document.getElementById('rating-filter');
-    const reviewList = document.getElementById('review-list');
-    const reviewItems = reviewList.querySelectorAll('.review--user, .review--content, .review_q_img');
-    
-    ratingFilter.addEventListener('change', function() {
-      const selectedRating = ratingFilter.value;
-      reviewItems.forEach(function(reviewItem) {
-        const reviewRating = reviewItem.getAttribute('data-rating');
-        if (selectedRating === '' || selectedRating === reviewRating) {
-          reviewItem.style.display = 'block';
-        } else {
-          reviewItem.style.display = 'none';
-        }
-      });
-    }); {% endcomment %}
-
-    {% comment %} emotion select일때 js {% endcomment %}
-    {% comment %} const emotionFilter = document.getElementById('emotion-filter');
-    const e_reviewList = document.getElementById('review-list');
-    const e_reviewItems = reviewList.querySelectorAll('.review--user, .review--content, .review_q_img');
-
-    emotionFilter.addEventListener('change', function() {
-      const selectedEmotion = emotionFilter.value;
-      e_reviewItems.forEach(function(e_reviewItem) {
-        const reviewEmotion = e_reviewItem.getAttribute('data-emotion');
-        if (selectedEmotion === '' || selectedEmotion === reviewEmotion) {
-          e_reviewItem.style.display = 'block';
-        } else {
-          e_reviewItem.style.display = 'none';
-        }
-      });
-    }); {% endcomment %}
-
-    {% comment %} const emotionButtons = document.querySelectorAll('#emotion-filter button');
-    emotionButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const emotionFilter = button.value;
-        const reviewList = document.querySelector('#review-list');
-        const reviews = reviewList.children;
-
-        for (let i = 0; i < reviews.length; i++) {
-          const review = reviews[i];
-          const reviewEmotion = review.getAttribute('data-emotion');
-          if (emotionFilter === '' || reviewEmotion === emotionFilter) {
-            review.style.display = 'block';
-          } else {
-            review.style.display = 'none';
-          }
-        }
-      });
-    }); {% endcomment %}
-
-    {% comment %} 각 1개 선택시 잘 동작함 {% endcomment %}
-    {% comment %} const ratingBtns = document.querySelectorAll('.rating-btn');
-    ratingBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ratingFilter = btn.dataset.value;
-        const url = new URL(window.location.href);
-        url.searchParams.set('rating-filter', ratingFilter);
-        window.location.href = url.toString();
-      });
-    });
-
-    const emotionBtns = document.querySelectorAll('.emotion-btn');
-    emotionBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const emotionFilter = btn.dataset.value;
-        const url = new URL(window.location.href);
-        url.searchParams.set('emotion-filter', emotionFilter);
-        window.location.href = url.toString();
-      });
-    }); {% endcomment %}
-
     const ratingBtns = document.querySelectorAll('.rating-btn');
     if (ratingBtns.length) {
       ratingBtns.forEach(btn => {
@@ -389,9 +287,15 @@
           const url = new URL(window.location.href);
           let params = new URLSearchParams(url.search.slice(1));
           const ratingFilters = params.getAll('rating-filter');
-          if (ratingFilters.includes(ratingFilter)) {
-            params.delete('rating-filter', ratingFilter);
-          } else {
+          params.delete('rating-filter');
+          if (Array.isArray(ratingFilters) && ratingFilters.length) {
+            for (let i = 0; i < ratingFilters.length; i++) {
+              if (ratingFilters[i] !== ratingFilter) {
+                params.append('rating-filter', ratingFilters[i]);
+              }
+            }
+          }
+          if (!ratingFilters.includes(ratingFilter)) {
             params.append('rating-filter', ratingFilter);
           }
           url.search = params.toString();
@@ -399,6 +303,7 @@
         });
       });
     }
+
     const emotionBtns = document.querySelectorAll('.emotion-btn');
     if (emotionBtns.length) {
       emotionBtns.forEach(btn => {
@@ -407,15 +312,69 @@
           const url = new URL(window.location.href);
           let params = new URLSearchParams(url.search.slice(1));
           const emotionFilters = params.getAll('emotion-filter');
-          if (emotionFilters.includes(emotionFilter)) {
-            params.delete('emotion-filter', emotionFilter);
-          } else {
+          params.delete('emotion-filter');
+          if (Array.isArray(emotionFilters) && emotionFilters.length) {
+            for (let i = 0; i < emotionFilters.length; i++) {
+              if (emotionFilters[i] !== emotionFilter) {
+                params.append('emotion-filter', emotionFilters[i]);
+              }
+            }
+          }
+          if (!emotionFilters.includes(emotionFilter)) {
             params.append('emotion-filter', emotionFilter);
           }
           url.search = params.toString();
           window.location.href = url.toString();
         });
       });
+    }
+    
+    const allRatingsBtn = document.querySelector('#rating-filter > button[data-value=""]');
+    allRatingsBtn.addEventListener('click', () => {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('rating-filter');
+      window.location.href = url.toString();
+    });
+
+    const allEmotionsBtn = document.querySelector('#emotion-filter > button[data-value=""]');
+    allEmotionsBtn.addEventListener('click', () => {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('emotion-filter');
+      window.location.href = url.toString();
+    });
+
+    const reviews = document.querySelectorAll('#review-list .review--user, #review-list .review--content, #review-list .review_q_img');
+    for (let i = 5; i < reviews.length; i++) {
+      reviews[i].classList.add('hide');
+    }
+    const btnMore = document.querySelector('#btn-more');
+    const hideClass = 'hide';
+    let visibleReviews = 5;
+    function showNextReviews() {
+      for (let i = visibleReviews; i < visibleReviews + 5 && i < reviews.length; i++) {
+        reviews[i].classList.remove(hideClass);
+      }
+      visibleReviews += 5;
+      if (visibleReviews >= reviews.length) {
+        btnMore.textContent = '간략히';
+      }
+    }
+    btnMore.addEventListener('click', function() {
+      if (visibleReviews >= reviews.length) {
+        visibleReviews = 5;
+        for (let i = visibleReviews; i < reviews.length; i++) {
+          reviews[i].classList.add(hideClass);
+        }
+        btnMore.textContent = '더보기';
+      } else {
+        showNextReviews();
+      }
+    });
+    if (reviews.length <= 5) {
+      btnMore.classList.add(hideClass);
+      btnLess.classList.add(hideClass);
+    } else {
+      btnLess.classList.add(hideClass);
     }
 
 </script>
