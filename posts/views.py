@@ -200,6 +200,7 @@ def update(request, post_pk):
             post = post_form.save(commit=False)
             post.user = request.user
             post.save()
+            post.tags.clear()
             tags = request.POST.get('tags').split(',')
             for tag in tags:
                 post.tags.add(tag.strip())

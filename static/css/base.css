@@ -565,3 +565,11 @@ footer a {
 #id_delete_images li {
   display: inline-block;
 }
+
+.tag--title {
+  font-size: 20px;
+  margin: 10px;
+  color: #825448;
+  text-align: center;
+  padding: 2px;
+}

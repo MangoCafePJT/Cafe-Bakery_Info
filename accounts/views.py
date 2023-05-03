@@ -17,7 +17,7 @@ def login(request):
         form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('main')
+            return redirect('posts:index')
       
     else:
         form = CustomAuthenticationForm()
