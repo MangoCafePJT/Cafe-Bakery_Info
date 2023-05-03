@@ -27,6 +27,18 @@
   }
 }
 
+.list--box {
+  width: 100%;
+  background-color: #faeed762;
+  text-align: end;
+}
+
+.list--box a {
+  text-decoration: none;
+  color: #682C0E;
+}
+
+
 .content--box {
   width: 550px;
   height: 500px;

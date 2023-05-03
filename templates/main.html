@@ -6,9 +6,11 @@
 {% endblock head %}
 
 {% block content %}
-
-<a href="{% url 'posts:index' %}">전체 List 보기</a>
-<a href="{% url 'posts:city' %}">선호지역 List 보기</a>
+<div class="list--box">
+  <a href="{% url 'posts:index' %}">전체 List </a>
+  <span>/</span>
+  <a href="{% url 'posts:city' %}">선호지역 List </a>
+</div>
 <div class="main--content">
   <div class="content--box">
     <div class="top--box"> Cafe TOP5</div>
