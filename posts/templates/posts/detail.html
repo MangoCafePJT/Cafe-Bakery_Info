@@ -8,7 +8,10 @@
 {% endblock head %}
 {% block style %}
 <style>
-
+  .hide {
+    display: none;
+  }
+  
 </style>
 {% endblock style %}
 
@@ -126,7 +129,7 @@
     </div>    
     <h4 class="mt-3" style="color:#682c0ec2;">리뷰({{ reviews|length }})</h4>
     <div class="review--detail" id="review-list">
-      {% for review in page_obj %}
+      {% for review in reviews %}
         {% comment %} review user {% endcomment %}
         <div class="review--user" data-rating="{{ review.rating }}" data-emotion="{{ review.emotion }}">
           {% if review.user.image %}
@@ -190,51 +193,10 @@
         </div>
       {% endfor %}
     </div>
-    <div class="pagination">
-      {% comment %} <span class="step-links">
-        {% if page_obj.has_previous %}
-          <a href="?page=1">&laquo; first</a>
-          <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; prev</a>
-        {% endif %}
-        <span class="current-page">
-          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}">next &rsaquo;</a>
-          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-      </span> {% endcomment %}
-      {% comment %} {% if page_obj.has_other_pages %}
-        <ul class="pagination">
-          <li class="page-item{% if not page_obj.has_previous %} disabled{% endif %}">
-            <a class="page-link" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}" aria-label="Previous">
-              <span aria-hidden="true">«</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-
-          {% for i in page_obj.paginator.page_range %}
-            {% if page_obj.number == i %}
-              <li class="page-item active">
-                <a class="page-link" href="#">{{ i }}</a>
-              </li>
-            {% else %}
-              <li class="page-item">
-                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
-
-          <li class="page-item{% if not page_obj.has_next %} disabled{% endif %}">
-            <a class="page-link" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% endif %}" aria-label="Next">
-              <span aria-hidden="true">»</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      {% endif %} {% endcomment %}
-    </div>
+    <div id="load-more-btn" class="d-flex justify-content-center mt-3">
+      <button id="btn-more" class="btn btn-outline-secondary btn-sm">더보기</button>
+      <button id="btn-less" class="btn btn-outline-secondary btn-sm hide">간략히</button>
+    </div>    
   </div>
 </div>
 {% endblock content %}
@@ -317,7 +279,6 @@
       });
     });
 
-
     const ratingBtns = document.querySelectorAll('.rating-btn');
     if (ratingBtns.length) {
       ratingBtns.forEach(btn => {
@@ -382,6 +343,39 @@
       window.location.href = url.toString();
     });
 
+    const reviews = document.querySelectorAll('#review-list .review--user, #review-list .review--content, #review-list .review_q_img');
+    for (let i = 5; i < reviews.length; i++) {
+      reviews[i].classList.add('hide');
+    }
+    const btnMore = document.querySelector('#btn-more');
+    const hideClass = 'hide';
+    let visibleReviews = 5;
+    function showNextReviews() {
+      for (let i = visibleReviews; i < visibleReviews + 5 && i < reviews.length; i++) {
+        reviews[i].classList.remove(hideClass);
+      }
+      visibleReviews += 5;
+      if (visibleReviews >= reviews.length) {
+        btnMore.textContent = '간략히';
+      }
+    }
+    btnMore.addEventListener('click', function() {
+      if (visibleReviews >= reviews.length) {
+        visibleReviews = 5;
+        for (let i = visibleReviews; i < reviews.length; i++) {
+          reviews[i].classList.add(hideClass);
+        }
+        btnMore.textContent = '더보기';
+      } else {
+        showNextReviews();
+      }
+    });
+    if (reviews.length <= 5) {
+      btnMore.classList.add(hideClass);
+      btnLess.classList.add(hideClass);
+    } else {
+      btnLess.classList.add(hideClass);
+    }
 
 </script>
 {% endblock script %}
