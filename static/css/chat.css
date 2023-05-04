@@ -52,3 +52,9 @@
   font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 40;
   margin-right: 10px;
 }
+
+#chat-message-submit {
+  border: none;
+  background-color: #825448;
+  color: white;
+}
