@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}
 List
 {% endblock title %}
+{% block style %}
+<style>
+  section {
+    position: relative;
+  }
+</style>
+{% endblock style %}
 {% block content %}
   <div class="index--page">
     <div class="sidebar">
@@ -32,6 +40,7 @@ List
                     {% else %}
                       <img src="{% static 'image/none_img.png' %}" alt=""  class="index--img object-fit-fill">
                     {% endif %}
+                    <div class="index--rating"><img src="{% static 'image/allstar.png' %}" class="index--star" alt="">{{ post.rating }}</div>
                   </div>
                   <div class="index--info--box ">
                     <div class="index--title">
@@ -88,6 +97,7 @@ List
                     {% else %}
                       <img src="{% static 'image/none_img.png' %}" alt=""  class="index--img object-fit-fill">
                     {% endif %}
+                    <div class="index--rating"><img src="{% static 'image/allstar.png' %}" class="index--star" alt="">{{ post.rating }}</div>
                   </div>
                   <div class="index--info--box ">
                     <div class="index--title">
@@ -130,6 +140,7 @@ List
         <button id="nextbtnb" class="carousel--btn--right"></button>
       </div>
   </div>
+  <div class="chat--btn"><a href="{% url 'chat:index' %}" class="chat--btn--txt"><i class="bi bi-chat-square-heart"></i></a></div>
 {% endblock content %}
 
 {% block script %}

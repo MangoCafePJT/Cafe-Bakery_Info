@@ -4,6 +4,12 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'ONE-Mobile-Title';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Title.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* detail */
 .detail--box {
@@ -27,7 +33,7 @@
 
 .detail--image {
   width: 350px;
-  height: 250px;
+  height: 300px;
 }
 
 .detail--map {
@@ -90,15 +96,21 @@
 }
 
 .detail--info--title {
-  font-size: 30px;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  font-size: 35px;
   color: rgb(30, 30, 30);
 }
 
 .detail--info--title a {
   color: #F9E0AE;
   font-size: 20px;
+}
+
+.detail--rating {
+  margin-top: 5px;
+  font-size: 25px;
+  color: #FC8621;
+  text-align: end;
+  font-family: 'ONE-Mobile-Title';
 }
 
 .detail--info--body {
@@ -158,10 +170,11 @@
 }
 
 .detail--btn {
-  margin-right: 10px;
+  font-size: 20px;
   color: gray;
   text-align: center;
   text-decoration: none;
+  margin-right: 10px;
 }
 
 .detail--btn p {
@@ -204,14 +217,34 @@
   margin-bottom: 2px;
 }
 
+.review--content-box {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-auto-rows: 1fr;
+}
+
 .review--box {
   border-top: 1px solid gainsboro;
 }
 
 .review--detail {
+  margin-top: 10px;
   display: grid;
   grid-template-columns: 300px auto 300px;
   border-bottom: 1px solid rgba(243, 243, 243, 0.7);
+}
+
+.detail--info--box {
+  position: relative;
+}
+
+.review--btn {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .review--user {
@@ -232,9 +265,11 @@
 }
 
 .review--content {
+  border-right: 1px solid rgba(243, 243, 243, 0.7);
   display: flex;
   flex-direction: column;
   margin: 10px;
+  padding: 10px;
 }
 
 .review--content p{
@@ -251,18 +286,24 @@
   background-position: -714px -866px;
   width: 44px;
   height: 44px;
+  background-color: #fff0;
+  border: none;
 }
 .review--imoge2{
   background-image: url("/static/image/mango_icon.png");
   background-position: -564px -866px;
   width: 44px;
   height: 44px;
+  background-color: #fff0;
+  border: none;
 }
 .review--imoge3{
   background-image: url("/static/image/mango_icon.png");
   background-position: -514px -866px;;
   width: 44px;
   height: 44px;
+  background-color: #fff0;
+  border: none;
 }
 
 .rating--gray{
@@ -277,4 +318,99 @@
   background-position: -280px -539px;
   width: 28px;
   height: 28px;
+}
+
+.rating-btn {
+  border: none;
+  background-color: #fff;
+  width: 30px;
+  height: 30px;
+  color: #682c0ec2;
+  margin: 5px;
+  position: relative;
+  padding: 0;
+}
+
+.rating-btn img:hover {
+  z-index: 1;
+}
+
+.rating-btn:hover::after {
+  content: "";
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+  -webkit-mask-image: url('/static/image/allstar.png');
+  mask-image: url('/static/image/allstar.png');
+}
+  
+  
+
+.emotion-btn {
+  border: none;
+  background-color: #fff0;
+  font-size: 18px;
+  color:#682c0ec2;
+}
+
+.emotion-btn:hover {
+  color: #c24814b0;
+}
+
+.review--filter {
+  font-size: 23px;
+  color:#682c0ec2;
+  text-decoration: none;
+}
+
+.review--filter:hover {
+  color: #c24814b0;
+}
+
+.star-back {
+  background-repeat: no-repeat;
+  background-image: url("//img1a.coupangcdn.com/image/coupang/search/search_product_assets_170324.png");
+  overflow: hidden;
+  float: left;
+  width: 70px;
+  height: 17px;
+  margin-right: 3px;
+  background-position: 0 -149px;
+}
+
+.star-star {
+  background-repeat: no-repeat;
+  background-image: url("//img1a.coupangcdn.com/image/coupang/search/search_product_assets_170324.png");
+  overflow: hidden;
+  float: left;
+  height: 17px;
+  background-position: 0 -199px;
+}
+
+.star {
+  height: 30px;
+  width: 30px;
+}
+
+.review--img--box {
+  display: flex;
+  gap: 5px;
+  align-items : center; 
+  overflow: hidden;
+}
+
+.show_more_box {
+  display: flex;
+  justify-content: center;
+}
+
+.show_more_btn {
+  border: none;
+  background-color: white;
+  color: #682c0ec2;
+  font-size: 20px;
 }

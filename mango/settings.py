@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.kakao',
     # 네이버 추가
     'allauth.socialaccount.providers.naver',
+    # 구글 추가
+    'allauth.socialaccount.providers.google',
 ]
 
 # Channels _ 수정
@@ -93,6 +95,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 구글 로그인 위해서...작성
+                
+                
             ],
         },
     },

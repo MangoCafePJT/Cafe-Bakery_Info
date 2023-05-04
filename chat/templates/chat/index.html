@@ -3,27 +3,45 @@
 {% block title %}
 Chat Room Home
 {% endblock title %}
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,500,0,0" />
+{% endblock head %}
 {% block content %}
-
-    입장할 채팅방 이름을 입력하세요.!
-    <br>
-    <input id="room-name-input" type="text" size="50"><br>
-    <input id="room-name-submit" type="button" value="Enter">
+  <div class="chat--box">
+    <div class="chat">
+      {% comment %} <p>입장할 채팅방 이름을 입력하세요!</p>
+      <div>
+        <input id="room-name-input" type="text"  class="room_name--input">
+        <input id="room-name-submit" type="button" value="Enter">
+      </div> {% endcomment %}
+      <form method="POST" action="">
+        {% csrf_token %}
+        <p>
+          <span class="material-symbols-outlined">sms</span>
+          <span>입장할 채팅방 이름을 입력하세요!</span>
+        </p>
+        <div>
+          <input id="room-name-input" type="text"  class="room_name--input" name="room_name">
+          <input id="room-name-submit" type="submit" value="Enter">
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock content %}
 
 {% block script %}
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ kakao_script_key }}&libraries=services"></script>
   <script>
     document.querySelector('#room-name-input').focus();
     document.querySelector('#room-name-input').onkeyup = function(e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#room-name-submit').click();
-        }
+      if (e.keyCode === 13) {  // enter, return
+        document.querySelector('#room-name-submit').click();
+      }
     };
 
     document.querySelector('#room-name-submit').onclick = function(e) {
-        var roomName = document.querySelector('#room-name-input').value;
-        window.location.pathname = '/chat/' + roomName + '/';
+      var roomName = document.querySelector('#room-name-input').value;
+      window.location.pathname = '/chat/' + roomName + '/';
     };
   </script>
 {% endblock script %}

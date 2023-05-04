@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from django.urls import path
+# from accounts.views import LoginTemplateView, MyLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +27,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
     path('posts/', include('posts.urls')),
-    path('chat/', include('chat.urls'))
+    path('chat/', include('chat.urls')),
+    # 구글 정보 받아오기
+    # path('login/', LoginTemplateView.as_view(), name='login'),
+    # path('accounts/login/', MyLoginView.as_view(), name='account_login'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -6,9 +6,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomAuthenticationForm, CustomPasswordChangeForm
 from django.http import JsonResponse
 
-
-# Create your views here.
-
 def login(request):
     if request.user.is_authenticated:
         return redirect('main')
@@ -59,10 +56,10 @@ def delete(request):
 @login_required
 def update(request):
     if request.method == 'POST':
-        form = CustomUserChangeForm(request.POST, instance=request.user)
+        form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('posts:index')
+            return redirect('accounts:profile',request.user.username)
     else:
         form = CustomUserChangeForm(instance=request.user)
     context = {
@@ -128,3 +125,50 @@ def follower(request, user_pk):
     user = User.objects.get(pk=user_pk)
     followers = [{'username': f.username, 'pk': f.pk} for f in user.followers.all()]
     return JsonResponse({'followers': followers})
+
+
+
+# 구글 로그인 사용자 정보 받아오기
+# from django.views.generic import TemplateView
+# from allauth.account.views import LoginView
+# from allauth.socialaccount.models import SocialAccount
+
+# class MyLoginView(LoginView):
+#     template_name = 'login.html'
+
+#     def get_success_url(self):
+#         # 로그인 후 사용자 정보 저장
+#         user = self.request.user
+#         social_account = SocialAccount.objects.get(user=user, provider='google')
+#         extra_data = social_account.extra_data
+
+#         # extra_data에서 사용자 정보 추출
+#         first_name = extra_data.get('given_name')
+#         last_name = extra_data.get('family_name')
+#         email = extra_data.get('email')
+
+#         # 데이터베이스에 저장
+#         user.first_name = first_name
+#         user.last_name = last_name
+#         user.email = email
+#         user.save()
+
+#         return super().get_success_url()
+
+# class LoginTemplateView(TemplateView):
+#     template_name = 'login.html'
+
+#     def get(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             return redirect('home')
+#         return super().get(request, *args, **kwargs)
+
+# from django.views.generic import TemplateView
+
+# class HomeView(TemplateView):
+#     template_name = 'home.html'
+
+#     def get(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             return super().get(request, *args, **kwargs)
+#         return redirect('account_login')

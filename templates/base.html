@@ -38,12 +38,13 @@
         {% if request.user.is_authenticated %}
           {% if user.image %}
           <div class="dropdown">
-            <button class="profile--image rounded-circle" type="button" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content=<a href="{% url 'accounts:profile' user %}">{{ user }}</a>>
+            <button class="profile--image rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="{{ user.image.url }}" alt="" class="object-fit-fill profile">
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'accounts:profile' user %}">{{ user }}</a></li>
               <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+              <li><a class="dropdown-item" href="{% url 'posts:city' %}"> {{ request.user.region }} 지역 List </a></li>
             </ul>
           </div>
           {% else %}

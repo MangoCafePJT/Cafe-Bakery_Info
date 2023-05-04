@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Post, Review, PostImage, ReviewImage
-from .forms import PostForm, ReviewForm, PostImageForm, ReviewImageForm, DeleteImageForm
+from .forms import PostForm, ReviewForm, PostImageForm, ReviewImageForm, DeleteImageForm, DeleteReviewImageForm
 from django.http import JsonResponse
 from django.db.models import Q
 from utils.map import get_latlng_from_address
@@ -160,6 +160,7 @@ def detail(request, post_pk):
     address = post.address
     latitude, longitude = get_latlng_from_address(address)
     post_form = PostForm()
+    review_form = ReviewForm()
     post_images = []
     images = PostImage.objects.filter(post=post)
     tags = post.tags.all()
@@ -176,9 +177,9 @@ def detail(request, post_pk):
         'post_form': post_form,
         'kakao_script_key': kakao_script_key,
         'tags': tags,
-        # 'page_obj': page_obj,
+        'review_form': review_form,
     }
-    return render(request, 'posts/detail.html',context)
+    return render(request, 'posts/detail.html', context)
 
 
 @login_required
@@ -196,7 +197,8 @@ def update(request, post_pk):
         post_form = PostForm(request.POST, instance=post)
         files = request.FILES.getlist('image')
         delete_ids = request.POST.getlist('delete_images')
-        if post_form.is_valid():
+        delete_form = DeleteImageForm(post=post, data=request.POST) 
+        if post_form.is_valid() and delete_form.is_valid():
             post = post_form.save(commit=False)
             post.user = request.user
             post.save()
@@ -211,12 +213,12 @@ def update(request, post_pk):
             return redirect('posts:detail', post.pk)
     else:
         post_form = PostForm(instance=post)
-    images = post.postimage_set.all()
+        delete_form = DeleteImageForm(post=post)
+    # images = post.postimage_set.all()
     if post.postimage_set.exists():
         image_form = PostImageForm(instance=post.postimage_set.first())
     else:
         image_form = PostImageForm()
-    delete_form = DeleteImageForm(post=post)
     context = {
         'post': post,
         'post_form': post_form,
@@ -259,6 +261,54 @@ def review_create(request, post_pk):
         'image_form': image_form,
     }
     return render(request, 'posts/review_create.html', context)
+
+
+@login_required
+def review_update(request, post_pk, review_pk):
+    post = Post.objects.get(pk=post_pk)
+    review = Review.objects.get(pk=review_pk)
+    review_form = ReviewForm(instance=review)
+    image_form = ReviewImageForm()
+    delete_form = DeleteReviewImageForm(review=review)
+    rating = request.POST.get('rating')
+    if rating is None:
+        rating = 5
+    else:
+        try:
+            rating = int(rating)
+        except ValueError:
+            rating = 5
+    if request.method == 'POST':
+        review_form = ReviewForm(request.POST, instance=review)
+        files = request.FILES.getlist('image')
+        delete_ids = request.POST.getlist('delete_images')
+        delete_form = DeleteReviewImageForm(review=review, data=request.POST)
+        if review_form.is_valid() and delete_form.is_valid():
+            review = review_form.save(commit=False)
+            review.post = post
+            review.user = request.user
+            review.rating = rating
+            review.emotion = request.POST.get('emotion', 3)
+            review.save()
+            for delete_id in delete_ids:
+                review.reviewimage_set.filter(pk=delete_id).delete()
+            for i in files:
+                ReviewImage.objects.create(image=i, review=review)
+            return redirect('posts:detail', post.pk)
+    # images = review.reviewimage_set.all()
+    if review.reviewimage_set.exists():
+        image_form = ReviewImageForm(instance=review.reviewimage_set.first())
+    else:
+        image_form = ReviewImageForm()
+    context = {
+        'post': post,
+        'review': review,
+        'review_form': review_form,
+        'image_form': image_form,
+        'delete_form': delete_form,
+    }
+    return render(request, 'posts/review_update.html', context)
+
 
 
 @login_required

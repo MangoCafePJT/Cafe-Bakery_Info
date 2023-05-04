@@ -128,11 +128,21 @@ class CustomUserChangeForm(UserChangeForm):
             }
         ),
     )
+
+    image = forms.ImageField(
+        label=False,
+        required=False,
+        widget=forms.ClearableFileInput(
+        attrs={
+            'class': 'form-control',
+            }
+        )
+    )
     password=None
 
     class Meta(UserChangeForm.Meta):
         model = get_user_model()
-        fields = ('email', 'last_name', 'region', 'birthday')
+        fields = ('email', 'last_name', 'region', 'birthday', 'image')
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(

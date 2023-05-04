@@ -14,13 +14,27 @@
         {{ form.as_p}}
         <input class="accounts--btn" type="submit" value="로그인">
         <input type="submit" value="Back" class="accounts--btn" onclick=window.history.back()>
-        
-          <a href="{% provider_login_url 'kakao' method='oauth2' %}">
-            <img src="{% static 'image/kakaologo.png' %}" alt="" class="kakaologo--img">
-          </a>
-          <a href="{% provider_login_url 'naver'%}"> NAVER Social Login</a>
-        
       </form>
+      <hr>
+      <div>
+        <div class="logo--box">
+          <a href="{% provider_login_url 'kakao' process="login" method='oauth2'%}">
+            <img class='logo--img' src="{% static 'image/kakaotalk.png' %}" alt="">
+          </a>
+        </div>
+        <div class="logo--box">
+          <a href="{% provider_login_url 'naver'%}"> 
+            <img class='logo--img' src="{% static 'image/naver.png' %}" alt="">
+          </a>
+        </div>
+        <div class="logo--box">
+          <a href="{% provider_login_url 'google' method='oauth2' %}"> 
+            <img class='logo--img' src="{% static 'image/google.png' %}" alt="" >
+          </a>
+        </div>
+      </div>
+  
+      
     </div>
   </div>
 </div>

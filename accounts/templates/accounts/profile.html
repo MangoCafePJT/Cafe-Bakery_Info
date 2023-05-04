@@ -1,11 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Profile{% endblock title %}
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+{% endblock head %}
+{% block style %}
+<style>
+  section {
+    position: relative;
+  }
+</style>
+{% endblock style %}
 {% block content %}
+<a class="profile--backBtn" href="{% url 'main' %}"><뒤로</a>
   <div class="profile--box">
     <h1>{{ person.username }}님의 프로필 페이지</h1>
+  
     <div class="profile--card">
-      <div class="profile--image--box">
+      <div class="profile--image--box rounded-circle">
         {% if person.image %}
           <img src="{{ person.image.url }}" alt="" class="profile--img">
         {% else %}
@@ -13,7 +25,16 @@
         {% endif %}
       </div>
       <div class="profile--card--txt">
-        <p>이름 : {{ person.last_name }}
+        <div class='d-flex align-items-center'>
+          <p class="mb-0">이름 : {{ person.last_name }}
+            {% if request.user == person %}
+              <a href="{% url 'accounts:update' %}" class="profile--account--a">수정</a>
+              <form action="{% url 'accounts:delete' %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="profile--deleteBtn" value="탈퇴" onclick="return confirm('탈퇴 시, 더 이상 서비스를 이용하실 수 없습니다.\n정말 탈퇴하시겠습니까?')">
+              </form> 
+            {% endif %}
+        </div>
           {% if request.user != person %}
             <div>
               <form id="follow-form" data-user-id="{{ person.pk }}">
@@ -52,10 +73,10 @@
                 <div class="modal-header">
                   <h1 class="modal-title fs-5"  id="followersModalLabel">팔로워</h1>
                 </div>
-                <div class="modal-body" id = "f_follower_list">
+                <div class="modal-body row" id = "f_follower_list">
                   {% if request.user == person %}
                     {% for follower in person.followers.all %}
-                      <div class="modal--profile--card">
+                      <div class="modal--profile--card col-3">
                         <a class="text-decoration-none link-secondary fw-bold modal--profile--link" href="{% url 'accounts:profile' follower.username %}">
                           {% if follower.profile_image %}
                             <div class="profile--image rounded-circle">
@@ -71,7 +92,7 @@
                     {% endfor %}
 
                   {% else %}
-                      <div id="followers-list"></div>
+                      <div class="row" id="followers-list"></div>
                   {% endif %}
                 </div>
                 <div class="modal-footer">
@@ -87,9 +108,9 @@
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="followingsModalLabel">팔로잉</h1>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body row">
                   {% for following in person.followings.all %}
-                  <div class="modal--profile--card">
+                  <div class="modal--profile--card col-3">
                     <a class="text-decoration-none link-secondary fw-bold modal--profile--link" href="{% url 'accounts:profile' following.username %}">
                       {% if following.profile_image %}
                         <div class="profile--image rounded-circle">
@@ -113,9 +134,77 @@
       </div>
     </div>
   </div>
+  <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          {{ person.username }} 님이 작성한 모든 게시글
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne">
+        <div class="accordion-body">
+          {% for post in person.post_set.all %}
+            <div class="mb-1">
+              <i class="bi bi-clipboard-check-fill"></i>
+              <a class="profile--a" href="{% url 'posts:detail' post.pk %}">{{ post.title }}</a>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+          {{ person.username }} 님이 작성한 리뷰
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo">
+        <div class="accordion-body">
+          {% for review in person.review_set.all %}
+            <div class="mb-1">
+              <i class="bi bi-chat-dots-fill"></i>
+              <a class="profile--a" href="{% url 'posts:detail' review.post.pk %}">{{ review.title }}</a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+          {{ person.username }}님이 좋아요한 게시글
+        </button>
+      </h2>
+      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" >
+        <div class="accordion-body">
+          {% for post in person.like_posts.all %}
+            <i class="bi bi-clipboard-heart-fill"></i>
+            <a class="profile--a" href="{% url 'posts:detail' post.pk %}">{{ post.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingfour">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
+          {{ person.username }}님이 좋아요한 댓글
+        </button>
+      </h2>
+      <div id="flush-collapsefour" class="accordion-collapse collapse" aria-labelledby="flush-headingfour" >
+        <div class="accordion-body">
+          {% for review in person.like_reviews.all %}
+            <div >
+              <i class="bi bi-chat-heart-fill"></i>
+              <a class="profile--a" href="{% url 'posts:detail' review.post.pk %}">{{ review.title }}</a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
   
   
-  <div class="accordion" id="accordionPanelsStayOpenExample">
+  {% comment %} <div class="accordion" id="accordionPanelsStayOpenExample">
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
@@ -144,22 +233,12 @@
         </div>
       </div>
     </div>
-  </div>  
+  </div>   {% endcomment %}
 
-    <div>
-      <a href="{% url 'main' %}" class="accounts--btn">뒤로가기</a>
-    </div>
+    
+    
 
-    <div>
-      <a href="{% url 'accounts:update' %}" class="accounts--btn">회원정보수정</a>
-    </div>
-
-    <div>
-      <form action="{% url 'accounts:delete' %}" method="POST">
-        {% csrf_token %}
-        <input type="submit" class="accounts--btn" value="회원탈퇴" onclick="return confirm('탈퇴 시, 더 이상 서비스를 이용하실 수 없습니다.\n정말 탈퇴하시겠습니까?')">
-      </form>  
-    </div>
+    
   </div>
 
 {% endblock content %}
@@ -174,10 +253,11 @@
         .then((response) => {
           const followers = response.data.followers;
           const followersList = document.querySelector('#followers-list');
+          followersList.className = "row";
           followersList.innerHTML = '';
           followers.forEach(follower => {
             const followerTag = document.createElement('div');
-            followerTag.className = "modal--profile--card";
+            followerTag.className = "modal--profile--card col-3";
             const followerLink = document.createElement('a');
             followerLink.className = "text-decoration-none link-secondary fw-bold modal--profile--link";
             followerLink.href = `/accounts/profile/${follower.username}`
@@ -206,10 +286,10 @@
         });
     })
     
-  
     const form = document.querySelector('#follow-form');
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     const followersList = document.querySelector('#followers-list');
+    followersList.className = "row";
   
     form.addEventListener('submit', function(event) {
       event.preventDefault();
@@ -238,7 +318,7 @@
           // 팔로워 목록 출력
           followers.forEach(follower => {
             const followerTag = document.createElement('div');
-            followerTag.classList.add("modal--profile--card");
+            followerTag.classList.add("modal--profile--card", "col-3");
             const followerLink = document.createElement('a');
             followerLink.classList.add("text-decoration-none", "link-secondary", "fw-bold", "modal--profile--link");
             followerLink.href = "#";

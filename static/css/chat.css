@@ -1,0 +1,54 @@
+.chat--box {
+  margin: 15px 50px;
+  height: 25rem;
+  display: flex;
+  align-items: center;
+}
+
+.chat {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  border: 3px solid #825448;
+  border-radius: 10px;
+}
+
+/* .chat:hover {
+  background-color: rgb(255,237,202, 0.3);
+} */
+
+.chat p {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+
+.chat input {
+  margin-bottom: 10px;
+}
+
+#room-name-input {
+  height: 30px;
+  border: 1px solid #825448;
+}
+
+#room-name-input:focus {
+  outline: 0;
+  /* border: #825448; */
+  box-shadow: 0px 0px 2px 1px #682c0ec2;
+}
+
+#room-name-submit {
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  color: #682c0ec2;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 40;
+  margin-right: 10px;
+}

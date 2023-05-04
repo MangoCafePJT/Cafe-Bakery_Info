@@ -24,7 +24,6 @@ Review
 </style>
 {% endblock style %}
 {% block content %}
-
   <div class="posts--box">
     <div class="posts--create">
       <h1>솔직한 리뷰를 남겨주세요!</h1>
@@ -52,8 +51,6 @@ Review
           <label class="emoji-label review--imoge2" for="emoji-2" title="괜찮아요"></label>
           <input id="emoji-1" name="emotion" type="radio" value="1" />
           <label class="emoji-label review--imoge3" for="emoji-1" title="별로예요"></label>
-
-          
         </div>
         {{ image_form.as_p }}
         <input class="posts--reviewBtn" type="submit" value="리뷰등록">
@@ -64,36 +61,5 @@ Review
   </div>
 {% endblock content %}
 {% block script %}
-<script>
-  const stars = document.querySelectorAll('.star-rating label');
-  const ratingInput = document.querySelector('input[name="rating"]');
-
-  ratingInput.value = 5;
-  stars.forEach(star => star.classList.add('rating--orange'));
-  
-  stars.forEach((star, index) => {
-    star.addEventListener('click', () => {
-      ratingInput.value = index + 1;
-      for (let i = 0; i < stars.length; i++) {
-        if (i <= index) {
-          stars[i].classList.remove('rating--gray');
-          stars[i].classList.add('rating--orange');
-        } else {
-          stars[i].classList.remove('rating--orange');
-          stars[i].classList.add('rating--gray');
-        }
-      }
-    });
-  });
-
-  const emojis = document.querySelectorAll('.emoji-rating label');
-  const emotionInput = document.querySelector('input[name="emotion"]');
-
-  emojis.forEach(emoji => emoji.addEventListener('click', () => {
-    emotionInput.value = emoji.getAttribute('for').split('-')[1];
-    emojis.forEach(e => e.classList.remove('selected'));
-    emoji.classList.add('selected');
-  }));
-
-</script>
+<script src="{% static '/js/review.js' %}" type="text/javascript"></script>
 {% endblock script %}

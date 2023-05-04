@@ -152,6 +152,7 @@ class PostImageForm(forms.ModelForm):
 class DeleteImageForm(forms.Form):
     delete_images = forms.MultipleChoiceField(
         label='삭제할 이미지 선택',
+        required = False,
         widget=forms.CheckboxSelectMultiple,
         choices=[]
     )
@@ -215,3 +216,27 @@ class ReviewImageForm(forms.ModelForm):
     class Meta:
         model = ReviewImage
         fields = ('image',)
+
+
+class DeleteReviewImageForm(forms.Form):
+    delete_images = forms.MultipleChoiceField(
+        label='삭제할 이미지 선택',
+        required = False,
+        widget=forms.CheckboxSelectMultiple,
+        choices=[]
+    )
+
+    def __init__(self, review, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['delete_images'].choices = [
+            (image.pk, image.image.name) for image in ReviewImage.objects.filter(review=review)
+        ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        delete_ids = cleaned_data.get('delete_images')
+        if delete_ids:
+            images = ReviewImage.objects.filter(pk__in=delete_ids)
+            for image in images:
+                os.remove(os.path.join(settings.MEDIA_ROOT, image.image.path))
+            images.delete()

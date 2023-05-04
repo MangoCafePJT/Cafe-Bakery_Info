@@ -1,0 +1,123 @@
+@font-face {
+  font-family: 'LeeSeoyun';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* profile */
+.profile--followbtn {
+  border: none;
+  background-color: #682c0ec2;
+  color: white;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.profile--box {
+  margin: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile--box h1 {
+  text-align: center;
+  color: #682c0ec2;
+}
+
+.profile--image--box {
+  width: 220px;
+  height: 220px;
+  text-align: center;
+  line-height: 215px;
+  overflow: hidden;
+}
+
+.profile--img {
+  width: 220px;
+  height: 220px;
+}
+
+.profile--card {
+  display: flex;
+}
+
+.profile--card--txt {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile--modal--box {
+  border: 2px solid #682c0ec2;
+}
+
+.modal--profile--card {
+  width: 20%;
+}
+
+.modal--profile--link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile--a {
+  text-decoration: none;
+  color: black;
+  /* display: block;
+  text-align: center; */
+}
+.profile--account--a {
+  font-size: 15px;
+  color: rgb(170, 170, 170);
+  font-family: 'LeeSeoyun';
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.profile--backBtn {
+  text-decoration: none;
+  background-color: #682c0ec2;
+  color: white;
+  font-size: 15px ;
+  border-radius: 10px;
+  position: absolute;
+  padding: 5px 5px;
+  top: 0;
+  left: 10px;
+}
+
+.profile--deleteBtn{
+  position: inline-block;
+  background-color: #ffffff;
+  border: none;
+  color: rgb(170, 170, 170);
+  font-family: 'LeeSeoyun';
+  font-size: 15px ;
+  padding: 0;
+  margin-left: 10px;
+}
+
+.accordion-button:focus {
+  z-index: 3;
+  border-color: rgba(255, 158, 97, 0.25);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(255, 158, 97, 0.25);
+}
+
+.accordion-button:not(.collapsed) {
+  color: #682c0ec2;
+  background-color: #ffedca6c;
+}
+
+.accordion-button::after {
+  display: none;
+}
+
+.accordion-body i {
+  color: #682c0ec2;
+}
