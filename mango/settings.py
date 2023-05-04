@@ -54,18 +54,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.naver',
 ]
 
-# Channels _ 수정
-ASGI_APPLICATION = 'mango.routing.application'
 
-CHANNEL_LAYERS = {
-    "default": {
-        # "BACKEND": "channels.layers.InMemoryChannelLayer",
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        }
-    },
-}
 
 TAGGIT_CASE_INSENSITIVE = True
 TAGGIT_LIMIT = 50
@@ -99,6 +88,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mango.wsgi.application'
+ASGI_APPLICATION = 'mango.asgi.application'
 
 
 # Database
@@ -172,3 +162,14 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'  # 로그인 후 리다이렉트 될 경로
+
+# Channels _ 수정
+# CHANNEL_LAYERS = {
+#     "default": {
+#         # "BACKEND": "channels.layers.InMemoryChannelLayer",
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],
+#         }
+#     },
+# }
