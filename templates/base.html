@@ -43,8 +43,10 @@
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'accounts:profile' user %}">{{ user }}</a></li>
-              <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
               <li><a class="dropdown-item" href="{% url 'posts:city' %}"> {{ request.user.region }} 지역 List </a></li>
+              <li><a class="dropdown-item" href="{% url 'my_messages:inbox_messages' %}"> 받은 쪽지함<i class="bi bi-envelope-heart  ms-2"></i> </a></li>
+              <li><a class="dropdown-item" href="{% url 'my_messages:sent_messages' %}"> 보낸 쪽지함<i class="bi bi-envelope-open-heart  ms-2"></i> </a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
             </ul>
           </div>
           {% else %}
@@ -54,8 +56,10 @@
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'accounts:profile' user %}">{{ user }}</a></li>
-              <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
               <li><a class="dropdown-item" href="{% url 'posts:city' %}"> {{ request.user.region }} 지역 List </a></li>
+              <li><a class="dropdown-item" href="{% url 'my_messages:inbox_messages' %}"> 받은 쪽지함<i class="bi bi-envelope-heart ms-2"></i> </a></li>
+              <li><a class="dropdown-item" href="{% url 'my_messages:sent_messages' %}"> 보낸 쪽지함<i class="bi bi-envelope-open-heart  ms-2"></i> </a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
             </ul>
           </div>
           {% endif %}

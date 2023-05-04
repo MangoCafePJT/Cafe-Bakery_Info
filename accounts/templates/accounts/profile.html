@@ -14,7 +14,11 @@
 {% block content %}
 <a class="profile--backBtn" href="{% url 'main' %}"><뒤로</a>
   <div class="profile--box">
-    <h1>{{ person.username }}님의 프로필 페이지</h1>
+    <h1>{{ person.username }}님의 프로필 페이지
+      {% if request.user.username != person.username %}
+        <a href="{% url 'my_messages:reply' person.pk %}"><i class="bi bi-envelope-paper-heart chat--btn--txt"></i></a>
+      {% endif %}
+    </h1>
   
     <div class="profile--card">
       <div class="profile--image--box rounded-circle">

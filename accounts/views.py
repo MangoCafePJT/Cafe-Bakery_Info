@@ -15,7 +15,6 @@ def login(request):
         if form.is_valid():
             auth_login(request, form.get_user())
             return redirect('posts:index')
-      
     else:
         form = CustomAuthenticationForm()
     context = {

@@ -48,8 +48,11 @@ Chat Room
         document.querySelector('#chat-log').value += (data.message + '\n');
     };
 
-    chatSocket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        const chatLog = document.querySelector('#chat-log');
+        chatLog.value += (data.message + '\n');
+        chatLog.scrollTop = chatLog.scrollHeight;
     };
 
     document.querySelector('#chat-message-input').focus();

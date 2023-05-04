@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'accounts',
     'posts',
     'chat',
+    'my_messages',
     'imagekit',
     'taggit',
 	'taggit_templatetags2',

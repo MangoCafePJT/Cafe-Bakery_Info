@@ -28,6 +28,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('posts/', include('posts.urls')),
     path('chat/', include('chat.urls')),
+    path('my_messages/', include('my_messages.urls')),
     # 구글 정보 받아오기
     # path('login/', LoginTemplateView.as_view(), name='login'),
     # path('accounts/login/', MyLoginView.as_view(), name='account_login'),

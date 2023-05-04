@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Sent Messages</h1>
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li>
+        {% comment %} <strong>To:</strong> <a href="{% url 'my_messages:reply' message.receiver.id %}">{{ message.receiver }}</a><br> {% endcomment %}
+        <strong>To:</strong> <a href="{% url 'my_messages:reply' message.receiver.id %}">{{ message.receiver.username }}</a><br>
+        <strong>Subject:</strong> {{ message.content|truncatewords:10 }}<br>
+        <strong>Sent:</strong> {{ message.timestamp }}
+      </li>
+    {% empty %}
+      <p>You haven't sent any messages yet.</p>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>You haven't sent any messages yet.</p>
+  {% endif %}
+{% endblock %}

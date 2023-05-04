@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>My Messages</h2>
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>
+          <strong>From:</strong> <a href="{% url 'my_messages:reply' message.sender.id %}">{{ message.sender }}</a>
+          <br>
+          <strong>Content:</strong> {{ message.content }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>You have no messages.</p>
+  {% endif %}
+{% endblock %}
