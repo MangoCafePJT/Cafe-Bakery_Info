@@ -395,3 +395,7 @@
   color: #682c0ec2;
   font-size: 20px;
 }
+
+.hide {
+  display: none;
+}

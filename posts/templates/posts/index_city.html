@@ -116,13 +116,13 @@
                             <form id="likes-form-{{ post.pk }}" data-post-id="{{ post.pk }}" class="index--heart">
                               {% csrf_token %}
                               {% if request.user in post.like_users.all %}
-                                  <button class="btn btn-link text-danger p-0" type="submit">
-                                    <i class="bi bi-suit-heart-fill"></i>
-                                  </button>
+                                <button class="btn btn-link text-danger p-0" type="submit">
+                                  <i class="bi bi-suit-heart-fill"></i>
+                                </button>
                               {% else %}
-                                  <button class="btn btn-link text-danger p-0" type="submit">
-                                    <i class="bi bi-suit-heart"></i>
-                                  </button>
+                                <button class="btn btn-link text-danger p-0" type="submit">
+                                  <i class="bi bi-suit-heart"></i>
+                                </button>
                               {% endif %}
                             </form>
                           {% else %}
@@ -143,184 +143,13 @@
         </div>
         <button id="nextbtnb" class="carousel--btn--right"></button>
       </div>
-  </div>
+    </div>
   <div class="message--btn"><a href="{% url 'my_messages:send_message' %}" class="chat--btn--txt"><i class="bi bi-envelope-heart"></i></a></div>
   <div class="chat--btn"><a href="{% url 'chat:index' %}" class="chat--btn--txt"><i class="bi bi-chat-square-heart"></i></a></div>
 {% endblock content %}
 
 {% block script %}
-<script>
-  const forms = document.querySelectorAll('[id^="likes-form-"]');
-  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-  forms.forEach(function (form) {
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      const postId = event.target.dataset.postId;
-      axios({
-        method: 'post',
-        url: `/posts/${postId}/likes/`,
-        headers: {'X-CSRFToken': csrftoken},
-      })
-        .then((response) => {
-          const isLiked = response.data.is_liked;
-          const likesCountSpan = form.nextElementSibling;
-          likesCountSpan.textContent = response.data.likes_count;
-          const heartIcon = form.querySelector('i');
-          if (isLiked) {
-            heartIcon.classList.remove('bi-suit-heart');
-            heartIcon.classList.add('bi-suit-heart-fill');
-          } else {
-            heartIcon.classList.remove('bi-suit-heart-fill');
-            heartIcon.classList.add('bi-suit-heart');
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    });
-  });
-
-  class cafeCarousel {
-    constructor() {
-      this.index = 0;
-      this.$carousel = document.querySelector("#cafe-carousel");
-      this.$prevButton = document.querySelector("#prevbtn");
-      this.$nextButton = document.querySelector("#nextbtn");
-  
-      this.$prevButton.addEventListener("click", () => {
-        this.prev();
-      });
-  
-      this.$nextButton.addEventListener("click", () => {
-        this.next();
-      });
-  
-      if (this.index === 0) {
-        this.$prevButton.hidden = true;
-      }
-      
-      if (this.$carousel.childElementCount <= 3) {
-        this.$nextButton.hidden = true;
-      }
-
-      if (this.index === 0 && this.$carousel.childElementCount > 3) {
-        this.$nextButton.hidden = false;
-      }
-    }
-  
-    prev() {
-      if (this.index <= 0) return;
-      this.index -= 2;
-  
-      this.$carousel.style.transform = `translate3d(-${
-        250 * this.index
-      }px, 0, 0)`;
-  
-      if (this.index <= 0) {
-        this.$prevButton.hidden = true;
-      } else {
-        this.$prevButton.hidden = false;
-      }
-      if (this.index >= this.$carousel.childElementCount - 2) {
-        this.$nextButton.hidden = true;
-      } else {
-        this.$nextButton.hidden = false;
-      }
-    }
-  
-    next() {
-      if (this.index >= this.$carousel.childElementCount - 2) return;
-      this.index += 2;
-  
-      this.$carousel.style.transform = `translate3d(-${
-        250 * this.index
-      }px, 0, 0)`;
-      if (this.index <= 0) {
-        this.$prevButton.hidden = true;
-      } else {
-        this.$prevButton.hidden = false;
-      }
-      if (this.index >= this.$carousel.childElementCount - 2) {
-        this.$nextButton.hidden = true;
-      } else {
-        this.$nextButton.hidden = false;
-      }
-    }
-  }
-  
-  const cafecarousel = new cafeCarousel();
-
-class bakeryCarousel {
-  constructor() {
-    this.index = 0;
-    this.$bakerycarousel = document.querySelector("#bakery-carousel");
-    this.$prevButtonb = document.querySelector("#prevbtnb");
-    this.$nextButtonb = document.querySelector("#nextbtnb");
-
-    this.$prevButtonb.addEventListener("click", () => {
-      this.prevb();
-    });
-
-    this.$nextButtonb.addEventListener("click", () => {
-      this.nextb();
-    });
-
-  
-    if (this.index === 0) {
-      this.$prevButtonb.hidden = true;
-    }
-    
-    if (this.$bakerycarousel.childElementCount <= 3) {
-      this.$nextButtonb.hidden = true;
-    }
-
-    if (this.index === 0 && this.$bakerycarousel.childElementCount > 3) {
-      this.$nextButtonb.hidden = false;
-    }
-  }
-
-  prevb() {
-    if (this.index <= 0) return;
-    this.index -= 2;
-
-    this.$bakerycarousel.style.transform = `translate3d(-${
-      250 * this.index
-    }px, 0, 0)`;
-
-    if (this.index <= 0) {
-      this.$prevButtonb.hidden = true;
-    } else {
-      this.$prevButtonb.hidden = false;
-    }
-    if (this.index >= this.$bakerycarousel.childElementCount - 2) {
-      this.$nextButtonb.hidden = true;
-    } else {
-      this.$nextButtonb.hidden = false;
-    }
-  }
-
-  nextb() {
-    if (this.index >= this.$bakerycarousel.childElementCount - 2) return;
-    this.index += 2;
-
-    this.$bakerycarousel.style.transform = `translate3d(-${
-      250 * this.index
-    }px, 0, 0)`;
-    if (this.index <= 0) {
-      this.$prevButtonb.hidden = true;
-    } else {
-      this.$prevButtonb.hidden = false;
-    }
-    if (this.index >= this.$bakerycarousel.childElementCount - 2) {
-      this.$nextButtonb.hidden = true;
-    } else {
-      this.$nextButtonb.hidden = false;
-    }
-  }
-}
-
-const bakerycarousel = new bakeryCarousel();
-</script>
-
+<script src="{% static '/js/index_city_likes.js' %}" type="text/javascript"></script>
+<script src="{% static '/js/index_city_cafecarousel.js' %}" type="text/javascript"></script>
+<script src="{% static '/js/index_city_bakerycarousel.js' %}" type="text/javascript"></script>
 {% endblock script %}
