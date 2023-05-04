@@ -16,18 +16,18 @@
         <input type="submit" value="Back" class="accounts--btn" onclick=window.history.back()>
       </form>
       <hr>
-      <div>
-        <div class="logo--box">
+      <div class="row">
+        <div class="logo--box col-4">
           <a href="{% provider_login_url 'kakao' process="login" method='oauth2'%}">
-            <img class='logo--img' src="{% static 'image/kakaotalk.png' %}" alt="">
+            <img class='logo--img' src="{% static 'image/kakao.png' %}" alt="">
           </a>
         </div>
-        <div class="logo--box">
+        <div class="logo--box col-4">
           <a href="{% provider_login_url 'naver'%}"> 
             <img class='logo--img' src="{% static 'image/naver.png' %}" alt="">
           </a>
         </div>
-        <div class="logo--box">
+        <div class="logo--box col-4">
           <a href="{% provider_login_url 'google' method='oauth2' %}"> 
             <img class='logo--img' src="{% static 'image/google.png' %}" alt="" >
           </a>

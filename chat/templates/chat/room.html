@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="../../static/css/chatting.css"/>
 {% endblock css %}
 
@@ -25,12 +25,6 @@ Chat Room
 {% endblock style %}
 
 {% block content %}
-<<<<<<< HEAD
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
-    {{ room_name|json_script:"room-name" }}
-=======
 <div class="container">
     <div class ="row d-flex justify-content-center">
         <div class="form-group"></div>
@@ -40,15 +34,10 @@ Chat Room
         {{ room_name|json_script:"room-name" }}
     </div>  
 </div>
->>>>>>> 38ed4d81d1ff260635df526541e07ad7dfec92ab
 {% endblock content %}
 
 {% block script %}
 <script>
-<<<<<<< HEAD
-
-=======
->>>>>>> 38ed4d81d1ff260635df526541e07ad7dfec92ab
     const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
     const chatSocket = new WebSocket(
