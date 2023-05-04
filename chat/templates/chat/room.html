@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../static/css/chatting.css"/>
+{% endblock css %}
+
 {% block title %}
 Chat Room
 {% endblock title %}
@@ -14,10 +25,15 @@ Chat Room
 {% endblock style %}
 
 {% block content %}
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
-    {{ room_name|json_script:"room-name" }}
+<div class="container">
+    <div class ="row d-flex justify-content-center">
+        <div class="form-group"></div>
+        <textarea id="chat-log" cols="62" rows="20"></textarea><br>
+        <input id="chat-message-input" type="text" size="50">
+        <input id="chat-message-submit" type="button" value="Send">
+        {{ room_name|json_script:"room-name" }}
+    </div>  
+</div>
 {% endblock content %}
 
 {% block script %}
