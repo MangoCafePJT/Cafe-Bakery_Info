@@ -2,6 +2,9 @@ from django import forms
 from .models import Post, Review, PostImage, ReviewImage
 from taggit.forms import TagField, TagWidget
 from taggit.managers import TaggableManager
+from django.conf import settings
+import os
+
 
 class PostForm(forms.ModelForm):
     title = forms.CharField(
@@ -133,7 +136,7 @@ class PostForm(forms.ModelForm):
         
 class PostImageForm(forms.ModelForm):
     image = forms.ImageField(
-        label='관련 이미지',
+        label='관련 이미지(필수)',
         widget=forms.ClearableFileInput(
             attrs={
                 'multiple': True, 
@@ -146,10 +149,32 @@ class PostImageForm(forms.ModelForm):
         model = PostImage
         fields = ('image',)
 
+class DeleteImageForm(forms.Form):
+    delete_images = forms.MultipleChoiceField(
+        label='삭제할 이미지 선택',
+        widget=forms.CheckboxSelectMultiple,
+        choices=[]
+    )
+
+    def __init__(self, post, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['delete_images'].choices = [
+            (image.pk, image.image.name) for image in PostImage.objects.filter(post=post)
+        ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        delete_ids = cleaned_data.get('delete_images')
+        if delete_ids:
+            images = PostImage.objects.filter(pk__in=delete_ids)
+            for image in images:
+                os.remove(os.path.join(settings.MEDIA_ROOT, image.image.path))
+            images.delete()
+
 class ReviewForm(forms.ModelForm):
     title = forms.CharField(
         max_length=50, 
-        label='Title', 
+        label='리뷰 제목', 
         widget=forms.TextInput(
             attrs={
                 'required': True,
@@ -161,7 +186,7 @@ class ReviewForm(forms.ModelForm):
     )
     content = forms.CharField(
         max_length=200, 
-        label='Content', 
+        label='리뷰 내용', 
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
@@ -176,7 +201,17 @@ class ReviewForm(forms.ModelForm):
         
 
 class ReviewImageForm(forms.ModelForm):
+    image = forms.ImageField(
+        label='이미지',
+        required = False,
+        widget=forms.ClearableFileInput(
+            attrs={
+                'multiple': True, 
+                'class': 'form-control', 
+                'style' : 'width: 400px;'
+            }
+        ),
+    )
     class Meta:
         model = ReviewImage
         fields = ('image',)
-        widgets = {'image': forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control', 'style' : 'width: 400px;'})}

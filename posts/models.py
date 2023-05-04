@@ -58,11 +58,13 @@ class Post(models.Model):
     tags = TaggableManager()
     rating = models.DecimalField(default=0, max_digits=5, decimal_places=1)
 
-    slug = models.SlugField(allow_unicode=True)
+    # slug = models.SlugField(allow_unicode=True)
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.slug, allow_unicode=True)
-        super(Post, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not self.slug:
+    #         self.slug = slugify(self.title, allow_unicode=True)
+    #     super(Post, self).save(*args, **kwargs)
+
 
     def __str__(self):
         return self.title
@@ -88,13 +90,6 @@ class Post(models.Model):
         for image in images:
             image.delete()
         super(Post, self).delete(*args, **kargs)
-        
-    # def save(self, *args, **kwargs):
-    #     if self.id:
-    #         old_post = self.postimage_set.all()
-    #         for image in old_post:
-    #             image.delete()
-    #     super(Post, self).save(*args, **kwargs)
 
 class PostImage(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

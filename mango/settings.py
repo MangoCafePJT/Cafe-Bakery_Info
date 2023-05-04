@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.kakao',
+    # 네이버 추가
+    'allauth.socialaccount.providers.naver',
 ]
 
 

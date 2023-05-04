@@ -8,6 +8,7 @@
           {% csrf_token %}
           {{ post_form.as_p}}
           {{ image_form.as_p}}
+          {{ delete_form.as_p }}
           <input class="posts--btn" type="submit">
         </form>
     </div>
