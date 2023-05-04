@@ -7,13 +7,6 @@
 {% block head %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
 {% endblock head %}
-{% block style %}
-<style>
-  .hide {
-    display: none;
-  }
-</style>
-{% endblock style %}
 
 {% block content %}
 <div class="detail--box">
@@ -34,7 +27,7 @@
     <div class="detail--map">
       <p class="map--title">{{ post.title }} location <i class="bi bi-signpost-2-fill"></i></p>
       <div class="detail--address">{{ post.address }}</div>
-      <div class="map" id="map"></div>
+      <div class="map" id="map" data-longitude="{{ longitude }}" data-latitude="{{ latitude }}"></div>
     </div>
     <div class="detail--info--box">
       <div class="review--btn">
@@ -230,188 +223,9 @@
 {% block script %}
 {{ block.super }}
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ kakao_script_key }}&libraries=services"></script>
-  <script>
-    const latitude = {{ latitude }};
-    const longitude = {{ longitude }};
-    const container = document.getElementById('map');
-    const options = {
-        center: new kakao.maps.LatLng(latitude, longitude),
-        level: 3
-    };
-    const map = new kakao.maps.Map(container, options);
-    const markerPosition = new kakao.maps.LatLng(latitude, longitude);
-    const marker = new kakao.maps.Marker({
-        position: markerPosition
-    });
-    marker.setMap(map);
-  </script>
-    
+  <script src="{% static '/js/detail_map.js' %}" type="text/javascript"></script>
   <script src="{% static '/js/detail_carousel.js' %}" type="text/javascript"></script>
-  <script>
-    const ratingBtns = document.querySelectorAll('.rating-btn');
-    if (ratingBtns.length) {
-      ratingBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const ratingFilter = btn.dataset.value;
-          const url = new URL(window.location.href);
-          let params = new URLSearchParams(url.search.slice(1));
-          const ratingFilters = params.getAll('rating-filter');
-          params.delete('rating-filter');
-          if (Array.isArray(ratingFilters) && ratingFilters.length) {
-            for (let i = 0; i < ratingFilters.length; i++) {
-              if (ratingFilters[i] !== ratingFilter) {
-                params.append('rating-filter', ratingFilters[i]);
-              }
-            }
-          }
-          if (!ratingFilters.includes(ratingFilter)) {
-            params.append('rating-filter', ratingFilter);
-          }
-          url.search = params.toString();
-          window.location.href = url.toString();
-        });
-      });
-    }
-
-    const emotionBtns = document.querySelectorAll('.emotion-btn');
-    if (emotionBtns.length) {
-      emotionBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const emotionFilter = btn.dataset.value;
-          const url = new URL(window.location.href);
-          let params = new URLSearchParams(url.search.slice(1));
-          const emotionFilters = params.getAll('emotion-filter');
-          params.delete('emotion-filter');
-          if (Array.isArray(emotionFilters) && emotionFilters.length) {
-            for (let i = 0; i < emotionFilters.length; i++) {
-              if (emotionFilters[i] !== emotionFilter) {
-                params.append('emotion-filter', emotionFilters[i]);
-              }
-            }
-          }
-          if (!emotionFilters.includes(emotionFilter)) {
-            params.append('emotion-filter', emotionFilter);
-          }
-          url.search = params.toString();
-          window.location.href = url.toString();
-        });
-      });
-    }
-    
-    const allRatingsBtn = document.querySelector('#rating-filter > button[data-value=""]');
-    allRatingsBtn.addEventListener('click', () => {
-      const url = new URL(window.location.href);
-      url.searchParams.delete('rating-filter');
-      window.location.href = url.toString();
-    });
-
-    const allEmotionsBtn = document.querySelector('#emotion-filter > button[data-value=""]');
-    allEmotionsBtn.addEventListener('click', () => {
-      const url = new URL(window.location.href);
-      url.searchParams.delete('emotion-filter');
-      window.location.href = url.toString();
-    });
-
-
-    const reviews = document.querySelectorAll('#review-list');
-    for (let i = 5; i < reviews.length; i++) {
-      reviews[i].classList.add('hide');
-    }
-    const btnMore = document.querySelector('#btn-more');
-    const hideClass = 'hide';
-    let visibleReviews = 5;
-    function showNextReviews() {
-      for (let i = visibleReviews; i < visibleReviews + 5 && i < reviews.length; i++) {
-        reviews[i].classList.remove(hideClass);
-      }
-      visibleReviews += 5;
-      if (visibleReviews >= reviews.length) {
-        btnMore.textContent = '간략히';
-      }
-    }
-    btnMore.addEventListener('click', function() {
-      if (visibleReviews >= reviews.length) {
-        visibleReviews = 5;
-        for (let i = visibleReviews; i < reviews.length; i++) {
-          reviews[i].classList.add(hideClass);
-        }
-        btnMore.textContent = '더보기';
-      } else {
-        showNextReviews();
-      }
-    });
-    if (reviews.length <= 5) {
-      btnMore.classList.add(hideClass);
-    }
-
-    {% comment %} if (reviews.length <= 5) {
-      btnMore.classList.add(hideClass);
-      btnLess.classList.add(hideClass);
-    } else {
-      btnLess.classList.add(hideClass);
-    } {% endcomment %}
-
-    
-
-    
-    {% comment %} Post like {% endcomment %}
-    const form = document.querySelector('#likes-form')
-    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-    form.addEventListener('submit', function (event) {
-      event.preventDefault()
-      const postId = event.target.dataset.postId
-      axios({
-        method: 'post',
-        url: `/posts/${postId}/likes/`,
-        headers: {'X-CSRFToken': csrftoken},
-      })
-        .then((response) => {
-          const isLiked = response.data.is_liked
-          const likeBtn = document.querySelector('#post-heart')
-          
-          if (isLiked === true) {
-            likeBtn.classList.remove('bi-suit-heart');
-            likeBtn.classList.add('bi-suit-heart-fill');
-          } else {
-            likeBtn.classList.remove('bi-suit-heart-fill');
-            likeBtn.classList.add('bi-suit-heart');
-          }
-          const likesCountTag = document.querySelector('#likes-count')
-          const likesCountData = response.data.likes_count
-          likesCountTag.textContent = likesCountData
-        })
-    })
-
-    {% comment %} Review like {% endcomment %}
-    const forms = document.querySelectorAll('[id^="review-like-form-"]');
-    const r_csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-    forms.forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const postId = event.target.dataset.postId;
-        const reviewId = event.target.dataset.reviewId;
-        axios({
-          method: 'post',
-          url: `/posts/${postId}/reviews/${reviewId}/likes/`,
-          headers: {'X-CSRFToken': r_csrftoken},
-        })
-        .then((response) => {
-          const risLiked = response.data.r_is_liked;
-          const reviewlikesCountSpan = form.nextElementSibling;
-          reviewlikesCountSpan.textContent = response.data.review_likes_count;
-          const heartIcon = form.querySelector('#review-heart');
-          if (risLiked) {
-            heartIcon.classList.remove('bi-suit-heart');
-            heartIcon.classList.add('bi-suit-heart-fill');
-          } else {
-            heartIcon.classList.remove('bi-suit-heart-fill');
-            heartIcon.classList.add('bi-suit-heart');
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-      });
-    });
-</script>
+  <script src="{% static '/js/detail_filter.js' %}" type="text/javascript"></script>
+  <script src="{% static '/js/detail_showmore.js' %}" type="text/javascript"></script>
+  <script src="{% static '/js/detail_likes.js' %}" type="text/javascript"></script>
 {% endblock script %}
