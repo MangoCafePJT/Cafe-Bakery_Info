@@ -2,9 +2,11 @@ from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Message
+from . forms import ReplyMessageForm
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
+from django.shortcuts import redirect
 
 
 class MessageCreateView(LoginRequiredMixin, CreateView):
@@ -25,7 +27,6 @@ class MessageListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Message.objects.filter(receiver=self.request.user)
 
-  
 class SentMessagesView(LoginRequiredMixin, ListView):
     model = Message
     template_name = 'my_messages/sent_messages.html'
@@ -35,7 +36,7 @@ class SentMessagesView(LoginRequiredMixin, ListView):
         return Message.objects.filter(sender=self.request.user)
 
 
-class ReplyMessageView(LoginRequiredMixin, CreateView):
+# class ReplyMessageView(LoginRequiredMixin, CreateView):
     # 사용자 선택 가능
     # model = Message
     # fields = ['receiver', 'content']
@@ -52,8 +53,9 @@ class ReplyMessageView(LoginRequiredMixin, CreateView):
     #     return super().form_valid(form)
 
     #사용자 선택 불가능
+class ReplyMessageView(LoginRequiredMixin, CreateView):
     model = Message
-    fields = ['content']
+    form_class = ReplyMessageForm
     success_url = reverse_lazy('my_messages:sent_messages')
 
     def get_initial(self):
@@ -67,3 +69,12 @@ class ReplyMessageView(LoginRequiredMixin, CreateView):
         form.instance.sender = self.request.user
         form.instance.receiver = get_object_or_404(get_user_model(), id=self.kwargs['sender_id'])
         return super().form_valid(form)
+    
+def delete(request, message_pk):
+    message = Message.objects.get(pk=message_pk)
+    message.delete()
+    if message.receiver == request.user:
+        return redirect('my_messages:inbox_messages')
+    elif message.sender == request.user:
+        return redirect ('my_messages:sent_messages')
+

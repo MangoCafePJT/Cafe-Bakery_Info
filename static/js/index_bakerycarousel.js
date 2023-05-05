@@ -68,3 +68,4 @@ class bakeryCarousel {
 }
 
 const bakerycarousel = new bakeryCarousel();
+

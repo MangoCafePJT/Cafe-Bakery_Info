@@ -67,3 +67,5 @@ class cafeCarousel {
 }
 
 const cafecarousel = new cafeCarousel();
+
+

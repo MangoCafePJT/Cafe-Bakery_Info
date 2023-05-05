@@ -27,3 +27,4 @@ emojis.forEach(emoji => emoji.addEventListener('click', () => {
   emojis.forEach(e => e.classList.remove('selected'));
   emoji.classList.add('selected');
 }));
+

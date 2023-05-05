@@ -11,13 +11,9 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  border: 3px solid #825448;
+  border: 3px solid #ab7aff;
   border-radius: 10px;
 }
-
-/* .chat:hover {
-  background-color: rgb(255,237,202, 0.3);
-} */
 
 .chat p {
   margin-top: 10px;
@@ -32,20 +28,20 @@
 
 #room-name-input {
   height: 30px;
-  border: 1px solid #825448;
+  border: 1px solid #ab7aff;
+  border-radius: 10px;
 }
 
 #room-name-input:focus {
   outline: 0;
-  /* border: #825448; */
-  box-shadow: 0px 0px 2px 1px #682c0ec2;
+  box-shadow: 0px 0px 2px 1px rgba(132, 105, 177, 0.4);
 }
 
 #room-name-submit {
   border: none;
   border-radius: 10px;
   background-color: white;
-  color: #682c0ec2;
+  color: rgba(189, 151, 255, 0.4);
 }
 
 .material-symbols-outlined {
@@ -54,7 +50,58 @@
 }
 
 #chat-message-submit {
+  background-color: #fff0;
   border: none;
-  background-color: #825448;
-  color: white;
+  font-size: 20px;
+  color: #ab7aff;
+}
+
+#chat-message-submit:focus {
+  outline: 0;
+  border-color: rgba(132, 105, 177, 0.4);
+}
+
+#chat-log {
+  border: 1px solid rgba(189, 151, 255, 0.4);
+  border-radius: 10px;
+  margin-top: 10px;
+  pointer-events: none;
+  font-size: 15px;
+  color: rgb(83, 83, 83);
+  font-family: 'LeeSeoyun';
+}
+
+#chat-log:focus {
+  outline: 0;
+  border-color: rgba(132, 105, 177, 0.4);
+}
+
+#chat-log::-webkit-scrollbar {
+  border-radius: 10px;
+  width: 5px;
+  margin-right: 5px;
+}
+
+#chat-log::-webkit-scrollbar-thumb {
+  background-color: rgba(189, 151, 255, 0.4);
+  border-radius: 10px;
+  background-clip: padding-box;
+}
+
+#chat-log::-webkit-scrollbar-track {
+  margin: 5px;
+}
+
+#chat-message-input {
+  border: 1px solid rgba(189, 151, 255, 0.4);
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 15px;
+  color: rgb(83, 83, 83);
+  font-family: 'LeeSeoyun';
+}
+
+#chat-message-input:focus {
+  border-color: rgba(132, 105, 177, 0.4);
+  outline: 0;
 }

@@ -3,12 +3,14 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Review, PostImage, ReviewImage
 from .forms import PostForm, ReviewForm, PostImageForm, ReviewImageForm, DeleteImageForm, DeleteReviewImageForm
 from django.http import JsonResponse
-from django.db.models import Q
+from django.db.models import Prefetch, Q
 from utils.map import get_latlng_from_address
 import os
 from django.db.models import Count
 from django.core.paginator import Paginator
 from django.db.models import Count
+from django.core.cache import cache
+from taggit.models import Tag
 
 
 @login_required
@@ -129,9 +131,12 @@ def create(request):
     return render(request, 'posts/create.html', context)
 
 
+@login_required
 def detail(request, post_pk):
     kakao_script_key = os.getenv('kakao_script_key')
-    post = Post.objects.get(pk=post_pk)
+    post = Post.objects.select_related('user').prefetch_related(
+        Prefetch('reviews', queryset=Review.objects.select_related('user'))
+    ).get(pk=post_pk)
 
     rating_filter = request.GET.getlist('rating-filter')
     emotion_filter = request.GET.getlist('emotion-filter')
@@ -151,18 +156,13 @@ def detail(request, post_pk):
                 emotion_filter_q |= Q(emotion=int(emotion))
         filter_args &= emotion_filter_q
         
-    reviews = post.reviews.filter(filter_args).order_by('-created_at')
-
-    # paginator = Paginator(reviews, 5)
-    # page_number = request.GET.get('page')
-    # page_obj = paginator.get_page(page_number)
-
+    reviews = post.reviews.order_by('-created_at')
     address = post.address
     latitude, longitude = get_latlng_from_address(address)
     post_form = PostForm()
     review_form = ReviewForm()
     post_images = []
-    images = PostImage.objects.filter(post=post)
+    images = post.postimage_set.all()
     tags = post.tags.all()
     if images:
         post_images.append((post, images))
@@ -180,7 +180,6 @@ def detail(request, post_pk):
         'review_form': review_form,
     }
     return render(request, 'posts/detail.html', context)
-
 
 @login_required
 def delete(request, post_pk):
@@ -214,7 +213,6 @@ def update(request, post_pk):
     else:
         post_form = PostForm(instance=post)
         delete_form = DeleteImageForm(post=post)
-    # images = post.postimage_set.all()
     if post.postimage_set.exists():
         image_form = PostImageForm(instance=post.postimage_set.first())
     else:
@@ -243,8 +241,9 @@ def review_create(request, post_pk):
             rating = 5
     if request.method == 'POST':
         review_form = ReviewForm(request.POST)
+        image_form = ReviewImageForm(request.POST, request.FILES)
         files = request.FILES.getlist('image')
-        if review_form.is_valid():
+        if review_form.is_valid() and image_form.is_valid():
             review = review_form.save(commit=False)
             review.post = post
             review.user = request.user
@@ -295,7 +294,6 @@ def review_update(request, post_pk, review_pk):
             for i in files:
                 ReviewImage.objects.create(image=i, review=review)
             return redirect('posts:detail', post.pk)
-    # images = review.reviewimage_set.all()
     if review.reviewimage_set.exists():
         image_form = ReviewImageForm(instance=review.reviewimage_set.first())
     else:
@@ -383,7 +381,7 @@ def search(request):
 
     return render(request, 'posts/search.html', context)
 
-from taggit.models import Tag
+
 
 def tagged_posts(request, tag_pk):
     tag = Tag.objects.get(pk=tag_pk)

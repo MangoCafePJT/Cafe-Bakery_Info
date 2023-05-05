@@ -203,8 +203,8 @@ class ReviewForm(forms.ModelForm):
 
 class ReviewImageForm(forms.ModelForm):
     image = forms.ImageField(
-        label='이미지',
-        required = False,
+        label='이미지(최대 3장)',
+        required=False,
         widget=forms.ClearableFileInput(
             attrs={
                 'multiple': True, 
@@ -213,9 +213,18 @@ class ReviewImageForm(forms.ModelForm):
             }
         ),
     )
+
     class Meta:
         model = ReviewImage
         fields = ('image',)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        images = self.files.getlist('image')
+
+        if images:
+            if len(images) > 3:
+                raise forms.ValidationError("이미지는 최대 3개까지만 선택 가능합니다.")
 
 
 class DeleteReviewImageForm(forms.Form):

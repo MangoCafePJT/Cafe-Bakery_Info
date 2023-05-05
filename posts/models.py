@@ -99,7 +99,8 @@ class PostImage(models.Model):
     image = ProcessedImageField(
         upload_to=post_image_path,
         blank=True, 
-        null=True,)
+        null=True,
+        options={'quality':90})
     
     def delete(self, *args, **kargs):
         if self.image:
@@ -108,6 +109,17 @@ class PostImage(models.Model):
             if not os.listdir(dir_path):
                 os.rmdir(dir_path)
         super(PostImage, self).delete(*args, **kargs)
+
+
+    # def delete(self, *args, **kargs):
+    #     if self.image:
+    #         image_path = os.path.join(settings.MEDIA_ROOT, self.image.name)
+    #         if os.path.exists(image_path):
+    #             os.remove(image_path)
+    #             dir_path = os.path.dirname(image_path)
+    #             if not os.listdir(dir_path):
+    #                 os.rmdir(dir_path)
+    #     super(PostImage, self).delete(*args, **kargs)
 
 
 class Review(models.Model):
@@ -146,7 +158,13 @@ class Review(models.Model):
         self.post.rating = (self.post.rating*self.post.reviews.count() + self.rating) / (self.post.reviews.count() + 1)
         self.post.save()
         super(Review, self).save(*args, **kwargs)
-        
+
+# from django.core.exceptions import ValidationError  
+
+# def validate_image_count(value):
+#     if ReviewImage.objects.filter(review=value.review).count() > 3:
+#         raise ValidationError('이미지는 최대 3개까지만 업로드 가능합니다.')
+
 
 class ReviewImage(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
@@ -158,7 +176,7 @@ class ReviewImage(models.Model):
         blank=True, 
         null=True, 
         processors=[ResizeToFill(100, 100)], 
-        options={'quality':100})
+        options={'quality':100},)
     
     def delete(self, *args, **kargs):
         if self.image:
@@ -172,3 +190,4 @@ class ReviewImage(models.Model):
                 if old_post.image:
                     os.remove(os.path.join(settings.MEDIA_ROOT, old_post.image.name))
         super(ReviewImage, self).save(*args, **kwargs)
+    
