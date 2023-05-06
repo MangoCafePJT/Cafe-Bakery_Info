@@ -46,7 +46,7 @@ social-auth-app-django==5.2.0
 social-auth-core==4.4.2
 sqlparse==0.4.4
 Twisted==22.10.0
-twisted-iocpsupport==1.0.3
+# twisted-iocpsupport==1.0.3
 txaio==23.1.1
 typing_extensions==4.5.0
 urllib3==1.26.15

@@ -20,12 +20,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cx243d%$qmvbga(@5mluh6oi^8=n100=_^ye46@3o+lkg&84^#'
+import os
+from dotenv import load_dotenv
+load_dotenv()
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['port-0-cafe-bakery-info-687p2alharv4ez.sel4.cloudtype.app','localhost', '127.0.0.1']
 
 
 # Application definition
@@ -100,7 +103,10 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts":  [
+                ('127.0.0.1', 6379),
+                ('port-0-cafe-bakery-info-687p2alharv4ez.sel4.cloudtype.app', 6379),
+            ],
         },
     },
 }
