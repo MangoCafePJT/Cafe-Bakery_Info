@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "review": 1,
-        "image": "review/1/Èñ¿Í1.jpg"
+        "image": "review/1/í¬ì™€1.jpg"
     }
 },
 {
@@ -12,7 +12,7 @@
     "pk": 2,
     "fields": {
         "review": 1,
-        "image": "review/1/Èñ¿Í2.jpeg"
+        "image": "review/1/í¬ì™€2.jpeg"
     }
 },
 {
@@ -20,7 +20,7 @@
     "pk": 3,
     "fields": {
         "review": 2,
-        "image": "review/2/º£ºñ¿¡¸£1.jpeg"
+        "image": "review/2/ë² ë¹„ì—ë¥´1.jpeg"
     }
 },
 {
@@ -28,7 +28,7 @@
     "pk": 4,
     "fields": {
         "review": 2,
-        "image": "review/2/º£ºñ¿¡¸£2.jpeg"
+        "image": "review/2/ë² ë¹„ì—ë¥´2.jpeg"
     }
 },
 {
@@ -36,7 +36,7 @@
     "pk": 5,
     "fields": {
         "review": 3,
-        "image": "review/3/»ß¾ÆÇÁ.jpeg"
+        "image": "review/3/ì‚ì•„í”„.jpeg"
     }
 },
 {
@@ -44,7 +44,7 @@
     "pk": 6,
     "fields": {
         "review": 4,
-        "image": "review/4/Á¶¾Ø1.jpg"
+        "image": "review/4/ì¡°ì•¤1.jpg"
     }
 },
 {
@@ -52,7 +52,7 @@
     "pk": 7,
     "fields": {
         "review": 5,
-        "image": "review/5/·Î½ºÆÃ2.jpeg"
+        "image": "review/5/ë¡œìŠ¤íŒ…2.jpeg"
     }
 },
 {
@@ -60,7 +60,7 @@
     "pk": 8,
     "fields": {
         "review": 6,
-        "image": "review/6/Èñ¿ÍÁ¦°ú.jfif"
+        "image": "review/6/í¬ì™€ì œê³¼.jfif"
     }
 },
 {
@@ -68,7 +68,7 @@
     "pk": 9,
     "fields": {
         "review": 8,
-        "image": "review/8/½º¸Å½¬Ä¿ÇÇ.jfif"
+        "image": "review/8/ìŠ¤ë§¤ì‰¬ì»¤í”¼.jfif"
     }
 },
 {
@@ -76,7 +76,7 @@
     "pk": 10,
     "fields": {
         "review": 45,
-        "image": "review/45/¼öº¹1.jpeg"
+        "image": "review/45/ìˆ˜ë³µ1.jpeg"
     }
 },
 {
@@ -84,7 +84,7 @@
     "pk": 11,
     "fields": {
         "review": 49,
-        "image": "review/49/¶óÀÌÇÁ¿¡ÀÌµåÄ¿ÇÇ.jfif"
+        "image": "review/49/ë¼ì´í”„ì—ì´ë“œì»¤í”¼.jfif"
     }
 },
 {
@@ -92,7 +92,7 @@
     "pk": 12,
     "fields": {
         "review": 68,
-        "image": "review/68/¼±¼Â2.jpeg"
+        "image": "review/68/ì„ ì…‹2.jpeg"
     }
 },
 {
@@ -100,7 +100,7 @@
     "pk": 13,
     "fields": {
         "review": 151,
-        "image": "review/151/ÆÄ¶ó¾È.jpg"
+        "image": "review/151/íŒŒë¼ì•ˆ.jpg"
     }
 }
 ]
