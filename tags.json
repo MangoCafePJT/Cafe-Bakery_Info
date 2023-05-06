@@ -1,0 +1,1698 @@
+[
+{
+    "model": "taggit.tag",
+    "pk": 1,
+    "fields": {
+        "name": "밤팥빵",
+        "slug": "밤팥빵"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 2,
+    "fields": {
+        "name": "서면맛집",
+        "slug": "서면맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 3,
+    "fields": {
+        "name": "빙수",
+        "slug": "빙수"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 4,
+    "fields": {
+        "name": "오션뷰",
+        "slug": "오션뷰"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 5,
+    "fields": {
+        "name": "부산",
+        "slug": "부산"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 6,
+    "fields": {
+        "name": "카페",
+        "slug": "카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 7,
+    "fields": {
+        "name": "인생샷카페",
+        "slug": "인생샷카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 8,
+    "fields": {
+        "name": "Busan",
+        "slug": "busan"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 9,
+    "fields": {
+        "name": "광주",
+        "slug": "광주"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 10,
+    "fields": {
+        "name": "베이커리",
+        "slug": "베이커리"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 11,
+    "fields": {
+        "name": "베이글",
+        "slug": "베이글"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 12,
+    "fields": {
+        "name": "맛집",
+        "slug": "맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 13,
+    "fields": {
+        "name": "탕종방",
+        "slug": "탕종방"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 14,
+    "fields": {
+        "name": "초콜릿",
+        "slug": "초콜릿"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 15,
+    "fields": {
+        "name": "디저트",
+        "slug": "디저트"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 16,
+    "fields": {
+        "name": "가로수길",
+        "slug": "가로수길"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 17,
+    "fields": {
+        "name": "버터바",
+        "slug": "버터바"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 18,
+    "fields": {
+        "name": "진주",
+        "slug": "진주"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 19,
+    "fields": {
+        "name": "대형카페",
+        "slug": "대형카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 20,
+    "fields": {
+        "name": "개성주악",
+        "slug": "개성주악"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 21,
+    "fields": {
+        "name": "갬성카페",
+        "slug": "갬성카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 22,
+    "fields": {
+        "name": "대구",
+        "slug": "대구"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 23,
+    "fields": {
+        "name": "베이커리카페",
+        "slug": "베이커리카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 24,
+    "fields": {
+        "name": "크로플",
+        "slug": "크로플"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 25,
+    "fields": {
+        "name": "크루아상",
+        "slug": "크루아상"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 26,
+    "fields": {
+        "name": "대구카페",
+        "slug": "대구카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 27,
+    "fields": {
+        "name": "대구맛집",
+        "slug": "대구맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 28,
+    "fields": {
+        "name": "인기맛집",
+        "slug": "인기맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 29,
+    "fields": {
+        "name": "반려견동반가능",
+        "slug": "반려견동반가능"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 30,
+    "fields": {
+        "name": "",
+        "slug": ""
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 31,
+    "fields": {
+        "name": "차",
+        "slug": "차"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 32,
+    "fields": {
+        "name": "대전",
+        "slug": "대전"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 33,
+    "fields": {
+        "name": "성심당",
+        "slug": "성심당"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 34,
+    "fields": {
+        "name": "대전맛집",
+        "slug": "대전맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 35,
+    "fields": {
+        "name": "튀김소보로",
+        "slug": "튀김소보로"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 36,
+    "fields": {
+        "name": "성심당케이크",
+        "slug": "성심당케이크"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 37,
+    "fields": {
+        "name": "아메리카노",
+        "slug": "아메리카노"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 38,
+    "fields": {
+        "name": "커피",
+        "slug": "커피"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 39,
+    "fields": {
+        "name": "라떼",
+        "slug": "라떼"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 40,
+    "fields": {
+        "name": "베트남",
+        "slug": "베트남"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 41,
+    "fields": {
+        "name": "베트남커피",
+        "slug": "베트남커피"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 42,
+    "fields": {
+        "name": "대전카페",
+        "slug": "대전카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 43,
+    "fields": {
+        "name": "그릭요거트",
+        "slug": "그릭요거트"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 44,
+    "fields": {
+        "name": "소소림",
+        "slug": "소소림"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 45,
+    "fields": {
+        "name": "갸또",
+        "slug": "갸또"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 46,
+    "fields": {
+        "name": "수원 커피",
+        "slug": "수원-커피"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 47,
+    "fields": {
+        "name": "물카페",
+        "slug": "물카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 48,
+    "fields": {
+        "name": "에이트",
+        "slug": "에이트"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 49,
+    "fields": {
+        "name": "충남맛집",
+        "slug": "충남맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 50,
+    "fields": {
+        "name": "충남",
+        "slug": "충남"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 51,
+    "fields": {
+        "name": "천안",
+        "slug": "천안"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 52,
+    "fields": {
+        "name": "충남카페",
+        "slug": "충남카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 53,
+    "fields": {
+        "name": "말차라떼",
+        "slug": "말차라떼"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 54,
+    "fields": {
+        "name": "유자",
+        "slug": "유자"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 55,
+    "fields": {
+        "name": "에이드",
+        "slug": "에이드"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 56,
+    "fields": {
+        "name": "\"수원 커피\"",
+        "slug": "수원-커피_1"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 57,
+    "fields": {
+        "name": "찐빵",
+        "slug": "찐빵"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 58,
+    "fields": {
+        "name": "팥",
+        "slug": "팥"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 59,
+    "fields": {
+        "name": "생활의 달인",
+        "slug": "생활의-달인"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 60,
+    "fields": {
+        "name": "충청남도맛집",
+        "slug": "충청남도맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 61,
+    "fields": {
+        "name": "에그타르트",
+        "slug": "에그타르트"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 62,
+    "fields": {
+        "name": "엑셀런트",
+        "slug": "엑셀런트"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 63,
+    "fields": {
+        "name": "경주맛집",
+        "slug": "경주맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 64,
+    "fields": {
+        "name": "선셋",
+        "slug": "선셋"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 65,
+    "fields": {
+        "name": "바다",
+        "slug": "바다"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 66,
+    "fields": {
+        "name": "뷰맛집",
+        "slug": "뷰맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 67,
+    "fields": {
+        "name": "피크닉카페",
+        "slug": "피크닉카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 68,
+    "fields": {
+        "name": "카이막",
+        "slug": "카이막"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 69,
+    "fields": {
+        "name": "드립커피",
+        "slug": "드립커피"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 70,
+    "fields": {
+        "name": "스콘",
+        "slug": "스콘"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 71,
+    "fields": {
+        "name": "바다뷰",
+        "slug": "바다뷰"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 72,
+    "fields": {
+        "name": "빵",
+        "slug": "빵"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 73,
+    "fields": {
+        "name": "빵집추천",
+        "slug": "빵집추천"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 74,
+    "fields": {
+        "name": "안동빵집",
+        "slug": "안동빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 75,
+    "fields": {
+        "name": "경상남도맛집",
+        "slug": "경상남도맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 76,
+    "fields": {
+        "name": "경상남도카페",
+        "slug": "경상남도카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 77,
+    "fields": {
+        "name": "창원맛집",
+        "slug": "창원맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 78,
+    "fields": {
+        "name": "프렌치토스트",
+        "slug": "프렌치토스트"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 79,
+    "fields": {
+        "name": "치아바타",
+        "slug": "치아바타"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 80,
+    "fields": {
+        "name": "프레첼",
+        "slug": "프레첼"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 81,
+    "fields": {
+        "name": "경남맛집",
+        "slug": "경남맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 82,
+    "fields": {
+        "name": "경남카페",
+        "slug": "경남카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 83,
+    "fields": {
+        "name": "소금빵",
+        "slug": "소금빵"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 84,
+    "fields": {
+        "name": "명장",
+        "slug": "명장"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 85,
+    "fields": {
+        "name": "거제카페",
+        "slug": "거제카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 86,
+    "fields": {
+        "name": "페스츄리",
+        "slug": "페스츄리"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 87,
+    "fields": {
+        "name": "올리브스틱",
+        "slug": "올리브스틱"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 88,
+    "fields": {
+        "name": "바게트",
+        "slug": "바게트"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 89,
+    "fields": {
+        "name": "플랫화이트",
+        "slug": "플랫화이트"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 90,
+    "fields": {
+        "name": "케이크",
+        "slug": "케이크"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 91,
+    "fields": {
+        "name": "아이스크림",
+        "slug": "아이스크림"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 92,
+    "fields": {
+        "name": "카페라떼",
+        "slug": "카페라떼"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 93,
+    "fields": {
+        "name": "흑임자크림커피",
+        "slug": "흑임자크림커피"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 94,
+    "fields": {
+        "name": "외도널서리",
+        "slug": "외도널서리"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 95,
+    "fields": {
+        "name": "인천빵",
+        "slug": "인천빵"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 96,
+    "fields": {
+        "name": "청라빵집",
+        "slug": "청라빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 97,
+    "fields": {
+        "name": "식빵",
+        "slug": "식빵"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 98,
+    "fields": {
+        "name": "유채꽃",
+        "slug": "유채꽃"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 99,
+    "fields": {
+        "name": "경북카페",
+        "slug": "경북카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 100,
+    "fields": {
+        "name": "경북맛집",
+        "slug": "경북맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 101,
+    "fields": {
+        "name": "경주카페",
+        "slug": "경주카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 102,
+    "fields": {
+        "name": "빵집",
+        "slug": "빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 103,
+    "fields": {
+        "name": "인스타문의",
+        "slug": "인스타문의"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 104,
+    "fields": {
+        "name": "핸드드립",
+        "slug": "핸드드립"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 105,
+    "fields": {
+        "name": "에스프레소. 커피",
+        "slug": "에스프레소-커피"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 106,
+    "fields": {
+        "name": "울산",
+        "slug": "울산"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 107,
+    "fields": {
+        "name": "브런치맛집",
+        "slug": "브런치맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 108,
+    "fields": {
+        "name": "울산 브런치",
+        "slug": "울산-브런치"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 109,
+    "fields": {
+        "name": "전남빵집",
+        "slug": "전남빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 110,
+    "fields": {
+        "name": "전남맛집",
+        "slug": "전남맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 111,
+    "fields": {
+        "name": "목포빵집",
+        "slug": "목포빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 112,
+    "fields": {
+        "name": "전남카페",
+        "slug": "전남카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 113,
+    "fields": {
+        "name": "목포맛집",
+        "slug": "목포맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 114,
+    "fields": {
+        "name": "목포카페",
+        "slug": "목포카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 115,
+    "fields": {
+        "name": "순천맛집",
+        "slug": "순천맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 116,
+    "fields": {
+        "name": "순천카페",
+        "slug": "순천카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 117,
+    "fields": {
+        "name": "이색카페",
+        "slug": "이색카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 118,
+    "fields": {
+        "name": "전북베이커리",
+        "slug": "전북베이커리"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 119,
+    "fields": {
+        "name": "전북맛집",
+        "slug": "전북맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 120,
+    "fields": {
+        "name": "익산빵집",
+        "slug": "익산빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 121,
+    "fields": {
+        "name": "익산맛집",
+        "slug": "익산맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 122,
+    "fields": {
+        "name": "익산베이커리",
+        "slug": "익산베이커리"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 123,
+    "fields": {
+        "name": "휘낭시에",
+        "slug": "휘낭시에"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 124,
+    "fields": {
+        "name": "전주카페",
+        "slug": "전주카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 125,
+    "fields": {
+        "name": "한복카페",
+        "slug": "한복카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 126,
+    "fields": {
+        "name": "전주맛집",
+        "slug": "전주맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 127,
+    "fields": {
+        "name": "전북카페",
+        "slug": "전북카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 128,
+    "fields": {
+        "name": "익산카페",
+        "slug": "익산카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 129,
+    "fields": {
+        "name": "오션뷰카페",
+        "slug": "오션뷰카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 130,
+    "fields": {
+        "name": "강릉빵집",
+        "slug": "강릉빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 131,
+    "fields": {
+        "name": "강원빵집",
+        "slug": "강원빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 132,
+    "fields": {
+        "name": "삼척카페",
+        "slug": "삼척카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 133,
+    "fields": {
+        "name": "바다뷰카페",
+        "slug": "바다뷰카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 134,
+    "fields": {
+        "name": "강원카페",
+        "slug": "강원카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 135,
+    "fields": {
+        "name": "부산카페",
+        "slug": "부산카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 136,
+    "fields": {
+        "name": "광안리카페",
+        "slug": "광안리카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 137,
+    "fields": {
+        "name": "정원카페",
+        "slug": "정원카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 138,
+    "fields": {
+        "name": "서울카페",
+        "slug": "서울카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 139,
+    "fields": {
+        "name": "곰돌이카페",
+        "slug": "곰돌이카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 140,
+    "fields": {
+        "name": "관악카페",
+        "slug": "관악카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 141,
+    "fields": {
+        "name": "감성카페",
+        "slug": "감성카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 142,
+    "fields": {
+        "name": "이태원카페",
+        "slug": "이태원카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 143,
+    "fields": {
+        "name": "소금빵맛집",
+        "slug": "소금빵맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 144,
+    "fields": {
+        "name": "울산카페",
+        "slug": "울산카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 145,
+    "fields": {
+        "name": "울산북구카페",
+        "slug": "울산북구카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 146,
+    "fields": {
+        "name": "울주군카페",
+        "slug": "울주군카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 147,
+    "fields": {
+        "name": "영종도카페",
+        "slug": "영종도카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 148,
+    "fields": {
+        "name": "인천카페",
+        "slug": "인천카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 149,
+    "fields": {
+        "name": "을왕리카페",
+        "slug": "을왕리카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 150,
+    "fields": {
+        "name": "제주카페",
+        "slug": "제주카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 151,
+    "fields": {
+        "name": "숲속카페",
+        "slug": "숲속카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 152,
+    "fields": {
+        "name": "구좌카페",
+        "slug": "구좌카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 153,
+    "fields": {
+        "name": "속초빵집",
+        "slug": "속초빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 154,
+    "fields": {
+        "name": "옛날빵집",
+        "slug": "옛날빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 155,
+    "fields": {
+        "name": "생활의달인맛집",
+        "slug": "생활의달인맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 156,
+    "fields": {
+        "name": "마늘빵맛집",
+        "slug": "마늘빵맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 157,
+    "fields": {
+        "name": "분당빵집",
+        "slug": "분당빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 158,
+    "fields": {
+        "name": "수내빵집",
+        "slug": "수내빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 159,
+    "fields": {
+        "name": "동네빵집",
+        "slug": "동네빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 160,
+    "fields": {
+        "name": "부산빵집",
+        "slug": "부산빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 161,
+    "fields": {
+        "name": "해운대빵집",
+        "slug": "해운대빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 162,
+    "fields": {
+        "name": "해운대핫플",
+        "slug": "해운대핫플"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 163,
+    "fields": {
+        "name": "부산핫플",
+        "slug": "부산핫플"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 164,
+    "fields": {
+        "name": "몽블랑맛집",
+        "slug": "몽블랑맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 165,
+    "fields": {
+        "name": "남포동빵집",
+        "slug": "남포동빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 166,
+    "fields": {
+        "name": "에그타르트맛집",
+        "slug": "에그타르트맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 167,
+    "fields": {
+        "name": "해운대카페",
+        "slug": "해운대카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 168,
+    "fields": {
+        "name": "강남빵집",
+        "slug": "강남빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 169,
+    "fields": {
+        "name": "빨미까레맛집",
+        "slug": "빨미까레맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 170,
+    "fields": {
+        "name": "서울빵집",
+        "slug": "서울빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 171,
+    "fields": {
+        "name": "압구정핫플",
+        "slug": "압구정핫플"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 172,
+    "fields": {
+        "name": "마포구빵집",
+        "slug": "마포구빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 173,
+    "fields": {
+        "name": "대파빵맛집",
+        "slug": "대파빵맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 174,
+    "fields": {
+        "name": "울산빵집",
+        "slug": "울산빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 175,
+    "fields": {
+        "name": "울산남구빵집",
+        "slug": "울산남구빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 176,
+    "fields": {
+        "name": "케이크맛집",
+        "slug": "케이크맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 177,
+    "fields": {
+        "name": "휘낭시에맛집",
+        "slug": "휘낭시에맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 178,
+    "fields": {
+        "name": "인천빵집",
+        "slug": "인천빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 179,
+    "fields": {
+        "name": "구월동빵집",
+        "slug": "구월동빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 180,
+    "fields": {
+        "name": "명란바게트맛집",
+        "slug": "명란바게트맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 181,
+    "fields": {
+        "name": "인천대교카페",
+        "slug": "인천대교카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 182,
+    "fields": {
+        "name": "신상빵집",
+        "slug": "신상빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 183,
+    "fields": {
+        "name": "제주빵집",
+        "slug": "제주빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 184,
+    "fields": {
+        "name": "구좌빵집",
+        "slug": "구좌빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 185,
+    "fields": {
+        "name": "세화빵집",
+        "slug": "세화빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 186,
+    "fields": {
+        "name": "마늘바게트맛집",
+        "slug": "마늘바게트맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 187,
+    "fields": {
+        "name": "함덕빵집",
+        "slug": "함덕빵집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 188,
+    "fields": {
+        "name": "제주핫플",
+        "slug": "제주핫플"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 189,
+    "fields": {
+        "name": "경기카페",
+        "slug": "경기카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 190,
+    "fields": {
+        "name": "서울근교카페",
+        "slug": "서울근교카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 191,
+    "fields": {
+        "name": "퇴촌카페",
+        "slug": "퇴촌카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 192,
+    "fields": {
+        "name": "야외카페",
+        "slug": "야외카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 193,
+    "fields": {
+        "name": "북한강카페",
+        "slug": "북한강카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 194,
+    "fields": {
+        "name": "도넛맛집",
+        "slug": "도넛맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 195,
+    "fields": {
+        "name": "약수역카페",
+        "slug": "약수역카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 196,
+    "fields": {
+        "name": "서울핫플",
+        "slug": "서울핫플"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 197,
+    "fields": {
+        "name": "부경대카페",
+        "slug": "부경대카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 198,
+    "fields": {
+        "name": "더티초코",
+        "slug": "더티초코"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 199,
+    "fields": {
+        "name": "웨이팅",
+        "slug": "웨이팅"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 200,
+    "fields": {
+        "name": "청주",
+        "slug": "청주"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 201,
+    "fields": {
+        "name": "깜빠뉴",
+        "slug": "깜빠뉴"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 202,
+    "fields": {
+        "name": "마늘빵",
+        "slug": "마늘빵"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 203,
+    "fields": {
+        "name": "선물용",
+        "slug": "선물용"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 204,
+    "fields": {
+        "name": "단양",
+        "slug": "단양"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 205,
+    "fields": {
+        "name": "선물",
+        "slug": "선물"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 206,
+    "fields": {
+        "name": "크림빵",
+        "slug": "크림빵"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 207,
+    "fields": {
+        "name": "사라다빵",
+        "slug": "사라다빵"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 208,
+    "fields": {
+        "name": "충북카페",
+        "slug": "충북카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 209,
+    "fields": {
+        "name": "청주카페",
+        "slug": "청주카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 210,
+    "fields": {
+        "name": "단월",
+        "slug": "단월"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 211,
+    "fields": {
+        "name": "크로아상",
+        "slug": "크로아상"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 212,
+    "fields": {
+        "name": "단월커피맛집",
+        "slug": "단월커피맛집"
+    }
+}
+]
