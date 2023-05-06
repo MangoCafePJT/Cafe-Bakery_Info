@@ -1,0 +1,106 @@
+[
+{
+    "model": "posts.reviewimage",
+    "pk": 1,
+    "fields": {
+        "review": 1,
+        "image": "review/1/희와1.jpg"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 2,
+    "fields": {
+        "review": 1,
+        "image": "review/1/희와2.jpeg"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 3,
+    "fields": {
+        "review": 2,
+        "image": "review/2/베비에르1.jpeg"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 4,
+    "fields": {
+        "review": 2,
+        "image": "review/2/베비에르2.jpeg"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 5,
+    "fields": {
+        "review": 3,
+        "image": "review/3/삐아프.jpeg"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 6,
+    "fields": {
+        "review": 4,
+        "image": "review/4/조앤1.jpg"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 7,
+    "fields": {
+        "review": 5,
+        "image": "review/5/로스팅2.jpeg"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 8,
+    "fields": {
+        "review": 6,
+        "image": "review/6/희와제과.jfif"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 9,
+    "fields": {
+        "review": 8,
+        "image": "review/8/스매쉬커피.jfif"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 10,
+    "fields": {
+        "review": 45,
+        "image": "review/45/수복1.jpeg"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 11,
+    "fields": {
+        "review": 49,
+        "image": "review/49/라이프에이드커피.jfif"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 12,
+    "fields": {
+        "review": 68,
+        "image": "review/68/선셋2.jpeg"
+    }
+},
+{
+    "model": "posts.reviewimage",
+    "pk": 13,
+    "fields": {
+        "review": 151,
+        "image": "review/151/파라안.jpg"
+    }
+}
+]

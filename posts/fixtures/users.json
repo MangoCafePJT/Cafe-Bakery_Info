@@ -1,0 +1,350 @@
+[
+{
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$b72tCDIwrJfgdpLyBwZ4xf$ssoe06SnoVwB6awheLd1tWhdTJFbkzIV49R3/M5ZenY=",
+        "last_login": "2023-05-06T15:54:33.737Z",
+        "is_superuser": false,
+        "username": "sodam",
+        "first_name": "",
+        "last_name": "정소담",
+        "email": "sodam828@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T06:26:48.937Z",
+        "birthday": "2000-01-01",
+        "image": "profile/1/KakaoTalk_20230401_121938561_02.jpg",
+        "region": "서울",
+        "groups": [],
+        "user_permissions": [],
+        "followings": [
+            7,
+            14
+        ]
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$tw0Jqu0t1O2z9zRyRct4b4$UBNz/VgYhphRUg4SYAYRHaW+43m3PW8L7KUB3iaVC6M=",
+        "last_login": "2023-05-06T15:31:00.115Z",
+        "is_superuser": false,
+        "username": "mjs3827",
+        "first_name": "",
+        "last_name": "문지수",
+        "email": "mjs3827@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T06:26:52.983Z",
+        "birthday": "1998-11-23",
+        "image": "profile/2/me.jpg",
+        "region": "서울",
+        "groups": [],
+        "user_permissions": [],
+        "followings": [
+            4,
+            6
+        ]
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$hALshbhMlSl5LhfH4DnvYc$KMCTWaqM2kBAFOCJ8UZhG5zvYVHtoQh8Unig6H0Rs/4=",
+        "last_login": "2023-05-06T15:34:55.144Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-05-06T06:33:37.415Z",
+        "birthday": null,
+        "image": "",
+        "region": "서울",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$onlRTldvYoRDUmLqd51YXE$44bXwEtAn16Bpxxa76fHJuVN96fodUe1Z8S1pvskcVg=",
+        "last_login": "2023-05-06T13:37:41.048Z",
+        "is_superuser": false,
+        "username": "minji",
+        "first_name": "",
+        "last_name": "장민지",
+        "email": "xrmfpxpfx@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T06:45:41.187Z",
+        "birthday": "1997-10-11",
+        "image": "",
+        "region": "대전",
+        "groups": [],
+        "user_permissions": [],
+        "followings": [
+            7
+        ]
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$kgCMmqjhJb1OMak1eadD4x$5K5yMRXENYfKt+4ePuDXCeqNFr5hA89U9AgtQSJf+NQ=",
+        "last_login": "2023-05-06T12:13:58.910Z",
+        "is_superuser": false,
+        "username": "minji2",
+        "first_name": "",
+        "last_name": "장민지",
+        "email": "xrmfpxpfx@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T08:28:08.148Z",
+        "birthday": "2000-01-01",
+        "image": "",
+        "region": "경상북도",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$cZgxHetCh3HNkw5e9JJNEr$xket9uECW1S+zq7AhfVVDRr9lZaXvoBGXpE7qE6wQ+I=",
+        "last_login": "2023-05-06T14:17:07.674Z",
+        "is_superuser": false,
+        "username": "dami",
+        "first_name": "",
+        "last_name": "정소담",
+        "email": "sodami828@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T12:22:10.412Z",
+        "birthday": "2023-05-05",
+        "image": "",
+        "region": "충청북도",
+        "groups": [],
+        "user_permissions": [],
+        "followings": [
+            2,
+            4
+        ]
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$ig4KxYhimKc7FOvkrdRV13$EN2fiX2kG/OPsDSya6NfedwwFUPpbBjP+Lf8bG1wWAk=",
+        "last_login": "2023-05-06T15:26:32.006Z",
+        "is_superuser": false,
+        "username": "jisu",
+        "first_name": "",
+        "last_name": "문지수",
+        "email": "mjs3827@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T12:23:20.077Z",
+        "birthday": "1998-11-23",
+        "image": "",
+        "region": "서울",
+        "groups": [],
+        "user_permissions": [],
+        "followings": [
+            1,
+            4
+        ]
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$sRPOpEpsna3wDkQA6dCUC7$wH+LRhepajeSVHHMxEkX6y9UXeWehvPkMdRfMAUfM8E=",
+        "last_login": "2023-05-06T13:21:45.713Z",
+        "is_superuser": false,
+        "username": "불광동휘발유",
+        "first_name": "",
+        "last_name": "유재석",
+        "email": "dadada@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T12:23:53.679Z",
+        "birthday": "1996-05-14",
+        "image": "profile/8/휘발유.jpg",
+        "region": "경상남도",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$LavUribzxwlmDi4FkKCgUH$MimKgT5/yQkAYR0+mf4hBHMnqNqHkvxmdXpOti9jono=",
+        "last_login": "2023-05-06T12:25:46.254Z",
+        "is_superuser": false,
+        "username": "pty9714",
+        "first_name": "",
+        "last_name": "박태양",
+        "email": "pty9714@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T12:25:20.102Z",
+        "birthday": "2000-01-01",
+        "image": "profile/9/lee17.jpg",
+        "region": "서울",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$YfuPWcB56W51PXIEIYR3Yh$RLqNTta6/64p4c15WTpAx5KtTHITfyYRSoqCQm7rUOM=",
+        "last_login": "2023-05-06T12:27:47.536Z",
+        "is_superuser": false,
+        "username": "제빵왕김탁구",
+        "first_name": "",
+        "last_name": "윤시윤",
+        "email": "jaebbang@daum.net",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T12:27:40.982Z",
+        "birthday": "1995-06-14",
+        "image": "profile/10/김탁구.jpg",
+        "region": "부산",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 11,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$S6UTcvnruX7871gQX2hLLE$JF8zXNMjbNOMvDBmX3Ia9m4apFfA+l+50E1QnUflN2g=",
+        "last_login": "2023-05-06T12:52:49.217Z",
+        "is_superuser": false,
+        "username": "nono",
+        "first_name": "",
+        "last_name": "문지수",
+        "email": "mjs3827@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T12:52:43.057Z",
+        "birthday": "2000-01-01",
+        "image": "",
+        "region": "서울",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 12,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$o3BhMMVuoxcR61129ikfZ2$TAwEN7h8Q3FerTn4dL3NaFFy4j451wzcMFqjuC0UVEA=",
+        "last_login": "2023-05-06T13:33:02.058Z",
+        "is_superuser": false,
+        "username": "전국일주",
+        "first_name": "",
+        "last_name": "장민지",
+        "email": "xrmfpxpfx@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T13:16:20.380Z",
+        "birthday": "1999-05-19",
+        "image": "",
+        "region": "경기도",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 13,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$SCCg8FWMEk7cAZdZmEsjoB$f3HZHmKh8ViMsVlh9ImRk20sNoiAdSbSBUsJxmadRXA=",
+        "last_login": "2023-05-06T13:22:25.069Z",
+        "is_superuser": false,
+        "username": "haelim",
+        "first_name": "",
+        "last_name": "고해림",
+        "email": "sunny9612@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T13:22:20.398Z",
+        "birthday": "2000-01-01",
+        "image": "profile/13/짱구.png",
+        "region": "경기도",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 14,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$2HSiAySMwnH56Xu8g2zeMu$HpQATnb4kG6fWpiU27CQ4/tdil+pXSLNrzrt2X3LRAc=",
+        "last_login": "2023-05-06T14:22:24.342Z",
+        "is_superuser": false,
+        "username": "berners-lee",
+        "first_name": "",
+        "last_name": "팀 버너스리",
+        "email": "berners-lee@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T14:22:20.057Z",
+        "birthday": "2004-01-26",
+        "image": "profile/14/팀_버너스리.jpg",
+        "region": "충청남도",
+        "groups": [],
+        "user_permissions": [],
+        "followings": [
+            1,
+            4,
+            6
+        ]
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 15,
+    "fields": {
+        "password": "!cDpqwPsEZxfGKpMuIImBXlNsgqmx7p4GxnEWrobK",
+        "last_login": "2023-05-06T15:48:10.670Z",
+        "is_superuser": false,
+        "username": "4_",
+        "first_name": "장민지",
+        "last_name": "4회차_",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T15:48:10.622Z",
+        "birthday": null,
+        "image": "",
+        "region": "서울",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+}
+]

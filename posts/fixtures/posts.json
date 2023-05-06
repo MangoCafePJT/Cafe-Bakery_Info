@@ -1,0 +1,2047 @@
+[
+{
+    "model": "posts.post",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "title": "희와제과",
+        "category": "bakery",
+        "created_at": "2023-05-06T06:45:32.075Z",
+        "updated_at": "2023-05-06T13:22:23.033Z",
+        "address": "부산 부산진구 전포대로246번길 6 1층 상가",
+        "phone": "051-911-3603",
+        "parking": "불가",
+        "business_time": "매일 07:00 ~ 19:00 (정기휴무 화, 수)",
+        "menu": "밤팥빵\r\n왕고구마크림치즈\r\n브라우니\r\n스콘\r\n휘낭시에",
+        "insta": "https://www.instagram.com/hwa.bread/",
+        "home": "",
+        "city": "부산",
+        "rating": "3.8",
+        "like_users": [
+            1,
+            2,
+            4,
+            6,
+            10
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "title": "비비비당",
+        "category": "cafe",
+        "created_at": "2023-05-06T06:49:19.631Z",
+        "updated_at": "2023-05-06T14:52:24.908Z",
+        "address": "부산광역시 해운대구 달맞이길 239-16",
+        "phone": "051-746-0705",
+        "parking": "주차공간없음",
+        "business_time": "매일 10:30 - 22:00 (정기휴무 월요일)",
+        "menu": "오늘의 차\r\n우전녹차\r\n특말차\r\n복분자 (냉)\r\n오미자차",
+        "insta": "",
+        "home": "https://www.bibibidang.com/",
+        "city": "부산",
+        "rating": "4.0",
+        "like_users": [
+            2
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 3,
+    "fields": {
+        "user": 4,
+        "title": "베비에르과자점",
+        "category": "bakery",
+        "created_at": "2023-05-06T06:50:43.174Z",
+        "updated_at": "2023-05-06T12:53:59.729Z",
+        "address": "광주 서구 풍암중앙로 37",
+        "phone": "062-682-0696",
+        "parking": "가게문의",
+        "business_time": "7:00~22:00",
+        "menu": "바게트 토스트\r\n마왕 파이\r\n롱 소세지 베이글",
+        "insta": "",
+        "home": "",
+        "city": "광주",
+        "rating": "4.6",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 4,
+    "fields": {
+        "user": 4,
+        "title": "포르피노 베이커리",
+        "category": "bakery",
+        "created_at": "2023-05-06T06:52:01.535Z",
+        "updated_at": "2023-05-06T13:35:20.220Z",
+        "address": "광주 동구 동명로 85",
+        "phone": "062-224-0090",
+        "parking": "가게문의",
+        "business_time": "8:00~21:00",
+        "menu": "탕종시오빵\r\n탕종빵\r\n퀸아망\r\n크로와상",
+        "insta": "",
+        "home": "",
+        "city": "광주",
+        "rating": "4.0",
+        "like_users": [
+            1,
+            7,
+            10
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "title": "삐아프",
+        "category": "bakery",
+        "created_at": "2023-05-06T06:53:03.887Z",
+        "updated_at": "2023-05-06T12:34:29.715Z",
+        "address": "서울특별시 강남구 논현로175길 109 1층",
+        "phone": "02-545-0317",
+        "parking": "무료주차 가능",
+        "business_time": "매일 12:30 - 19:30 (정기휴무 일요일)",
+        "menu": "봉봉 4구 세트\r\n봉봉 6구 세트\r\n봉봉 10구 세트\r\n봉봉 15구 세트",
+        "insta": "https://www.instagram.com/piaf_artisan_chocolatier/",
+        "home": "",
+        "city": "서울",
+        "rating": "3.3",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 7,
+    "fields": {
+        "user": 4,
+        "title": "GT커피",
+        "category": "cafe",
+        "created_at": "2023-05-06T06:54:12.526Z",
+        "updated_at": "2023-05-06T13:13:25.372Z",
+        "address": "동명동 154-57",
+        "phone": "0507-1470-0902",
+        "parking": "가게문의",
+        "business_time": "11:00 - 24:00",
+        "menu": "바나가토\r\n빅토리아\r\n티그래\r\n버터바\r\ngt시그니처라떼",
+        "insta": "https://www.instagram.com/gt_coffee_/",
+        "home": "",
+        "city": "광주",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 8,
+    "fields": {
+        "user": 2,
+        "title": "로스팅웨어",
+        "category": "cafe",
+        "created_at": "2023-05-06T06:55:07.873Z",
+        "updated_at": "2023-05-06T12:20:27.337Z",
+        "address": "경남 진주시 가호방아길 51-8",
+        "phone": "055-755-5225",
+        "parking": "가능",
+        "business_time": "매일 09:00 ~ 22:00",
+        "menu": "싱글오리진\r\n아이스크림라떼\r\n아메리카노\r\n패션프룻에이드\r\n피치넥타",
+        "insta": "",
+        "home": "https://www.roastingware.com/",
+        "city": "경상남도",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 9,
+    "fields": {
+        "user": 4,
+        "title": "호양호림",
+        "category": "cafe",
+        "created_at": "2023-05-06T06:56:05.981Z",
+        "updated_at": "2023-05-06T13:08:24.449Z",
+        "address": "광주 남구 우월순길 4 1층",
+        "phone": "0507-1360-0072",
+        "parking": "가게문의",
+        "business_time": "11:30~21:30 (정기휴무 화요일)",
+        "menu": "개성 주악(딸기, 콩크림, 앙버터, 기본)\r\n바닐라빈 크림 라떼\r\n아인슈페너\r\n인절미 와플(기본/쑥)",
+        "insta": "https://www.instagram.com/hoyang_holim/",
+        "home": "https://smartstore.naver.com/hoyangholimroastery/",
+        "city": "광주",
+        "rating": "3.5",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 10,
+    "fields": {
+        "user": 4,
+        "title": "스테이블모먼트 화원점",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:07:55.775Z",
+        "updated_at": "2023-05-06T15:08:47.624Z",
+        "address": "대구 달성군 화원읍 비슬로 2614-9 스테이블 모먼트",
+        "phone": "0507-1375-6996",
+        "parking": "가게문의",
+        "business_time": "10:00-22:30",
+        "menu": "초코 크로플\r\n바닐라 까눌레\r\n블루베리 립파이\r\n베리베리 크루아상",
+        "insta": "https://www.instagram.com/stable_moment03",
+        "home": "",
+        "city": "대구",
+        "rating": "4.3",
+        "like_users": [
+            14
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 12,
+    "fields": {
+        "user": 4,
+        "title": "우니카트",
+        "category": "bakery",
+        "created_at": "2023-05-06T07:25:32.257Z",
+        "updated_at": "2023-05-06T14:40:30.004Z",
+        "address": "대구 수성구 범어천로 151-4",
+        "phone": "053-267-0522",
+        "parking": "가게문의",
+        "business_time": "08:30 - 21:30",
+        "menu": "바게트\r\n휘낭시에\r\n아보카도 샌드위치\r\n버섯 샌드위치\r\n크루아상",
+        "insta": "",
+        "home": "",
+        "city": "대구",
+        "rating": "5.0",
+        "like_users": [
+            1,
+            2,
+            6,
+            8,
+            10,
+            11,
+            12,
+            14
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 13,
+    "fields": {
+        "user": 4,
+        "title": "아프레 베이크샵",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:27:04.295Z",
+        "updated_at": "2023-05-06T12:59:55.341Z",
+        "address": "대구 중구 동성로1길 52 1층",
+        "phone": "0507-1465-9008",
+        "parking": "가게문의",
+        "business_time": "11:00 - 22:00",
+        "menu": "아프레 클래식 딸기 케이크\r\nA라떼\r\n100% 순 우유 망고케이크\r\n아몬드 크림 라떼\r\n딸기루바브 티라미수\r\n우유 고구마 치케",
+        "insta": "https://www.instagram.com/apres_bakeshop",
+        "home": "",
+        "city": "대구",
+        "rating": "4.0",
+        "like_users": [
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 14,
+    "fields": {
+        "user": 4,
+        "title": "티아이티에프",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:28:44.241Z",
+        "updated_at": "2023-05-06T13:17:04.812Z",
+        "address": "대구 동구 팔공산로 1169",
+        "phone": "053-985-7755",
+        "parking": "가게문의",
+        "business_time": "11:00 - 22:00",
+        "menu": "딸기우유\r\n슈크림 팽도르\r\n아몬드 크림라떼\r\n마스카포네 티라미수",
+        "insta": "http://instagram.com/titf803",
+        "home": "",
+        "city": "대구",
+        "rating": "4.5",
+        "like_users": [
+            1
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 15,
+    "fields": {
+        "user": 1,
+        "title": "서울수퍼",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:30:01.966Z",
+        "updated_at": "2023-05-06T12:31:04.894Z",
+        "address": "서울특별시 관악구 장군봉1길 32 2층",
+        "phone": "0507-1398-1271",
+        "parking": "주차공간없음",
+        "business_time": "매일 12:00 - 22:00 (정기휴무 월요일)",
+        "menu": "아메리카노\r\n딸기와플\r\n콩고물 와플\r\n서울 랭쌥\r\n서울깐풍기",
+        "insta": "",
+        "home": "",
+        "city": "서울",
+        "rating": "2.7",
+        "like_users": [
+            4
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 16,
+    "fields": {
+        "user": 2,
+        "title": "매암제다원",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:30:17.116Z",
+        "updated_at": "2023-05-06T14:51:31.954Z",
+        "address": "경상남도 하동군 악양면 악양서로 346-1 매암다원문화박물관",
+        "phone": "055-883-3500",
+        "parking": "가능",
+        "business_time": "매일 10:00 ~ 18:00 (정기휴무 월요일)",
+        "menu": "매암홍차\r\n산뜩홍차\r\n고소홍차\r\n우전녹차\r\n세작녹차",
+        "insta": "",
+        "home": "http://ww1.tea-maeam.com/?subid1=86a978b0-ebdf-11ed-8a59-b2a10c41890a",
+        "city": "경상남도",
+        "rating": "4.3",
+        "like_users": [
+            4
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 17,
+    "fields": {
+        "user": 4,
+        "title": "성심당",
+        "category": "bakery",
+        "created_at": "2023-05-06T07:32:03.079Z",
+        "updated_at": "2023-05-06T12:54:18.456Z",
+        "address": "대전 중구 대종로480번길 15",
+        "phone": "042-220-4136",
+        "parking": "이안과병원 주차장: 대전 중구 대종로 468 천우빌딩",
+        "business_time": "8:00 - 22:00",
+        "menu": "튀김소보로\r\n초코튀소\r\n오징어 먹물방망이\r\n순크림빵\r\n카카오순정\r\n빅매치",
+        "insta": "https://www.instagram.com/sungsimdang_official/",
+        "home": "https://www.sungsimdang.co.kr",
+        "city": "대전",
+        "rating": "3.5",
+        "like_users": [
+            1,
+            14
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 18,
+    "fields": {
+        "user": 4,
+        "title": "성심당 케익부띠끄",
+        "category": "bakery",
+        "created_at": "2023-05-06T07:33:34.298Z",
+        "updated_at": "2023-05-06T12:44:11.562Z",
+        "address": "대전 중구 대종로 480",
+        "phone": "042-220-4136",
+        "parking": "가게문의",
+        "business_time": "8:00 - 22:00",
+        "menu": "순수롤\r\n순수마들렌\r\n과일파티 타르트2호",
+        "insta": "",
+        "home": "https://www.sungsimdang.co.kr",
+        "city": "대전",
+        "rating": "5.0",
+        "like_users": [
+            1,
+            2,
+            6,
+            7,
+            10
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 19,
+    "fields": {
+        "user": 1,
+        "title": "호이안로스터리",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:34:11.111Z",
+        "updated_at": "2023-05-06T12:37:52.666Z",
+        "address": "서울특별시 송파구 법원로 128 B동 115호",
+        "phone": "02-527-8929",
+        "parking": "가게문의",
+        "business_time": "가게문의",
+        "menu": "에스프레소 더블\r\n아메리카노\r\n카페라떼\r\n카페모카",
+        "insta": "https://www.instagram.com/hoianroasterykor/",
+        "home": "",
+        "city": "서울",
+        "rating": "3.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 20,
+    "fields": {
+        "user": 4,
+        "title": "소소림",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:36:49.893Z",
+        "updated_at": "2023-05-06T13:11:13.047Z",
+        "address": "대전 중구 대종로480번길 15",
+        "phone": "0507-1361-0538",
+        "parking": "가게문의",
+        "business_time": "09:30 -19:00",
+        "menu": "아메리카노\r\n카페라떼\r\n브라운치즈 크로플\r\n수제 그릭요거트\r\n잠봉뵈르\r\n리코타 오픈",
+        "insta": "https://www.instagram.com/sosorim_2022/",
+        "home": "https://www.sungsimdang.co.kr",
+        "city": "대전",
+        "rating": "3.5",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 21,
+    "fields": {
+        "user": 1,
+        "title": "No Smoke Without Fire",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:37:39.859Z",
+        "updated_at": "2023-05-06T12:34:00.713Z",
+        "address": "경기도 수원시 팔달구 매산로 139-5",
+        "phone": "031-241-5547",
+        "parking": "유료주차 가능",
+        "business_time": "매일 10:00 - 21:00 (정기휴무 월요일)",
+        "menu": "흑임자라떼\r\n단호박갸또\r\n쑥인절미갸또\r\n고구마치즈갸또",
+        "insta": "https://www.instagram.com/nosmokewithout_fire/",
+        "home": "",
+        "city": "경기도",
+        "rating": "3.5",
+        "like_users": [
+            4
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 22,
+    "fields": {
+        "user": 4,
+        "title": "에이트",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:38:00.295Z",
+        "updated_at": "2023-05-06T13:01:30.894Z",
+        "address": "대전 유성구 한밭대로 458 에이트",
+        "phone": "042-716-1195",
+        "parking": "가게문의",
+        "business_time": "10:00 - 02:00",
+        "menu": "아몬드 크림 라떼\r\n소금라떼\r\n에이트 로투스 라떼\r\n아인슈페너\r\n크로넛",
+        "insta": "https://www.instagram.com/cafe_aight_official_/",
+        "home": "",
+        "city": "대전",
+        "rating": "4.5",
+        "like_users": [
+            6,
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 23,
+    "fields": {
+        "user": 4,
+        "title": "선셋모먼트",
+        "category": "bakery",
+        "created_at": "2023-05-06T07:40:42.551Z",
+        "updated_at": "2023-05-06T14:35:29.243Z",
+        "address": "충남 천안시 서북구 성성5로 113 우나아르떼 3층 (지상 1층)",
+        "phone": "0507-1436-0339",
+        "parking": "가게문의",
+        "business_time": "10:00 - 22:00",
+        "menu": "바질 토마토 베이글\r\n베이컨 감자 베이글\r\n블랙 소세지 소금방\r\n크랙 촉촉 소금빵\r\n하트 프레즐\r\n크림치즈 아몬즈 프레즐\r\n누텔라 프레즐\r\n카야 버터 슈탕에\r\n앙 버터 슈탕에",
+        "insta": "https://www.instagram.com/sunsetmoment___/",
+        "home": "https://blog.naver.com/sunsetmoment",
+        "city": "충청남도",
+        "rating": "4.0",
+        "like_users": [
+            14
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 24,
+    "fields": {
+        "user": 1,
+        "title": "카페초안",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:40:49.110Z",
+        "updated_at": "2023-05-06T15:10:58.137Z",
+        "address": "경기도 수원시 팔달구 창룡대로7번길 16",
+        "phone": "070-8691-4498",
+        "parking": "유료주차 가능",
+        "business_time": "매일 12:00 - 20:00",
+        "menu": "초안말차라떼\r\n초안호지라떼\r\n초안라떼\r\n유자셔벗에이드\r\n시트롱에이드",
+        "insta": "https://www.instagram.com/cafe_choan/",
+        "home": "",
+        "city": "경기도",
+        "rating": "4.0",
+        "like_users": [
+            1,
+            4,
+            10,
+            14
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 25,
+    "fields": {
+        "user": 2,
+        "title": "수복빵집",
+        "category": "bakery",
+        "created_at": "2023-05-06T07:41:27.701Z",
+        "updated_at": "2023-05-06T13:05:01.383Z",
+        "address": "경상남도 진주시 촉석로201번길 12-1",
+        "phone": "055-741-0520",
+        "parking": "불가",
+        "business_time": "매일 12:30 ~ 재료 소진 시 (정기휴무 매달 둘째, 넷째 화요일)",
+        "menu": "찐빵\r\n꿀빵\r\n단팥죽\r\n팥빙수",
+        "insta": "",
+        "home": "",
+        "city": "경상남도",
+        "rating": "4.0",
+        "like_users": [
+            4,
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 26,
+    "fields": {
+        "user": 4,
+        "title": "페어리우드",
+        "category": "bakery",
+        "created_at": "2023-05-06T07:42:20.640Z",
+        "updated_at": "2023-05-06T14:34:23.409Z",
+        "address": "충남 천안시 동남구 천호지길 44 1층 ,2층",
+        "phone": "041-566-3331",
+        "parking": "가게문의",
+        "business_time": "10:00 - 21:30",
+        "menu": "에그타르트\r\n브라우니 스콘\r\n베트남 연유 스콘\r\n흑임자버터스콘\r\n쫀득 치즈 식빵",
+        "insta": "https://www.instagram.com/fairywood_bakery/",
+        "home": "",
+        "city": "충청남도",
+        "rating": "4.3",
+        "like_users": [
+            1,
+            14
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 27,
+    "fields": {
+        "user": 1,
+        "title": "노워즈",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:44:51.980Z",
+        "updated_at": "2023-05-06T12:35:45.546Z",
+        "address": "경상북도 경주시 포석로 1085 2층",
+        "phone": "010-4820-6297",
+        "parking": "가게문의",
+        "business_time": "가게문의",
+        "menu": "아메리카노\r\n필터커피\r\n엑셀런트라떼",
+        "insta": "",
+        "home": "",
+        "city": "경상북도",
+        "rating": "3.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 30,
+    "fields": {
+        "user": 4,
+        "title": "고목림",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:46:32.221Z",
+        "updated_at": "2023-05-06T14:32:31.840Z",
+        "address": "충남 아산시 배방읍 북수서로 4",
+        "phone": "041-427-3986",
+        "parking": "가게문의",
+        "business_time": "10:00 - 22:00",
+        "menu": "오레그랏셰\r\n대추라떼\r\n대추차\r\n고목림 블렌딩\r\n벚꽃 블렌딩",
+        "insta": "https://www.instagram.com/sungsimdang_official/",
+        "home": "https://blog.naver.com/ssr8471",
+        "city": "충청남도",
+        "rating": "3.3",
+        "like_users": [
+            14
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 31,
+    "fields": {
+        "user": 2,
+        "title": "그라운드헤븐",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:49:20.254Z",
+        "updated_at": "2023-05-06T14:39:01.209Z",
+        "address": "경상남도 진주시 대신로 626-13",
+        "phone": "055-758-2231",
+        "parking": "가능",
+        "business_time": "매일 10:00 ~ 23:00",
+        "menu": "아메리카노\r\n카페라떼\r\n카푸치노\r\n피치우롱\r\n얼그레이",
+        "insta": "",
+        "home": "",
+        "city": "경상남도",
+        "rating": "3.8",
+        "like_users": [
+            4,
+            6
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 32,
+    "fields": {
+        "user": 4,
+        "title": "프린세스 피크닉카페",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:49:59.665Z",
+        "updated_at": "2023-05-06T14:33:38.501Z",
+        "address": "충남 공주시 치미마을길 74 프린세스 피크닉카페",
+        "phone": "0507-1373-0295",
+        "parking": "가게문의",
+        "business_time": "10:30 - 21:00",
+        "menu": "하겐다즈 크로플\r\n프린세스 크림라떼\r\n알밤 크림 라떼\r\n프린세스 샌드위치",
+        "insta": "",
+        "home": "",
+        "city": "충청남도",
+        "rating": "4.0",
+        "like_users": [
+            2,
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 33,
+    "fields": {
+        "user": 1,
+        "title": "바넘커피",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:50:39.561Z",
+        "updated_at": "2023-05-06T12:53:22.467Z",
+        "address": "경상북도 경주시 원화로 178-4",
+        "phone": "0507-1439-2376",
+        "parking": "가게문의",
+        "business_time": "가게문의",
+        "menu": "드립커피\r\n카이막\r\n얼그레이\r\n홍차\r\n스콘",
+        "insta": "https://www.instagram.com/barnumcoffee/",
+        "home": "",
+        "city": "경상북도",
+        "rating": "4.0",
+        "like_users": [
+            1,
+            4
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 34,
+    "fields": {
+        "user": 2,
+        "title": "W181",
+        "category": "cafe",
+        "created_at": "2023-05-06T07:56:35.555Z",
+        "updated_at": "2023-05-06T14:51:57.320Z",
+        "address": "경남 거제시 장목면 거제북로 2707 2층",
+        "phone": "055-636-5030",
+        "parking": "가능",
+        "business_time": "매일 10:00 ~ 20:50",
+        "menu": "크림바닐라\r\n아인슈페너\r\n콜드브루\r\n에스프레소\r\n아메리카노",
+        "insta": "",
+        "home": "https://w181.modoo.at/?link=10zy9qqv",
+        "city": "경상남도",
+        "rating": "3.0",
+        "like_users": [
+            4,
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 35,
+    "fields": {
+        "user": 1,
+        "title": "맘모스제과",
+        "category": "bakery",
+        "created_at": "2023-05-06T07:57:08.872Z",
+        "updated_at": "2023-05-06T12:50:14.989Z",
+        "address": "경상북도 안동시 경동로 338",
+        "phone": "054-856-2000",
+        "parking": "무료주차 가능",
+        "business_time": "매일 08:00 - 21:40 (정기휴무 화요일)",
+        "menu": "크림치즈빵\r\n찹쌀떡\r\n미니호두롤케익\r\n에스프레소\r\n아메리카노",
+        "insta": "",
+        "home": "",
+        "city": "경상북도",
+        "rating": "3.3",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 36,
+    "fields": {
+        "user": 4,
+        "title": "오우가",
+        "category": "bakery",
+        "created_at": "2023-05-06T08:02:25.512Z",
+        "updated_at": "2023-05-06T12:56:39.758Z",
+        "address": "경남 창원시 의창구 의안로17번길 12",
+        "phone": "055-298-5501",
+        "parking": "가게문의",
+        "business_time": "10:00 - 22:00",
+        "menu": "오찬합세트\r\n오색런치\r\n플레인베이글\r\n앙버터베이글",
+        "insta": "https://smartstore.naver.com/ougacafe",
+        "home": "",
+        "city": "경상남도",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 37,
+    "fields": {
+        "user": 2,
+        "title": "조앤도슨",
+        "category": "cafe",
+        "created_at": "2023-05-06T08:03:22.119Z",
+        "updated_at": "2023-05-06T13:10:11.244Z",
+        "address": "서울특별시 마포구 동교로41길 31 지하 1층",
+        "phone": "0507-1314-1043",
+        "parking": "불가",
+        "business_time": "매일 12:00 ~ 21:00",
+        "menu": "밀크티\r\n아메리카노\r\n라떼\r\n프렌치토스트\r\n치즈케이크",
+        "insta": "https://www.instagram.com/joanddawson/",
+        "home": "",
+        "city": "서울",
+        "rating": "4.2",
+        "like_users": [
+            1,
+            2,
+            6,
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 38,
+    "fields": {
+        "user": 2,
+        "title": "폴앤폴리나 여의도점",
+        "category": "bakery",
+        "created_at": "2023-05-06T08:07:20.383Z",
+        "updated_at": "2023-05-06T15:08:36.233Z",
+        "address": "서울특별시 영등포구 의사당대로 108 아일렉스상가 1층",
+        "phone": "02-761-1966",
+        "parking": "가능",
+        "business_time": "월-금: 12:00 ~ 19:00, 토: 11:00 ~ 18:00",
+        "menu": "치아바타\r\n화이트 치아바타\r\n프레첼",
+        "insta": "",
+        "home": "",
+        "city": "서울",
+        "rating": "4.4",
+        "like_users": [
+            4,
+            6
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 39,
+    "fields": {
+        "user": 4,
+        "title": "밀집",
+        "category": "bakery",
+        "created_at": "2023-05-06T08:09:16.708Z",
+        "updated_at": "2023-05-06T13:27:14.784Z",
+        "address": "경남 창원시 성산구 용지로239번길 30",
+        "phone": "0507-1366-1987",
+        "parking": "가게문의",
+        "business_time": "10:00 - 21:30",
+        "menu": "시오팡\r\n크림치즈브라우니\r\n초코칩스콘\r\n클래식버터스콘\r\n블루베리잼스콘\r\n말차스콘",
+        "insta": "",
+        "home": "",
+        "city": "경상남도",
+        "rating": "4.0",
+        "like_users": [
+            1,
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 40,
+    "fields": {
+        "user": 2,
+        "title": "이흥용과자점 문현직영점",
+        "category": "bakery",
+        "created_at": "2023-05-06T08:11:26.418Z",
+        "updated_at": "2023-05-06T13:22:41.416Z",
+        "address": "부산 남구 수영로39번길 2-1",
+        "phone": "0507-1350-4454",
+        "parking": "가게문의",
+        "business_time": "가게문의",
+        "menu": "소금빵\r\n베이글\r\n크림치즈\r\n슈크림\r\n카스테라",
+        "insta": "",
+        "home": "https://smartstore.naver.com/bakery01",
+        "city": "부산",
+        "rating": "4.7",
+        "like_users": [
+            2,
+            4
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 41,
+    "fields": {
+        "user": 4,
+        "title": "온더선셋",
+        "category": "cafe",
+        "created_at": "2023-05-06T08:15:01.086Z",
+        "updated_at": "2023-05-06T15:26:45.198Z",
+        "address": "경남 거제시 사등면 성포로 65",
+        "phone": "055-634-2233",
+        "parking": "가게문의",
+        "business_time": "10:00 - 22:00",
+        "menu": "선셋브런치A\r\n선셋브런치B\r\n선셋주스\r\n선셋커피",
+        "insta": "https://www.instagram.com/onthesunset/",
+        "home": "",
+        "city": "경상남도",
+        "rating": "4.8",
+        "like_users": [
+            1,
+            2,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12,
+            14
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 42,
+    "fields": {
+        "user": 2,
+        "title": "올키베이커리",
+        "category": "bakery",
+        "created_at": "2023-05-06T08:16:26.226Z",
+        "updated_at": "2023-05-06T13:13:53.090Z",
+        "address": "경상남도 진주시 진주대로930번길 5 1층",
+        "phone": "0507-1363-6785",
+        "parking": "불가",
+        "business_time": "11:00 ~ 재료 소진 시 (정기휴무 일, 월)",
+        "menu": "햄치즈페스츄리\r\n롱소스틱\r\n올리브스틱\r\n갈릭고구마페스츄리",
+        "insta": "https://www.instagram.com/olki_bakery/",
+        "home": "",
+        "city": "경상남도",
+        "rating": "1.5",
+        "like_users": [
+            2
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 43,
+    "fields": {
+        "user": 1,
+        "title": "라이프에이드커피",
+        "category": "cafe",
+        "created_at": "2023-05-06T08:16:47.734Z",
+        "updated_at": "2023-05-06T13:07:16.269Z",
+        "address": "인천광역시 남동구 성말로 39",
+        "phone": "032-864-0001",
+        "parking": "주차공간없음",
+        "business_time": "매일 12:00 - 22:00",
+        "menu": "아메리카노\r\n카페라떼\r\n플랫화이트\r\n치즈케이크\r\n브라우니앤아이스크림",
+        "insta": "https://www.instagram.com/lifeaidcoffee/",
+        "home": "",
+        "city": "인천",
+        "rating": "4.0",
+        "like_users": [
+            4
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 44,
+    "fields": {
+        "user": 1,
+        "title": "돌핀커피로스터스",
+        "category": "cafe",
+        "created_at": "2023-05-06T08:18:59.078Z",
+        "updated_at": "2023-05-06T13:16:00.937Z",
+        "address": "인천광역시 연수구 컨벤시아대로 116 푸르지오월드마크 7단지상가 146호",
+        "phone": "070-8844-1220",
+        "parking": "무료주차 가능",
+        "business_time": "매일 10:00 - 21:00",
+        "menu": "시그니쳐카푸치노\r\n흑임자크림커피\r\n플랫화이트\r\n크림커피",
+        "insta": "https://www.instagram.com/dolphin_coffee_songdo/",
+        "home": "",
+        "city": "인천",
+        "rating": "4.0",
+        "like_users": [
+            4
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 46,
+    "fields": {
+        "user": 4,
+        "title": "외도널서리",
+        "category": "cafe",
+        "created_at": "2023-05-06T08:19:36.057Z",
+        "updated_at": "2023-05-06T13:06:26.300Z",
+        "address": "경남 거제시 일운면 구조라로4길 21",
+        "phone": "055-682-4541",
+        "parking": "가게문의",
+        "business_time": "10:00 - 19:00",
+        "menu": "구조라에이드\r\n몽돌 레인보우\r\n널서리커피\r\n몽돌 쇼콜라",
+        "insta": "",
+        "home": "",
+        "city": "경상남도",
+        "rating": "4.0",
+        "like_users": [
+            1
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 47,
+    "fields": {
+        "user": 1,
+        "title": "토모루",
+        "category": "bakery",
+        "created_at": "2023-05-06T08:21:24.062Z",
+        "updated_at": "2023-05-06T12:55:31.907Z",
+        "address": "인천광역시 서구 청라라임로106번길 15",
+        "phone": "032-584-0040",
+        "parking": "주차공간없음",
+        "business_time": "매일 08:30 - 22:00",
+        "menu": "마늘바게트\r\n양파빵\r\n먹물베이크",
+        "insta": "",
+        "home": "",
+        "city": "인천",
+        "rating": "3.3",
+        "like_users": [
+            4
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 48,
+    "fields": {
+        "user": 1,
+        "title": "빌리앤오티스",
+        "category": "bakery",
+        "created_at": "2023-05-06T08:24:19.930Z",
+        "updated_at": "2023-05-06T12:50:12.678Z",
+        "address": "인천광역시 중구 백운로 333",
+        "phone": "070-8808-8308",
+        "parking": "가게문의",
+        "business_time": "매일 11:00 - 20:00",
+        "menu": "토마토바질 크림샌드\r\n쪽파 크림치즈 베이글\r\n포테이토 페스츄리",
+        "insta": "https://www.instagram.com/billyandotis/",
+        "home": "",
+        "city": "인천",
+        "rating": "3.3",
+        "like_users": [
+            1,
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 49,
+    "fields": {
+        "user": 4,
+        "title": "바실라",
+        "category": "cafe",
+        "created_at": "2023-05-06T08:25:24.504Z",
+        "updated_at": "2023-05-06T13:14:47.453Z",
+        "address": "경북 경주시 하동못안길 88 바실라",
+        "phone": "010-5703-0000",
+        "parking": "가게문의",
+        "business_time": "10:00 - 21:00 ( 주말 9:00 - 21:00)",
+        "menu": "리얼 딸기라떼\r\n바실라 팥빙수\r\n바실랑떼",
+        "insta": "",
+        "home": "",
+        "city": "경상북도",
+        "rating": "4.3",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 51,
+    "fields": {
+        "user": 1,
+        "title": "시그너스 커피",
+        "category": "cafe",
+        "created_at": "2023-05-06T08:35:35.327Z",
+        "updated_at": "2023-05-06T13:51:08.874Z",
+        "address": "울산광역시 남구 봉월로8번길 17",
+        "phone": "012-3456-7890",
+        "parking": "가게문의",
+        "business_time": "매일 12:00 - 22:00 (정기휴무 월요일)",
+        "menu": "핸드드립\r\n에스프레소 콘파냐\r\n아메리카노",
+        "insta": "https://www.instagram.com/cygnus_coffee_bar/",
+        "home": "",
+        "city": "울산",
+        "rating": "4.4",
+        "like_users": [
+            4
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 52,
+    "fields": {
+        "user": 4,
+        "title": "이스트앵글 베이커리카페",
+        "category": "bakery",
+        "created_at": "2023-05-06T08:35:40.728Z",
+        "updated_at": "2023-05-06T12:46:19.297Z",
+        "address": "경북 경주시 양남면 해변공원길 4",
+        "phone": "054-771-4131",
+        "parking": "가게문의",
+        "business_time": "10:00 - 21:00",
+        "menu": "소금빵\r\n에그타르트\r\n마늘빵",
+        "insta": "",
+        "home": "",
+        "city": "경상북도",
+        "rating": "5.0",
+        "like_users": [
+            1,
+            6
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 53,
+    "fields": {
+        "user": 1,
+        "title": "스매쉬커피",
+        "category": "cafe",
+        "created_at": "2023-05-06T08:38:35.184Z",
+        "updated_at": "2023-05-06T12:52:10.301Z",
+        "address": "울산광역시 중구 내황2길 26",
+        "phone": "010-5119-7693",
+        "parking": "주차공간없음",
+        "business_time": "매일 12:00 - 21:00",
+        "menu": "아메리카노\r\n카페라떼\r\n감귤에이드\r\n브런치",
+        "insta": "",
+        "home": "",
+        "city": "울산",
+        "rating": "3.7",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 54,
+    "fields": {
+        "user": 4,
+        "title": "씨엘비베이커리",
+        "category": "bakery",
+        "created_at": "2023-05-06T08:53:53.591Z",
+        "updated_at": "2023-05-06T13:02:13.215Z",
+        "address": "전남 목포시 영산로75번길 14",
+        "phone": "061-242-2161",
+        "parking": "가게문의",
+        "business_time": "8:00 - 21:00",
+        "menu": "크림치즈바게트\r\n새우바게트",
+        "insta": "https://www.instagram.com/clbbakery/",
+        "home": "",
+        "city": "전라남도",
+        "rating": "3.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 55,
+    "fields": {
+        "user": 4,
+        "title": "인헤르또",
+        "category": "bakery",
+        "created_at": "2023-05-06T08:59:07.814Z",
+        "updated_at": "2023-05-06T12:39:24.159Z",
+        "address": "전남 목포시 평화로 57",
+        "phone": "0507-1315-0073",
+        "parking": "가게문의",
+        "business_time": "9:00 - 23:00",
+        "menu": "앙버터 스콘\r\n딸기 크로와상\r\n크룽지",
+        "insta": "",
+        "home": "",
+        "city": "전라남도",
+        "rating": "5.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 56,
+    "fields": {
+        "user": 4,
+        "title": "고데레",
+        "category": "cafe",
+        "created_at": "2023-05-06T09:10:04.867Z",
+        "updated_at": "2023-05-06T13:04:51.120Z",
+        "address": "전남 순천시 장명5길 11 1층",
+        "phone": "061-742-0072",
+        "parking": "가게문의",
+        "business_time": "11:30 - 21:30 (정기휴무 월요일)",
+        "menu": "무하과호두칩브라우니\r\n바스크치즈케익\r\n스트로베리케익\r\n판나코타\r\n단호박치즈케익\r\n카페라뗴",
+        "insta": "http://www.instagram.com/cafe.godere",
+        "home": "",
+        "city": "전라남도",
+        "rating": "4.3",
+        "like_users": [
+            6
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 57,
+    "fields": {
+        "user": 4,
+        "title": "카페아더맨",
+        "category": "cafe",
+        "created_at": "2023-05-06T09:15:27.034Z",
+        "updated_at": "2023-05-06T13:19:15.487Z",
+        "address": "전남 화순군 화순읍 연양1길 28",
+        "phone": "061-372-7939",
+        "parking": "가게문의",
+        "business_time": "11:00 - 20:00",
+        "menu": "아메리카노\r\n카페라떼",
+        "insta": "https://www.instagram.com/aderman__/",
+        "home": "",
+        "city": "전라남도",
+        "rating": "3.7",
+        "like_users": [
+            6
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 58,
+    "fields": {
+        "user": 4,
+        "title": "오늘제빵소",
+        "category": "bakery",
+        "created_at": "2023-05-06T09:21:26.903Z",
+        "updated_at": "2023-05-06T12:38:31.172Z",
+        "address": "전북 익산시 금마면 미륵사지로 20",
+        "phone": "0507-1380-0284",
+        "parking": "가게문의",
+        "business_time": "가게문의",
+        "menu": "크림몽블랑\r\n크레이프\r\n바스크\r\n코튼",
+        "insta": "",
+        "home": "",
+        "city": "경상북도",
+        "rating": "5.0",
+        "like_users": [
+            7,
+            13
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 59,
+    "fields": {
+        "user": 4,
+        "title": "오운베이커리",
+        "category": "bakery",
+        "created_at": "2023-05-06T09:25:18.317Z",
+        "updated_at": "2023-05-06T12:55:27.284Z",
+        "address": "전북 익산시 하나로13길 8-15 1층",
+        "phone": "010-4324-0655",
+        "parking": "가게문의",
+        "business_time": "10:00 - 20:00",
+        "menu": "스콘\r\n휘낭시에\r\n에그타르트",
+        "insta": "https://www.instagram.com/_own.bakery_/",
+        "home": "",
+        "city": "전라북도",
+        "rating": "3.0",
+        "like_users": [
+            6
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 60,
+    "fields": {
+        "user": 4,
+        "title": "마시랑게",
+        "category": "cafe",
+        "created_at": "2023-05-06T09:29:21.573Z",
+        "updated_at": "2023-05-06T12:39:01.405Z",
+        "address": "전북 전주시 완산구 전동성당길 100 1층 2층",
+        "phone": "0507-1460-0235",
+        "parking": "가게문의",
+        "business_time": "10:30 - 21:00",
+        "menu": "비밀의 문\r\n복남이 호박 약과\r\n수제 과즐\r\n수제 사각 양갱\r\n수구화 세트\r\n수채화에이드\r\n청사초롱에이드",
+        "insta": "https://www.instagram.com/masirange/",
+        "home": "",
+        "city": "전라북도",
+        "rating": "4.5",
+        "like_users": [
+            1
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 61,
+    "fields": {
+        "user": 4,
+        "title": "카페덕기",
+        "category": "cafe",
+        "created_at": "2023-05-06T09:33:44.923Z",
+        "updated_at": "2023-05-06T13:17:12.664Z",
+        "address": "전북 익산시 덕기1길 104",
+        "phone": "0507-1352-2503",
+        "parking": "가게문의",
+        "business_time": "11:00 - 20:00",
+        "menu": "착즙진지향주스\r\n바나나쉐이크\r\n아메리카노\r\n카페라떼",
+        "insta": "",
+        "home": "",
+        "city": "전라북도",
+        "rating": "3.3",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 62,
+    "fields": {
+        "user": 13,
+        "title": "곳",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:24:08.384Z",
+        "updated_at": "2023-05-06T13:27:14.103Z",
+        "address": "강원 강릉시 사천면 진리해변길 143",
+        "phone": "033-646-4500",
+        "parking": "주차장 o",
+        "business_time": "가게문의",
+        "menu": "곳; 마카다미아 카라멜 칠러 7,000원\r\n곳; 핫 마카다미아 카라멜 6,500원\r\n곳; 바닐라아인슈페너 6,500원\r\n바다연유라떼 6,500원",
+        "insta": "http://instagram.com/place6464500",
+        "home": "",
+        "city": "강원도",
+        "rating": "4.0",
+        "like_users": [
+            6,
+            7,
+            12
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 63,
+    "fields": {
+        "user": 13,
+        "title": "카페 얼",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:28:07.868Z",
+        "updated_at": "2023-05-06T13:32:47.572Z",
+        "address": "강원 삼척시 테마타운길 59 1층 카페 얼[EARL]",
+        "phone": "0507-1320-6357",
+        "parking": "주차가능",
+        "business_time": "가게문의",
+        "menu": "얼 라떼\r\n아몬드 크림라떼\r\n자몽 우롱티\r\n아메리카노",
+        "insta": "https://www.instagram.com/earl.samcheok",
+        "home": "",
+        "city": "강원도",
+        "rating": "3.7",
+        "like_users": [
+            12
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 64,
+    "fields": {
+        "user": 13,
+        "title": "CUP&CUP",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:30:29.439Z",
+        "updated_at": "2023-05-06T13:54:34.809Z",
+        "address": "부산 수영구 광안해변로 177 4층, 5층",
+        "phone": "051-978-5200",
+        "parking": "가게문의",
+        "business_time": "매일 10:30 - 22:00 (라스트오더 - 루프탑과 5층 마감 20:30)",
+        "menu": "아메리카노(아이스) \r\n카페라떼(아이스) \r\n카푸치노 \r\n바닐라라떼(ICE)",
+        "insta": "",
+        "home": "",
+        "city": "부산",
+        "rating": "3.0",
+        "like_users": [
+            4
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 65,
+    "fields": {
+        "user": 13,
+        "title": "카페이정원",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:32:09.026Z",
+        "updated_at": "2023-05-06T14:17:16.190Z",
+        "address": "부산 남구 용소로21번길 59 카페이정원 1층",
+        "phone": "0507-1407-1210",
+        "parking": "가게문의",
+        "business_time": "매일 12:00 - 22:00 (휴무 인스타 및 네이버 공지)",
+        "menu": "아메리카노\r\n에스프레소콘파냐\r\n카페라떼 \r\n바닐라라떼",
+        "insta": "http://www.instagram.com/cafe_de_egarden",
+        "home": "",
+        "city": "부산",
+        "rating": "2.5",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 66,
+    "fields": {
+        "user": 13,
+        "title": "듀레스트",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:33:55.592Z",
+        "updated_at": "2023-05-06T13:38:17.869Z",
+        "address": "서울 관악구 관악로14길 50 2층",
+        "phone": "02-6013-8569",
+        "parking": "가게문의",
+        "business_time": "12:00-22:00 (라스트오더 - 21:00)",
+        "menu": "잠자는딸기곰\r\n잠자는라즈베리곰\r\n잠자는블루베리곰",
+        "insta": "https://www.instagram.com/cafe_dewrest/",
+        "home": "",
+        "city": "서울",
+        "rating": "4.0",
+        "like_users": [
+            6
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 67,
+    "fields": {
+        "user": 13,
+        "title": "오파토",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:35:19.950Z",
+        "updated_at": "2023-05-06T14:18:01.593Z",
+        "address": "서울 용산구 신흥로12길 1 1층",
+        "phone": "0507-1361-4890",
+        "parking": "가게문의",
+        "business_time": "매일 08:00 - 17:00",
+        "menu": "소금빵\r\n소금빵 러스크\r\n사워도우\r\n오파토토스트",
+        "insta": "https://www.instagram.com/opato_08am/",
+        "home": "",
+        "city": "서울",
+        "rating": "4.0",
+        "like_users": [
+            6
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 68,
+    "fields": {
+        "user": 13,
+        "title": "라메르판지",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:36:22.377Z",
+        "updated_at": "2023-05-06T14:18:36.552Z",
+        "address": "울산 북구 판지1길 30",
+        "phone": "0507-1496-8791",
+        "parking": "주차가능",
+        "business_time": "매일 09:00 - 22:00",
+        "menu": "아메리카노\r\n에스프레소\r\n콜드브루\r\n카페라떼",
+        "insta": "https://www.instagram.com/lamer_panji/",
+        "home": "",
+        "city": "서울",
+        "rating": "4.3",
+        "like_users": [
+            6,
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 69,
+    "fields": {
+        "user": 13,
+        "title": "파라안",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:37:52.188Z",
+        "updated_at": "2023-05-06T13:50:28.699Z",
+        "address": "울산 울주군 범서읍 백천1길 64",
+        "phone": "052-222-0005",
+        "parking": "주차가능",
+        "business_time": "매일 10:00 - 22:30 (라스트오더 - 21:40)",
+        "menu": "딸기 요거트 아이스크림 \r\n딸기요거트스무디 \r\n일랑슈페너\r\n요거트아이스크림+그래놀라",
+        "insta": "https://www.instagram.com/para.an_gulhwa/",
+        "home": "",
+        "city": "서울",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 70,
+    "fields": {
+        "user": 13,
+        "title": "바다앞테라스",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:39:01.847Z",
+        "updated_at": "2023-05-06T13:43:50.364Z",
+        "address": "인천 중구 은하수로 10 더 테라스프라자 5층",
+        "phone": "032-747-0137",
+        "parking": "가게문의",
+        "business_time": "평일, 일요일 09:00-22:00 토요일 09:00-23:00",
+        "menu": "아메리카노\r\n카페라떼\r\n에스프레소",
+        "insta": "http://www.instagram.com/terrace.in.seaside",
+        "home": "",
+        "city": "인천",
+        "rating": "4.0",
+        "like_users": [
+            6,
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 71,
+    "fields": {
+        "user": 13,
+        "title": "카페오라",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:40:07.684Z",
+        "updated_at": "2023-05-06T13:42:57.443Z",
+        "address": "인천 중구 용유서로 380",
+        "phone": "032-752-0888",
+        "parking": "가게문의",
+        "business_time": "평일 10:00-22:30 주말 9:00-22:30",
+        "menu": "아메리카노\r\n카페라떼\r\n딸기라뗴\r\n블루레몬에이드",
+        "insta": "http://www.instagram.com/caffeora_",
+        "home": "",
+        "city": "인천",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 72,
+    "fields": {
+        "user": 13,
+        "title": "귤꽃카페",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:43:39.489Z",
+        "updated_at": "2023-05-06T14:24:24.863Z",
+        "address": "제주 제주시 조천읍 함덕2길 90",
+        "phone": "0507-1414-2015",
+        "parking": "가게문의",
+        "business_time": "매일 11:00 - 19:00 (정기휴무 수요일) 사전예약 필수",
+        "menu": "since2012 찹쌀쑥이와플\r\n귤꽂피크닉(23년10월재개)\r\n아메리카노(hot)",
+        "insta": "http://instagram.com/gyulkkot",
+        "home": "",
+        "city": "제주도",
+        "rating": "4.8",
+        "like_users": [
+            1,
+            2,
+            6,
+            7,
+            14
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 73,
+    "fields": {
+        "user": 13,
+        "title": "그계절",
+        "category": "cafe",
+        "created_at": "2023-05-06T13:44:53.572Z",
+        "updated_at": "2023-05-06T13:46:38.207Z",
+        "address": "제주 제주시 구좌읍 한동로 119 1동",
+        "phone": "010-3140-3121",
+        "parking": "가게문의",
+        "business_time": "매일 11:00-17:30 (휴무일 인스타 공지)",
+        "menu": "아메리카노\r\n카페라떼\r\n바닐라라떼\r\n카푸치노",
+        "insta": "https://www.instagram.com/he_season/",
+        "home": "",
+        "city": "제주도",
+        "rating": "4.0",
+        "like_users": [
+            6,
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 74,
+    "fields": {
+        "user": 13,
+        "title": "문화제과",
+        "category": "bakery",
+        "created_at": "2023-05-06T13:46:16.617Z",
+        "updated_at": "2023-05-06T14:14:33.897Z",
+        "address": "강원 삼척시 근덕면 교가길 14",
+        "phone": "033-572-3100",
+        "parking": "가게문의",
+        "business_time": "매일 09:00-24:00  (정기휴무 월요일) 빵 소진 시 마감",
+        "menu": "꽈배기\r\n찹쌀도나스",
+        "insta": "",
+        "home": "",
+        "city": "강원도",
+        "rating": "4.5",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 75,
+    "fields": {
+        "user": 13,
+        "title": "봉브레드",
+        "category": "bakery",
+        "created_at": "2023-05-06T13:47:36.519Z",
+        "updated_at": "2023-05-06T13:53:16.366Z",
+        "address": "강원 속초시 동해대로 4344-1",
+        "phone": "033-633-4826",
+        "parking": "주차가능",
+        "business_time": "월-토 08:30-20:00 일 08:30-18:30 (정기휴무 목요일)",
+        "menu": "범바위페스츄리\r\n마늘바게트\r\n연인의빵",
+        "insta": "",
+        "home": "http://www.bongbread.com/",
+        "city": "강원도",
+        "rating": "4.5",
+        "like_users": [
+            6
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 76,
+    "fields": {
+        "user": 13,
+        "title": "마음제빵소",
+        "category": "bakery",
+        "created_at": "2023-05-06T13:48:31.430Z",
+        "updated_at": "2023-05-06T13:49:14.429Z",
+        "address": "경기 성남시 분당구 백현로101번길 16 1층",
+        "phone": "031-717-2141",
+        "parking": "가게문의",
+        "business_time": "매일 09:00 - 22:00",
+        "menu": "마늘범벅바게트\r\n스콘\r\n칠리소세지",
+        "insta": "",
+        "home": "",
+        "city": "경기도",
+        "rating": "5.0",
+        "like_users": [
+            6
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 77,
+    "fields": {
+        "user": 13,
+        "title": "모루제과점",
+        "category": "bakery",
+        "created_at": "2023-05-06T13:50:24.075Z",
+        "updated_at": "2023-05-06T13:55:39.052Z",
+        "address": "부산 해운대구 우동1로38번길 11 우일맨션 1층 127호",
+        "phone": "0507-1467-0337",
+        "parking": "가게문의",
+        "business_time": "매일 11:00-18:00 라스트오더 17:30 (정기휴무 월요일)",
+        "menu": "해운대 파운드\r\n애플 크럼블 파운드\r\n쇼콜라 파운드\r\n오렌지 바닐라 파운드",
+        "insta": "https://instagram.com/morub_official",
+        "home": "https://smartstore.naver.com/morub",
+        "city": "부산",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 78,
+    "fields": {
+        "user": 13,
+        "title": "비앤씨제과",
+        "category": "bakery",
+        "created_at": "2023-05-06T13:51:53.308Z",
+        "updated_at": "2023-05-06T13:56:10.659Z",
+        "address": "부산 중구 광복로39번길 6",
+        "phone": "051-260-5201",
+        "parking": "가게문의",
+        "business_time": "월-목 10:30-21:00, 금, 토, 일 10:30-22:00",
+        "menu": "몽블랑",
+        "insta": "",
+        "home": "",
+        "city": "부산",
+        "rating": "4.0",
+        "like_users": [
+            1
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 79,
+    "fields": {
+        "user": 13,
+        "title": "은쏨",
+        "category": "bakery",
+        "created_at": "2023-05-06T13:53:48.645Z",
+        "updated_at": "2023-05-06T13:57:30.040Z",
+        "address": "부산 해운대구 우동1로85번길 8 1층",
+        "phone": "0507-1339-5057",
+        "parking": "가게문의",
+        "business_time": "12:00-20:00 (정기휴무 화요일, 수요일)",
+        "menu": "에그타르트\r\n피칸파이 마카다미아브라우니 코코넛튀일",
+        "insta": "http://instagram.com/eun.ssom",
+        "home": "https://m.smartstore.naver.com/eunssom",
+        "city": "부산",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 80,
+    "fields": {
+        "user": 13,
+        "title": "아우어베이커리 가로수길점",
+        "category": "bakery",
+        "created_at": "2023-05-06T13:55:18.437Z",
+        "updated_at": "2023-05-06T13:58:20.831Z",
+        "address": "서울 강남구 강남대로162길 39",
+        "phone": "02-546-3800",
+        "parking": "가게문의",
+        "business_time": "매일 10:00-20:30",
+        "menu": "더티초코\r\n빨미까레",
+        "insta": "https://www.instagram.com/ourbakerycafe/",
+        "home": "http://www.ourbakery.co.kr",
+        "city": "서울",
+        "rating": "4.0",
+        "like_users": [
+            2
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 81,
+    "fields": {
+        "user": 13,
+        "title": "어글리베이커리",
+        "category": "bakery",
+        "created_at": "2023-05-06T13:57:04.391Z",
+        "updated_at": "2023-05-06T14:03:38.188Z",
+        "address": "서울 마포구 월드컵로13길 73 1층 어글리 베이커리",
+        "phone": "0507-1306-2018",
+        "parking": "가게문의",
+        "business_time": "12:00 - 21:00 (정기휴무 월요일, 화요일)",
+        "menu": "말차 맘모스\r\n크림치즈 앙버터\r\n대파빵\r\n얼그레이 크림빵",
+        "insta": "http://www.instagram.com/uglybakery",
+        "home": "",
+        "city": "서울",
+        "rating": "4.0",
+        "like_users": [
+            1,
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 82,
+    "fields": {
+        "user": 13,
+        "title": "그리다빵",
+        "category": "bakery",
+        "created_at": "2023-05-06T13:58:13.270Z",
+        "updated_at": "2023-05-06T13:59:39.794Z",
+        "address": "울산 남구 왕생로 64 1층",
+        "phone": "0507-1431-2791",
+        "parking": "가게문의",
+        "business_time": "매일 09:00-22:00",
+        "menu": "마늘바게트\r\n그리다빵\r\n소금빵\r\n소금빵 블랙",
+        "insta": "",
+        "home": "",
+        "city": "울산",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 83,
+    "fields": {
+        "user": 13,
+        "title": "동인당",
+        "category": "bakery",
+        "created_at": "2023-05-06T13:59:41.503Z",
+        "updated_at": "2023-05-06T14:00:11.329Z",
+        "address": "울산 남구 수암로 123",
+        "phone": "0507-1375-5655",
+        "parking": "가게문의",
+        "business_time": "목, 금, 토 11:00 - 16:30",
+        "menu": "휘낭시에\r\n까눌레\r\n레몬케이크",
+        "insta": "https://www.instagram.com/____s.bn/",
+        "home": "",
+        "city": "울산",
+        "rating": "4.0",
+        "like_users": [
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 84,
+    "fields": {
+        "user": 13,
+        "title": "안스베이커리",
+        "category": "bakery",
+        "created_at": "2023-05-06T14:00:38.218Z",
+        "updated_at": "2023-05-06T14:02:59.221Z",
+        "address": "인천 남동구 인주대로 664",
+        "phone": "032-463-0045",
+        "parking": "가게문의",
+        "business_time": "매일 07:30 - 23:30",
+        "menu": "소금빵 \r\n명란바게트\r\n명장 샌드위치",
+        "insta": "",
+        "home": "http://www.ansbakery.com/",
+        "city": "인천",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 85,
+    "fields": {
+        "user": 13,
+        "title": "영종제빵소",
+        "category": "bakery",
+        "created_at": "2023-05-06T14:01:47.186Z",
+        "updated_at": "2023-05-06T14:04:20.627Z",
+        "address": "인천 중구 해맞이길 7 영종제빵소",
+        "phone": "032-746-1114",
+        "parking": "주차가능",
+        "business_time": "매일 10:00-21:00",
+        "menu": "먹물소금빵\r\n명란바게트\r\n레몬타르트",
+        "insta": "",
+        "home": "",
+        "city": "인천",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 86,
+    "fields": {
+        "user": 13,
+        "title": "가는곶 세화",
+        "category": "bakery",
+        "created_at": "2023-05-06T14:02:47.137Z",
+        "updated_at": "2023-05-06T14:10:31.926Z",
+        "address": "제주 제주시 구좌읍 세화14길 3 가는곶 세화",
+        "phone": "064-782-9006",
+        "parking": "가게문의",
+        "business_time": "매일 09:30 - 19:00",
+        "menu": "쑥보늬밤빵\r\n에멘탈썬드라이토마토 \r\n구운제주감자빵\r\n아메리카노",
+        "insta": "https://instagram.com/whisky_sehwa",
+        "home": "",
+        "city": "제주도",
+        "rating": "4.0",
+        "like_users": [
+            7
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 87,
+    "fields": {
+        "user": 13,
+        "title": "오드랑 베이커리",
+        "category": "bakery",
+        "created_at": "2023-05-06T14:03:47.210Z",
+        "updated_at": "2023-05-06T14:12:02.316Z",
+        "address": "제주 제주시 조천읍 조함해안로 552-3",
+        "phone": "064-784-5404",
+        "parking": "가게문의",
+        "business_time": "매일 07:00 - 22:00",
+        "menu": "마농바게트\r\n카페모카\r\n먹물치아바타\r\n버터프레첼",
+        "insta": "",
+        "home": "",
+        "city": "제주도",
+        "rating": "4.0",
+        "like_users": [
+            14
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 88,
+    "fields": {
+        "user": 13,
+        "title": "어로프슬라이스피스",
+        "category": "cafe",
+        "created_at": "2023-05-06T14:07:53.388Z",
+        "updated_at": "2023-05-06T14:13:27.861Z",
+        "address": "경기 광주시 퇴촌면 정영로 946-8 어 로프 슬라이스 피스",
+        "phone": "031-762-5778",
+        "parking": "주차가능",
+        "business_time": "매일 10:00 - 19:00",
+        "menu": "딸기 로프 크림 데니쉬\r\n아메리카노\r\n에티오피아 라다\r\n에스프레소",
+        "insta": "https://www.instagram.com/a_loaf_slice_piece/",
+        "home": "",
+        "city": "경기도",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 89,
+    "fields": {
+        "user": 13,
+        "title": "폴콘 리버가든팔당",
+        "category": "cafe",
+        "created_at": "2023-05-06T14:11:17.881Z",
+        "updated_at": "2023-05-06T14:35:17.806Z",
+        "address": "경기 남양주시 와부읍 경강로926번길 66",
+        "phone": "031-521-8876",
+        "parking": "주차가능",
+        "business_time": "매일 10:00 - 22:00",
+        "menu": "에스프레소\r\n블렌딩 아메리카노\r\n디카페인 아메리카노\r\n싱글 아메리카노",
+        "insta": "http://www.instagram.com/vollkorn_smile",
+        "home": "",
+        "city": "경기도",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 90,
+    "fields": {
+        "user": 13,
+        "title": "퀸즈베리도넛하우스",
+        "category": "cafe",
+        "created_at": "2023-05-06T14:13:19.244Z",
+        "updated_at": "2023-05-06T14:37:42.320Z",
+        "address": "서울 중구 다산로19길 29 1층",
+        "phone": "0507-1472-4112",
+        "parking": "가게문의",
+        "business_time": "매일 12:00 - 20:00",
+        "menu": "퀸즈베리 도넛 플래터\r\n더블 바닐라\r\n클래식 시나몬 도넛",
+        "insta": "https://www.instagram.com/queensberry.donut.house/",
+        "home": "",
+        "city": "서울",
+        "rating": "3.5",
+        "like_users": [
+            2
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 92,
+    "fields": {
+        "user": 6,
+        "title": "바누아투과자점",
+        "category": "bakery",
+        "created_at": "2023-05-06T14:25:43.995Z",
+        "updated_at": "2023-05-06T14:35:44.735Z",
+        "address": "충청북도 청주시 흥덕구 대신로 76",
+        "phone": "043-236-0788",
+        "parking": "무료주차 가능",
+        "business_time": "매일 07:30 - 23:00",
+        "menu": "크랜베리 쌀 깜빠뉴\r\n호밀빵\r\n식빵",
+        "insta": "https://www.instagram.com/p/8kByznqc_l/",
+        "home": "",
+        "city": "충청북도",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 93,
+    "fields": {
+        "user": 6,
+        "title": "단빵제빵소",
+        "category": "bakery",
+        "created_at": "2023-05-06T14:28:03.947Z",
+        "updated_at": "2023-05-06T14:36:13.151Z",
+        "address": "충청북도 단양군 단양읍 도전4길 30",
+        "phone": "043-421-7978",
+        "parking": "가게문의",
+        "business_time": "가게문의",
+        "menu": "크림 바게트\r\n흑마늘 크림 바게트\r\n고구마 바게트",
+        "insta": "",
+        "home": "",
+        "city": "충청북도",
+        "rating": "4.0",
+        "like_users": [
+            14
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 94,
+    "fields": {
+        "user": 7,
+        "title": "나폴레옹과자점 본점",
+        "category": "bakery",
+        "created_at": "2023-05-06T14:29:28.966Z",
+        "updated_at": "2023-05-06T14:36:36.500Z",
+        "address": "서울 성북구 성북로 7",
+        "phone": "02-742-7421",
+        "parking": "가능",
+        "business_time": "매일 09:00 ~ 21:00",
+        "menu": "크림빵\r\n사라다빵\r\n크로와상",
+        "insta": "",
+        "home": "https://www.sixshop.com/1968napoleon/home",
+        "city": "서울",
+        "rating": "4.0",
+        "like_users": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 95,
+    "fields": {
+        "user": 14,
+        "title": "아우트로 커피",
+        "category": "cafe",
+        "created_at": "2023-05-06T14:29:51.700Z",
+        "updated_at": "2023-05-06T14:39:18.287Z",
+        "address": "충북 청주시 상당구 낭성면 산성로 676",
+        "phone": "043-221-6222",
+        "parking": "주차가능",
+        "business_time": "매일 11:00 - 21:00 (정기휴무 월요일)",
+        "menu": "아메리카노\r\n카페라떼\r\n바닐라라떼\r\n흑임자크림라떼(ice)",
+        "insta": "http://instagram.com/outro_coffee",
+        "home": "",
+        "city": "충청북도",
+        "rating": "4.0",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 96,
+    "fields": {
+        "user": 6,
+        "title": "커피단월",
+        "category": "cafe",
+        "created_at": "2023-05-06T14:32:17.512Z",
+        "updated_at": "2023-05-06T14:32:17.512Z",
+        "address": "충청북도 충주시 충원대로 55",
+        "phone": "043-848-1996",
+        "parking": "무료주차 가능",
+        "business_time": "매일 08:00 - 21:20",
+        "menu": "아메리카노\r\n쾌도난마 아메리카노\r\n스카이블라썸라떼\r\n인절미크림크로아상\r\n앙버터",
+        "insta": "",
+        "home": "http://www.danwol.co.kr/",
+        "city": "충청북도",
+        "rating": "0.0",
+        "like_users": []
+    }
+}
+]
