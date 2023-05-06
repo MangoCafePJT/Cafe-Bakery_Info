@@ -2,6 +2,14 @@
 {% load static %}
 {% block title %}Login{% endblock title %}
 
+{% block style %}
+<style>
+  form li {
+    display:none;
+  }
+</style>
+{% endblock style %}
+
 {% block content %}
 {% load socialaccount %}
 

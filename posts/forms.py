@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.widgets import ClearableFileInput
 from .models import Post, Review, PostImage, ReviewImage
 from taggit.forms import TagField, TagWidget
 from taggit.managers import TaggableManager
@@ -132,19 +133,28 @@ class PostForm(forms.ModelForm):
                 'placeholder': "태그는 콤마(,)로 구분해주세요.",
                 }),
         }
+        labels = {
+        'tags': '#해시태그(필수):',
+        }
+        help_texts = {
+            'tags': '',
+        }
 
-        
+class CustomClearableFileInput(ClearableFileInput):
+    template_name = 'posts/custom_clearable_file_input.html'
+
 class PostImageForm(forms.ModelForm):
     image = forms.ImageField(
         label='관련 이미지(필수)',
-        widget=forms.ClearableFileInput(
+        widget=CustomClearableFileInput(
             attrs={
                 'multiple': True, 
                 'class': 'form-control', 
-                'style' : 'width: 600px;'
+                'style': 'width: 600px;',
             }
         ),
     )
+
     class Meta:
         model = PostImage
         fields = ('image',)
@@ -205,7 +215,7 @@ class ReviewImageForm(forms.ModelForm):
     image = forms.ImageField(
         label='이미지(최대 3장)',
         required=False,
-        widget=forms.ClearableFileInput(
+        widget=CustomClearableFileInput(
             attrs={
                 'multiple': True, 
                 'class': 'form-control', 

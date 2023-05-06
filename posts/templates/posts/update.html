@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block title %}
+  Update
+{% endblock title %}
+
+
 {% block content %}
   <div class="posts--box">
     <div class="posts--create">
@@ -7,7 +12,7 @@
         <form action="{% url 'posts:update' post.pk %}" method='POST' enctype='multipart/form-data'>
           {% csrf_token %}
           {{ post_form.as_p}}
-          {{ image_form.as_p}}
+          {{ image_form.as_p }}
           {{ delete_form.as_p }}
           <input class="posts--btn" type="submit">
         </form>
@@ -15,5 +20,11 @@
   </div>
 {% endblock content %}
 
+{% block script %}
+<script>
 
+
+
+</script>
+{% endblock script %}
 
