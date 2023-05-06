@@ -74,6 +74,10 @@
               {% endif %}
               <span id="likes-count">{{ post.like_users.all|length }}</span>
             </div>
+            <div class="d-flex detail--info--user">
+              <i class="bi bi-eye-fill me-2"></i>
+              {{ hit_count }}
+            </div>
         </div>
       </div>
         <div class="detail--info--body"><div class="detail--info--body--title">주소</div>{{ post.address }}</div>
@@ -143,8 +147,8 @@
                 <img src="{% static 'image/profile-none.png' %}" alt="profile_image_none" class="object-fit-fill profile">
               </div>
             {% endif %}
-            <p>{{ review.user }}</p>
-            <p>{{ review.created_string}}</p>
+            <p class="detail--info--user"><a href="{% url 'accounts:profile' review.user.username %}">{{ review.user }}</a></p>
+            <p class="detail--info--user">{{ review.created_string}}</p>
             {% if review.user == request.user %}
               <div class='d-flex'>
                 <a href="{% url 'posts:review_update' post.pk review.pk %}" class="post--btn">수정</a>
@@ -199,8 +203,8 @@
             {% endfor %}
           </div>
         </div>
-          {% endfor %}
-      </div>
+      {% endfor %}
+    </div>
     {% else %}
       <div class="d-flex flex-column align-items-center justify-content-center">
         <img src="{% static 'image/empty.png' %}" alt="" style="height: 200px; width: 200px;">

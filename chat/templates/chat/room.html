@@ -28,14 +28,14 @@ Chat Room
 <script>
     const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-    {% comment %} const chatSocket = new WebSocket(
-        'wss://' + window.location.host +
-        '/ws/chat/' + roomName + '/'
-    ); {% endcomment %}
-    
     const chatSocket = new WebSocket(
-    'wss://port-0-cafe-bakery-info-687p2alharv4ez.sel4.cloudtype.app/ws/chat/' + roomName + '/'
+        'ws://' + window.location.host +
+        '/ws/chat/' + roomName + '/'
     );
+    
+    {% comment %} const chatSocket = new WebSocket(
+    'wss://port-0-cafe-bakery-info-687p2alharv4ez.sel4.cloudtype.app/ws/chat/' + roomName + '/'
+    ); {% endcomment %}
 
 
     chatSocket.onmessage = function(e) {

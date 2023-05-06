@@ -4,6 +4,31 @@
   {{ tag }} List
 {% endblock title %}
 
+{% block style %}
+<style>
+  .page-link {
+    color: rgb(83, 83, 83);
+    background-color: #fafafa;
+    border: 1px solid #ccc; 
+  }
+
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #555;
+    font-weight:bold;
+    background-color: #e5d6ffe1;
+    border-color: #ccc;
+  }
+
+  .page-link:focus, .page-link:hover {
+    color: rgb(83, 83, 83);
+    background-color: rgba(189, 170, 219, 0.4);
+    border-color: #ccc;
+    box-shadow: 0 0 0 0.25rem rgba(189, 170, 219, 0.4);
+  }
+</style>
+{% endblock style %}
+
 {% block content %}
 <div class="tag--title">
   <h2>#{{ tag }}</h2>

@@ -18,21 +18,21 @@ class bakeryCarousel {
       this.$prevButtonb.hidden = true;
     }
     
-    if (this.$bakerycarousel.childElementCount <= 3) {
+    if (this.$bakerycarousel.childElementCount <= 4) {
       this.$nextButtonb.hidden = true;
     }
 
-    if (this.index === 0 && this.$bakerycarousel.childElementCount > 3) {
+    if (this.index === 0 && this.$bakerycarousel.childElementCount > 4) {
       this.$nextButtonb.hidden = false;
     }
   }
 
   prevb() {
     if (this.index <= 0) return;
-    this.index -= 2;
+    this.index -= 4;
 
     this.$bakerycarousel.style.transform = `translate3d(-${
-      250 * this.index
+      260 * this.index
     }px, 0, 0)`;
 
     if (this.index <= 0) {
@@ -49,10 +49,10 @@ class bakeryCarousel {
 
   nextb() {
     if (this.index >= this.$bakerycarousel.childElementCount - 2) return;
-    this.index += 2;
+    this.index += 4;
 
     this.$bakerycarousel.style.transform = `translate3d(-${
-      250 * this.index
+      260 * this.index
     }px, 0, 0)`;
     if (this.index <= 0) {
       this.$prevButtonb.hidden = true;
@@ -68,4 +68,3 @@ class bakeryCarousel {
 }
 
 const bakerycarousel = new bakeryCarousel();
-

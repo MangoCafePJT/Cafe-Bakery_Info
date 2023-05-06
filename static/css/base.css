@@ -588,3 +588,8 @@ footer a {
 .dropdown-menu li a {
   font-family: 'LeeSeoyun';
 }
+
+.dropdown-item:active {
+  background-color: #ffedca;
+  color: black;
+}

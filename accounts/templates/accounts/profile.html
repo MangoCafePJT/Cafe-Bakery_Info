@@ -82,7 +82,7 @@
                     {% for follower in person.followers.all %}
                       <div class="modal--profile--card col-3">
                         <a class="text-decoration-none link-secondary fw-bold modal--profile--link" href="{% url 'accounts:profile' follower.username %}">
-                          {% if follower.profile_image %}
+                          {% if follower.image %}
                             <div class="profile--image rounded-circle">
                               <img src="{{ follower.image.url }}" alt="" class="object-fit-fill profile">
                             </div>
@@ -94,7 +94,6 @@
                           <span>{{ follower }}</span></a>
                       </div>
                     {% endfor %}
-
                   {% else %}
                       <div class="row" id="followers-list"></div>
                   {% endif %}
@@ -116,7 +115,7 @@
                   {% for following in person.followings.all %}
                   <div class="modal--profile--card col-3">
                     <a class="text-decoration-none link-secondary fw-bold modal--profile--link" href="{% url 'accounts:profile' following.username %}">
-                      {% if following.profile_image %}
+                      {% if following.image %}
                         <div class="profile--image rounded-circle">
                           <img src="{{ following.image.url }}" alt="" class="object-fit-fill profile">
                         </div>

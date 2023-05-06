@@ -17,7 +17,7 @@ followersModalBtn.addEventListener('shown.bs.modal', function (event) {
         followerLink.href = `/accounts/profile/${follower.username}`
         const followerImageDiv = document.createElement('div');
         followerImageDiv.className = "profile--image rounded-circle";
-        if (follower.profile_image) {
+        if (follower.image) {
           const followerImage = document.createElement('img');
           followerImage.className = "object-fit-fill profile";
           followerImage.src = follower.image.url;

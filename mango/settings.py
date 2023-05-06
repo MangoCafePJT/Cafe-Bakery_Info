@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['port-0-cafe-bakery-info-687p2alharv4ez.sel4.cloudtype.app','localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['port-0-cafe-bakery-info-687p2alharv4ez.sel4.cloudtype.app','localhost', '127.0.0.1', 'mangocafe.kro.kr']
 
 
 # Application definition
@@ -105,7 +105,7 @@ CHANNEL_LAYERS = {
         'CONFIG': {
             "hosts":  [
                 ('127.0.0.1', 6379),
-                ('port-0-cafe-bakery-info-687p2alharv4ez.sel4.cloudtype.app', 6379),
+                # ('port-0-cafe-bakery-info-687p2alharv4ez.sel4.cloudtype.app', 6379),
             ],
         },
     },

@@ -137,7 +137,8 @@ def detail(request, post_pk):
     post = Post.objects.select_related('user').prefetch_related(
         Prefetch('reviews', queryset=Review.objects.select_related('user'))
     ).get(pk=post_pk)
-
+    address = post.address
+    latitude, longitude = get_latlng_from_address(address)
     rating_filter = request.GET.getlist('rating-filter')
     emotion_filter = request.GET.getlist('emotion-filter')
     filter_args = Q()
@@ -156,9 +157,12 @@ def detail(request, post_pk):
                 emotion_filter_q |= Q(emotion=int(emotion))
         filter_args &= emotion_filter_q
         
-    reviews = post.reviews.order_by('-created_at')
-    address = post.address
-    latitude, longitude = get_latlng_from_address(address)
+    reviews = post.reviews.filter(filter_args).order_by('-created_at')
+
+    hit_count = request.session.get('hit_count_{}'.format(post_pk), 0)
+    hit_count += 1
+    request.session['hit_count_{}'.format(post_pk)] = hit_count
+
     post_form = PostForm()
     review_form = ReviewForm()
     post_images = []
@@ -178,6 +182,7 @@ def detail(request, post_pk):
         'kakao_script_key': kakao_script_key,
         'tags': tags,
         'review_form': review_form,
+        'hit_count': hit_count,
     }
     return render(request, 'posts/detail.html', context)
 
@@ -395,9 +400,14 @@ def tagged_posts(request, tag_pk):
         else:
             post_images.append((post,''))
 
+    page = request.GET.get('page', '1')
+    per_page = 8
+    paginator = Paginator(post_images, per_page)
+    page_obj = paginator.get_page(page)
+
     context = {
         'tag': tag, 
         'posts': posts,
-        'post_images': post_images,
+        'post_images': page_obj,
         }
     return render(request, 'posts/tagged_posts.html', context)

@@ -17,21 +17,21 @@ class cafeCarousel {
       this.$prevButton.hidden = true;
     }
 
-    if (this.$carousel.childElementCount <= 3) {
+    if (this.$carousel.childElementCount <= 4) {
       this.$nextButton.hidden = true;
     }
 
-    if (this.index === 0 && this.$carousel.childElementCount > 3) {
+    if (this.index === 0 && this.$carousel.childElementCount > 4) {
       this.$nextButton.hidden = false;
     }
   }
 
   prev() {
     if (this.index <= 0) return;
-    this.index -= 2;
+    this.index -= 4;
 
     this.$carousel.style.transform = `translate3d(-${
-      250 * this.index
+      260 * this.index
     }px, 0, 0)`;
 
     if (this.index <= 0) {
@@ -48,10 +48,10 @@ class cafeCarousel {
 
   next() {
     if (this.index >= this.$carousel.childElementCount - 2) return;
-    this.index += 2;
+    this.index += 4;
 
     this.$carousel.style.transform = `translate3d(-${
-      250 * this.index
+      260 * this.index
     }px, 0, 0)`;
     if (this.index <= 0) {
       this.$prevButton.hidden = true;

@@ -18,21 +18,21 @@ class bakeryCarousel {
       this.$prevButtonb.hidden = true;
     }
     
-    if (this.$bakerycarousel.childElementCount <= 4) {
+    if (this.$bakerycarousel.childElementCount <= 1) {
       this.$nextButtonb.hidden = true;
     }
 
-    if (this.index === 0 && this.$bakerycarousel.childElementCount > 4) {
+    if (this.index === 0 && this.$bakerycarousel.childElementCount > 1) {
       this.$nextButtonb.hidden = false;
     }
   }
 
   prevb() {
     if (this.index <= 0) return;
-    this.index -= 4;
+    this.index -= 1;
 
     this.$bakerycarousel.style.transform = `translate3d(-${
-      260 * this.index
+      600 * this.index
     }px, 0, 0)`;
 
     if (this.index <= 0) {
@@ -40,7 +40,7 @@ class bakeryCarousel {
     } else {
       this.$prevButtonb.hidden = false;
     }
-    if (this.index >= this.$bakerycarousel.childElementCount - 2) {
+    if (this.index >= this.$bakerycarousel.childElementCount) {
       this.$nextButtonb.hidden = true;
     } else {
       this.$nextButtonb.hidden = false;
@@ -48,24 +48,22 @@ class bakeryCarousel {
   }
 
   nextb() {
-    if (this.index >= this.$bakerycarousel.childElementCount - 2) return;
-    this.index += 4;
+    if (this.index >= this.$bakerycarousel.childElementCount) return;
+    this.index += 1;
 
     this.$bakerycarousel.style.transform = `translate3d(-${
-      260 * this.index
+      600 * this.index
     }px, 0, 0)`;
     if (this.index <= 0) {
       this.$prevButtonb.hidden = true;
     } else {
       this.$prevButtonb.hidden = false;
     }
-    if (this.index >= this.$bakerycarousel.childElementCount - 2) {
+    if (this.index >= this.$bakerycarousel.childElementCount-1) {
       this.$nextButtonb.hidden = true;
     } else {
       this.$nextButtonb.hidden = false;
     }
   }
 }
-
 const bakerycarousel = new bakeryCarousel();
-
