@@ -103,7 +103,10 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts":  [
+                ('127.0.0.1', 6379),
+                ('port-0-cafe-bakery-info-687p2alharv4ez.sel4.cloudtype.app', 6379),
+            ],
         },
     },
 }
